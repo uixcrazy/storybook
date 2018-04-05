@@ -1,2 +1,0 @@
-# hhd-storybook
-storybook, react
