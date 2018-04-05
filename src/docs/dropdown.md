@@ -2,7 +2,7 @@
 
 ## Basicaly
 
-![alt text](http://url/to/img.png)
+![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/src/docs/images/dropdown01.png)
 
 We have a list data like this:
 
@@ -15,19 +15,16 @@ We have a list data like this:
 ]
 ```
 
+We need action:
+  - change item
+  - close dropdown list when we click outside **Dropdown box**
 
 
-## UI Issues
+## The second UI
 
+![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/src/docs/images/dropdown02.png)
 
-  { name: 'All Flowers' },
-  { name: 'Chrysanthemumggggfgdgdsf' },
-  { name: 'Ixora' },
-  { name: 'Wild Sunflower' },
-  { name: 'Bougainvillaea' },
-  { name: 'Rose' },
-  { name: 'Jasmine' },
-  { name: 'Orchids' },
+## Issues
 
 
 
