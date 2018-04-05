@@ -1,0 +1,82 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 20px;
+}
+.checkmark {
+  position: absolute;
+  right: 10px;
+  top: calc(100% / 2 - 2px);
+}
+
+.checkmark:after {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 6px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.dropbox {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a4a4a;
+  position: relative;
+  text-align: left; /* fix */
+}
+.dropbox .current {
+  border: solid 1px #eee;
+  color: #9b9b9b;
+  padding: 10px;
+  flex: 1 1 0;
+  overflow: hidden;
+}
+.dropbox .current p {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dropbox ol {
+  font-weight: 400;
+  position: absolute;
+  top: calc(100% + 5px);
+  background: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+  list-style: decimal inside;
+}
+.dropbox ol li {
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 7px;
+  /* display: flex; */
+  font-size: 14px;
+  align-items: center;
+  position: relative;
+  color: #4a4a4a;
+  /* inside */
+
+}
+.dropbox ol li:first-child {
+  list-style: none;
+}
+.dropbox ol li:nth-child(odd) {
+  background-color: #F9F9FB;
+}
+.dropbox.active ol {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
