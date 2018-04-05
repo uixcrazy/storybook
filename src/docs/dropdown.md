@@ -24,7 +24,10 @@ We need action:
 
 ![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/src/docs/images/dropdown02.png)
 
-## Issues
-
+## Issue inside Iframe
+  { not update yet }
+## Test Case
+  - two dropdown (to check click outside) - have label
+  - dropdown at the dialog (to check reRender with different data. It will not remember old data)
 
 
