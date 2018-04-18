@@ -43,9 +43,8 @@ class SimpleDropdown extends Component {
     this.setState({ isShow: false, currentItem: item });
   }
 
-  show() {
-    console.log('open')
-    this.setState({ isShow: true })
+  toggle() {
+    this.setState({ isShow: !this.state.isShow })
   }
 
   hide() {
@@ -58,11 +57,9 @@ class SimpleDropdown extends Component {
     return (
       <div ref={(node) => {this.dropdownRef = node}}
         className={`dropbox ${isShow ? 'active' : ''}`}>
-        <div className="current" onClick={this.show.bind(this)}>
-          <p>
-            {crrItem && crrItem.name}
-            { items.length > 1 && <i className="icon">↓</i> }
-          </p>
+        <div className="current" onClick={this.toggle.bind(this)}>
+          <span>{crrItem && crrItem.name}</span>
+          { items.length > 1 && <i className="icon-arrow-down"></i> }
         </div>
         <div className="ddct">
           <ul>
@@ -70,10 +67,8 @@ class SimpleDropdown extends Component {
               items.map((item, index) => (
                 <li key={index}
                   onClick={this.handleChangeItem.bind(this, item)}>
-                    <a>
-                      <span>{item.name}</span>
-                      {(item.name === crrItem.name) ? <span class="checkmark" /> : '' }
-                    </a>
+                    <span>{item.name}</span>
+                    {/* {(item.name === crrItem.name) ? <span class="checkmark" /> : '' } */}
                 </li>
               ))
             }

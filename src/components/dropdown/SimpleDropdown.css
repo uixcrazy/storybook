@@ -8,14 +8,14 @@ body {
   padding: 20px;
 }
 
-.checkmark {
+/* .checkmark { */
   /* position: absolute; */
   /* right: 10px;
   top: calc(100% / 2 - 2px); */
-  padding-left: 5px;
-}
+  /* padding-left: 5px; */
+/* } */
 
-.checkmark:after {
+/* .checkmark:after {
   content: '';
   display: block;
   width: 3px;
@@ -23,40 +23,48 @@ body {
   border: solid #000;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
-}
+} */
 
 .dropbox {
-  /* display: flex;
-  flex-wrap: wrap;
-  font-size: 14px;
-  font-weight: 500;
-  color: #4a4a4a;
-  position: relative;
-  text-align: left; fix */
-
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   position: relative;
-  max-width: 250px;
+  /* max-width: 150px; */
   flex: 1 1 0;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .dropbox .current {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  color: #9b9b9b;
   border: solid 1px #eee;
   padding: 10px;
-  color: #9b9b9b;
-  overflow: hidden;
   width: 100%;
-  cursor: pointer;
-}
-.dropbox .current p {
-  width: 100%;
+
+  /* width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  display: flex;
+  display: flex; */
+}
+.dropbox .current .icon-arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #999;
+  position: absolute;
+  top: calc(50% - 2px);
+  right: 8px;
+  transition: 200ms linear all;
 }
 .dropbox .ddct {
-  width: 250px;
+  width: 100%;
   font-weight: 400;
   position: absolute;
   top: calc(100% + 5px);
@@ -69,6 +77,7 @@ body {
 .dropbox .ddct ul {
   background: #fff;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.09);
+  list-style: none;
 }
 .dropbox .ddct ul li {
   padding-top: 10px;
@@ -76,49 +85,16 @@ body {
   padding-bottom: 7px;
   padding-left: 10px;
   cursor: pointer;
+  color: #4a4a4a;
 }
 .dropbox .ddct ul li:nth-child(odd) {
   background-color: #f9f9f9;
 }
-.dropbox .ddct ul li a {
-  display: inline;
-  align-items: center;
-  color: #4a4a4a;
-}
-
-/* .dropbox ol {
-  font-weight: 400;
-  position: absolute;
-  top: calc(100% + 5px);
-  background: #fff;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s linear 0.33s, opacity 0.33s linear;
-  list-style: decimal inside;
-} */
-
-/* .dropbox ol li {
-  padding-left: 10px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 7px; */
-  /* display: flex; */
-  /* font-size: 14px;
-  align-items: center;
-  position: relative;
-  color: #4a4a4a; */
-  /* inside */
-
-/* } */
-/* .dropbox ol li:first-child {
-  list-style: none;
-}
-.dropbox ol li:nth-child(odd) {
-  background-color: #F9F9FB;
-} */
-
 .dropbox.active .ddct {
   visibility: visible;
   opacity: 1;
   transition-delay: 0s;
+}
+.dropbox.active .current .icon-arrow-down {
+  transform: rotate(-180deg);
 }
