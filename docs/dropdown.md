@@ -2,7 +2,7 @@
 
 ## Basicaly
 
-![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/src/docs/images/dropdown01.png)
+![Basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/src/docs/images/dropdown01.png)
 
 We have a list data like this:
 

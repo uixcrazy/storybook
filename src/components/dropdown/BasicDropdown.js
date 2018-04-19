@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './SimpleDropdown.css';
+import './BasicDropdown.css';
 
-class SimpleDropdown extends Component {
+class BasicDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,16 +88,16 @@ class SimpleDropdown extends Component {
   }
 }
 
-SimpleDropdown.defaultProps = {
+BasicDropdown.defaultProps = {
   items: [],
 };
 
-SimpleDropdown.propTypes = {
+BasicDropdown.propTypes = {
   items: PropTypes.array,
   actionChangeItem: PropTypes.func,
 }
 
-export default SimpleDropdown;
+export default BasicDropdown;
 
 
 // ↓↓↓ test
