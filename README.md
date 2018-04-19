@@ -8,12 +8,12 @@
 
 * [node](https://nodejs.org/) version should be 6 or above (to check `node -v`) or use [nvm](https://github.com/creationix/nvm)
 * [npm](https://www.npmjs.com/) version should be 3 or above (to check `npm --version`)
+* [bolt](https://www.npmjs.com/package/bolt)
 
 #### Clone the repo and install
 
 ```sh
 git clone https://github.com/uixcrazy/hhd-storybook.git
-npm i bolt
 bolt
 ```
 
@@ -24,6 +24,8 @@ Then open ```http://localhost:9009/``` to see your app.
 
 
 ## Explanation Front-end tech stack
+
+> It help you create new project by own.
 
 1. [Create React App](https://github.com/facebookincubator/create-react-app)
 
@@ -43,7 +45,11 @@ Then open ```http://localhost:9009/``` to see your app.
 
 [Look at sample Storybook for React here --- 💯 easy](https://www.youtube.com/watch?v=va-JzrmaiUM)
 
-3. [Manage packages by **bolt**](https://www.npmjs.com/package/bolt)
+3. Manage packages by [**bolt**](https://www.npmjs.com/package/bolt)
+
+```
+npm i -g bolt
+```
 
 **Refs**: [Atlaskit - develop by Atlassian](https://atlaskit.atlassian.com/)  /  [Atlaskit Bitbucket Guide](https://bitbucket.org/atlassian/atlaskit-mk-2)
 
