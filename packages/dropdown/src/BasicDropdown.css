@@ -1,13 +1,3 @@
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  padding: 20px;
-}
-
 /* .checkmark { */
   /* position: absolute; */
   /* right: 10px;

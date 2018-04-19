@@ -2,6 +2,12 @@
   "name": "hhd-storybook",
   "version": "0.1.0",
   "private": true,
+  "repository": "https://github.com/uixcrazy/hhd-storybook",
+  "bolt": {
+    "workspaces": [
+      "packages/*"
+    ]
+  },
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",

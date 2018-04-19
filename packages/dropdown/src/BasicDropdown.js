@@ -98,20 +98,3 @@ BasicDropdown.propTypes = {
 }
 
 export default BasicDropdown;
-
-
-// ↓↓↓ test
-// const ITEMS = [
-//   { name: 'All Flowers' },
-//   { name: 'Chrysanthemum' },
-//   { name: 'Ixora' },
-//   { name: 'Wild Sunflower' },
-//   { name: 'Bougainvillaea' },
-//   { name: 'Rose' },
-//   { name: 'Jasmine' },
-//   { name: 'Orchids' },
-// ]
-
-// function actionChangeItem(item) {
-//   console.log('click item', item);
-// }
