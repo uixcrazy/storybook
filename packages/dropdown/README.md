@@ -22,7 +22,7 @@ We need action:
 
 ## The second UI
 
-![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/packages/dropdown/src/docs/images/dropdown02.png)
+![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/packages/dropdown/docs/images/dropdown02.png)
 
 ## Issue inside Iframe
   { not update yet }
