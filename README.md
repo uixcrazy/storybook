@@ -1,6 +1,10 @@
 # 😎 😎 😎 -- hhd storybook -- 😀 😀 😀
 
+## My issue
 
+làm sao đổi
+``` import '../../../core/stylesheets/normalize.css'; ```
+thành ``` import 'core/stylesheets/normalize.css'; ```
 
 ## Installation
 
@@ -71,6 +75,10 @@ my-app/
     favicon.ico
   stories/
     ...
+
+  core/
+    stylesheets/
+  ...
 
   packages/
     ...

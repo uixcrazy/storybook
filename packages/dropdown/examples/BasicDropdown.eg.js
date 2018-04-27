@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BasicDropdown from '../src/BasicDropdown';
-import 'normalize.css';
+import '../../../core/stylesheets/normalize.css';
 import './Dropdown.eg.css';
 
 class BasicDropdownEg extends Component {
