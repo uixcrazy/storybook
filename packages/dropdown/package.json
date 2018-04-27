@@ -2,9 +2,6 @@
   "name": "@uixcrazy/dropdown",
   "version": "0.1.0",
   "description": "A React component that is a base dropdown.",
-  "files": [
-    "dist"
-  ],
   "author": "uixcrazy",
   "repository": "https://github.com/uixcrazy/hhd-storybook",
   "dependencies": {

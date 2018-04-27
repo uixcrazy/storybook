@@ -1,0 +1,21 @@
+{
+  "name": "@uixcrazy/button",
+  "version": "7.0.2",
+  "description": "A React component that is a base button.",
+  "repository": "https://github.com/uixcrazy/hhd-storybook",
+  "dependencies": {
+    "@atlaskit/analytics-next": "^2.0.0",
+    "@atlaskit/theme": "^3.0.0",
+    "babel-runtime": "^6.26.0",
+    "styled-components": "^3.2.6"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0"
+  },
+  "devDependencies": {
+    "@atlaskit/docs": "^3.0.0",
+    "@atlaskit/icon": "^11.0.0",
+    "enzyme": "^3.3.0",
+    "react-router-dom": "^4.2.2"
+  }
+}

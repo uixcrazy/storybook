@@ -8,13 +8,13 @@
 
 * [node](https://nodejs.org/) version should be 6 or above (to check `node -v`) or use [nvm](https://github.com/creationix/nvm)
 * [npm](https://www.npmjs.com/) version should be 3 or above (to check `npm --version`)
-* [bolt](https://www.npmjs.com/package/bolt)
+* [lernajs](https://lernajs.io/) or [lerna repo](https://github.com/lerna/lerna)
 
 #### Clone the repo and install
 
 ```sh
 git clone https://github.com/uixcrazy/hhd-storybook.git
-bolt
+lerna bootstrap --hoist
 ```
 
 To run project on your local: ```npm run storybook```
@@ -45,10 +45,10 @@ Then open ```http://localhost:9009/``` to see your app.
 
 [Look at sample Storybook for React here --- 💯 easy](https://www.youtube.com/watch?v=va-JzrmaiUM)
 
-3. Manage packages by [**bolt**](https://www.npmjs.com/package/bolt)
+3. Manage packages by [**lerna**](https://lernajs.io/)
 
 ```
-npm i -g bolt
+npm install --global lerna
 ```
 
 **Refs**: [Atlaskit - develop by Atlassian](https://atlaskit.atlassian.com/)  /  [Atlaskit Bitbucket Guide](https://bitbucket.org/atlassian/atlaskit-mk-2)
