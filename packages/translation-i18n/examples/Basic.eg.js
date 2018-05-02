@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { i18n } from './libs';
-import 'normalize.css';
+// import 'normalize.css';
 import './Basic.css';
 
 class BasicEg extends Component {

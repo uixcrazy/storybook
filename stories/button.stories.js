@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Button } from '../packages/button/src';
+import Button from '../packages/button/src';
 
-storiesOf('Button', module).add('Basic', () => <Button />);
+storiesOf('Button', module).add('Basic', () => <Button appearance="warning" isSelected>
+Selected
+</Button>);
