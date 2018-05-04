@@ -1,0 +1,77 @@
+
+.TouchSlider *,
+.TouchSlider *:before,
+.TouchSlider *:after {
+  /* simple reset */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.TouchSlider {
+  background: #434a54;
+  width: 100%;
+}
+
+.TouchSlider .hammer {
+  overflow: hidden;
+}
+
+.TouchSlider .slider {
+  display: flex;
+  flex-wrap: wrap;
+  transition: transform 400ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.TouchSlider .slide {
+  background: #fff;
+
+  flex: 1 0 0;
+  position: relative;
+  padding: 40px 30px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.09);
+  color: #434a54;
+}
+
+.TouchSlider .slide .slide-ct {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.09);
+  color: #434a54;
+  font-size: 14px;
+  font-weight: normal;
+  height: 100%;
+
+  padding: 20px;
+}
+
+.TouchSlider .btnSwipeLeft {
+  border: 0;
+  cursor: pointer;
+  width: 25px;
+  height: 75px;
+  color: #fff;
+  background-color: #8d9cab;
+  position: absolute;
+  top: calc(50% - 37px);
+  left: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.TouchSlider .btnSwipeRight {
+  border: 0;
+  cursor: pointer;
+  width: 25px;
+  height: 75px;
+  color: #fff;
+  background-color: #8d9cab;
+  position: absolute;
+  top: calc(50% - 37px);
+  right: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}

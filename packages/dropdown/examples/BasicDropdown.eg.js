@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BasicDropdown from '../src/BasicDropdown';
-import '../../../core/stylesheets/normalize.css';
-import './Dropdown.eg.css';
+// import '../../../core/stylesheets/normalize.css';
 
 class BasicDropdownEg extends Component {
   actionChangeItem(item) {
@@ -20,7 +19,7 @@ class BasicDropdownEg extends Component {
       { value: 'g', name: 'Orchids' },
     ]
     return (
-      <div>
+      <div style={{padding: 20}}>
         <BasicDropdown
           actionChangeItem={this.actionChangeItem}
           items={ITEMS} />
