@@ -13,6 +13,7 @@ thành ``` import 'core/stylesheets/normalize.css'; ```
 * [node](https://nodejs.org/) version should be 6 or above (to check `node -v`) or use [nvm](https://github.com/creationix/nvm)
 * [npm](https://www.npmjs.com/) version should be 3 or above (to check `npm --version`)
 * [lernajs](https://lernajs.io/) or [lerna repo](https://github.com/lerna/lerna)
+* [storybook official-storybook](https://github.com/storybooks/storybook/tree/master/examples/official-storybook)
 
 #### Clone the repo and install
 
