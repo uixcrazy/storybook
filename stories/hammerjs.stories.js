@@ -4,6 +4,8 @@ import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 import Layout from '../core/ui/layout';
 
+import '../core/stylesheets/normalize.css';
+
 import TouchSliderHammer from '../packages/hammerjs/src/TouchSliderHammer';
 import NavigationHammerEg from '../packages/hammerjs/examples/NavigationHammer.eg';
 
@@ -18,10 +20,21 @@ const mockStoriesPanel = () => <div style={{ ...panelStyle, background: '#4abdac
   >Stories</div>;
 const mockAddonPanel = () => <div style={{ ...panelStyle, background: '#fc4a1a' }}>Addon</div>;
 const mockPreviewPanel = () =>
-  <div style={{ ...panelStyle, background: '#f7b733' }}><NavigationHammerEg /></div>;
+  <div style={{ ...panelStyle, background: '#f7b733' }}>
+    <NavigationHammerEg />
+    <NavigationHammerEg />
+  </div>;
 
 storiesOf('hammerjs', module)
   .add('Touch Slider', () => <TouchSliderHammer />)
+  .add('Nav Slider Pure', () => <NavigationHammerEg />)
+  .add('Nav Slider Pure two', () =>
+    <div>
+      <NavigationHammerEg />
+      <NavigationHammerEg />
+      <NavigationHammerEg />
+    </div>
+  )
   .add('Nav Slider', () => <Layout
     showStoriesPanel
     showAddonPanel

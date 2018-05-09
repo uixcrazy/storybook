@@ -1,5 +1,8 @@
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
-/* hhd customize */
+/*
+  hhd/uixcrazy customize
+  keyword: uixcrazy
+*/
 
 /*
   1`. Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
@@ -221,6 +224,14 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+}
+
+/* uixcrazy */
+button:focus,
+[type="button"]:focus,
+[type="reset"]:focus,
+[type="submit"]:focus {
+  outline: 0;
 }
 
 /**

@@ -8,7 +8,9 @@ const TABS = [
   {id: 15423, name: "Wild Sunflower"},
   {id: 15422, name: "Bougainvillaea"},
   {id: 41420, name: "お肌をいたわる、心落ち着く香り"},
-  {id: 1421, name: "お肌の調子を整える"}
+  {id: 1421, name: "お肌の調子を整える"},
+  {id: 1422, name: "シェービングクリーム Dirty"},
+  {id: 1425, name: "ドリームクリーム Dream cream"},
 ];
 
 class NavigationHammerEg extends Component {
@@ -44,10 +46,10 @@ class NavigationHammerEg extends Component {
       }
     )
   }
-
+  //   height: '100%', padding: 10,
   render() {
     return (
-      <div style={{ width: '100%', height: '100%', background: '#fff', padding: 10, boxSizing: 'border-box' }}>
+      <div style={{ width: '100%', background: '#fff', boxSizing: 'border-box' }}>
         <NavigationHammer>
           {TABS.map((tab, index) => {
             const isActive = TABS[this.state.tabActive].id === tab.id ? 'tab-active' : '';
@@ -56,9 +58,7 @@ class NavigationHammerEg extends Component {
               <li
                 key={tab.id}
                 onClick={(evt) => {
-                  if (evt.which === 1) {
-                    this.changeTab(index);
-                  }
+                  this.changeTab(index);
                 }}
                 className={tabClass}
               >

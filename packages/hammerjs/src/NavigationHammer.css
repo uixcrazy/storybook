@@ -7,10 +7,6 @@
   box-sizing: border-box;
 }
 
-.NavSlider button:focus {
-  outline: 0;
-}
-
 .NavSlider {
   width: 100%;
 }
