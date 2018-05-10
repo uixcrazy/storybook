@@ -1,5 +1,7 @@
+/* eslint no-param-reassign: ["error", { "props": false }] */
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; // eslint-disable-line
 
 import Hammerjs from 'hammerjs';
 import './NavigationHammer.css';
@@ -48,9 +50,9 @@ class NavigationHammer extends Component {
         const {
           slideCount,
           widthEachSlide,
-          posEachSlideNext
+          posEachSlideNext,
         } = this.getWidthEachSlide();
-        const maxTx = -(widthTabs - widthSwiper + paddingRight);
+        const maxTx = -(widthTabs - (widthSwiper + paddingRight));
         const posEachSlidePrev =
           this.getPosEachSlidePrev(widthEachSlide, posEachSlideNext, maxTx);
         this.createSlider();
@@ -63,7 +65,7 @@ class NavigationHammer extends Component {
           hasTabs: true,
           widthTabs,
           widthSwiper,
-          maxTx
+          maxTx,
         });
       } else {
         this.setState({
@@ -80,24 +82,24 @@ class NavigationHammer extends Component {
     const listChildNodes = this.tabs && this.tabs.childNodes;
     let widthTabs = 0;
     if (listChildNodes && listChildNodes.length > 0) {
-      var nodesArray = [].slice.call(listChildNodes);
-      widthTabs = nodesArray.reduce((accumulator, currentNode, currentIndex) => {
-        return accumulator + currentNode.offsetWidth;
-      }, 0);
+      const nodesArray = [].slice.call(listChildNodes);
+      widthTabs = nodesArray.reduce((accumulator, currentNode) => (
+        accumulator + currentNode.offsetWidth
+      ), 0);
     }
     return widthTabs;
   }
 
   getPosEachSlidePrev(widthEachSlide, posEachSlideNext, maxTx) {
-    let posEachSlidePrev = [];
+    const posEachSlidePrev = [];
     let i = 1;
     [].concat(posEachSlideNext).reduceRight((accumulator, currentValue, currentIndex) => {
       let pos = maxTx;
       if (currentValue >= maxTx) {
         pos = accumulator + widthEachSlide[widthEachSlide.length - i];
-        i++;
+        i += 1;
       }
-      let j = currentIndex-1
+      const j = currentIndex - 1;
       if (j >= 0) posEachSlidePrev[j] = pos;
       return pos;
     }, maxTx);
@@ -108,20 +110,25 @@ class NavigationHammer extends Component {
     const { paddingLeft } = this.props;
     const listChildNodes = this.tabs && this.tabs.childNodes;
     let widthTabs = 0;
-    let posEachSlideNext = [];
-    let widthEachSlide = [];
+    const posEachSlideNext = [];
+    const widthEachSlide = [];
     let slideCount = 0;
     if (listChildNodes && listChildNodes.length > 0) {
       slideCount = listChildNodes.length;
-      var nodesArray = [].slice.call(listChildNodes);
+      const nodesArray = [].slice.call(listChildNodes);
       widthTabs = nodesArray.reduce((accumulator, currentNode, currentIndex) => {
-        const pos = (currentIndex === 0) ? paddingLeft : - (accumulator - paddingLeft);
+        const pos = (currentIndex === 0) ? paddingLeft : -(accumulator - paddingLeft);
         posEachSlideNext.push(pos);
         widthEachSlide.push(currentNode.offsetWidth);
         return accumulator + currentNode.offsetWidth;
       }, 0);
     }
-    return { widthTabs, slideCount, widthEachSlide, posEachSlideNext };
+    return {
+      widthTabs,
+      slideCount,
+      widthEachSlide,
+      posEachSlideNext,
+    };
   }
 
   createSlider() {
@@ -163,7 +170,7 @@ class NavigationHammer extends Component {
     const {
       translateX,
       activeSlide,
-      posEachSlidePrev
+      posEachSlidePrev,
     } = this.state;
     if (translateX < paddingLeft) {
       let crrActiveSlide = this.getActiveSlide(activeSlide - 1);
@@ -172,8 +179,8 @@ class NavigationHammer extends Component {
       }
       this.setState({
         activeSlide: crrActiveSlide,
-        translateX: ( posEachSlidePrev[crrActiveSlide] < paddingLeft)
-          ? posEachSlidePrev[crrActiveSlide]  : paddingLeft,
+        translateX: (posEachSlidePrev[crrActiveSlide] < paddingLeft)
+          ? posEachSlidePrev[crrActiveSlide] : paddingLeft,
       });
     }
   }
@@ -183,7 +190,7 @@ class NavigationHammer extends Component {
       translateX,
       activeSlide,
       posEachSlideNext,
-      maxTx
+      maxTx,
     } = this.state;
     if (maxTx < translateX) {
       const crrActiveSlide = this.getActiveSlide(activeSlide + 1);
@@ -204,7 +211,7 @@ class NavigationHammer extends Component {
       translateX,
       widthTabs,
       hasTabs,
-      maxTx
+      maxTx,
     } = this.state;
     const disabledLeft = (translateX === paddingLeft);
     const disabledRight = (maxTx >= translateX);
@@ -213,10 +220,10 @@ class NavigationHammer extends Component {
         <div ref={(DOM) => {
           this.swiper = DOM;
         }}
-          className={`hammer ${hasTabs ? 'hasTabs' : ''}`}
+        className={`hammer ${hasTabs ? 'has-tabs' : ''}`}
         >
           <ul className="tabs"
-            ref={(DOM) => { this.tabs = DOM }}
+            ref={(DOM) => { this.tabs = DOM; }}
             style={{
               width: widthTabs || 'auto',
               transform: `translateX(${hasTabs ? translateX : 0}px)`,
@@ -239,7 +246,7 @@ class NavigationHammer extends Component {
           </button>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -251,6 +258,7 @@ NavigationHammer.defaultProps = {
 NavigationHammer.propTypes = {
   paddingLeft: PropTypes.number,
   paddingRight: PropTypes.number,
-}
+  children: PropTypes.node.isRequired,
+};
 
 export default NavigationHammer;

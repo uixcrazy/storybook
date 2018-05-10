@@ -16,7 +16,7 @@
   position: relative;
 }
 
-/* .NavSlider .hasTabs  */
+/* .NavSlider .has-tabs  */
 
 .NavSlider .tabs {
   display: flex;
@@ -69,8 +69,8 @@ opacity: 0.8;
   cursor: default;
 }
 
-.NavSlider .hasTabs .btnSwipePrev,
-.NavSlider .hasTabs .btnSwipeNext {
+.NavSlider .has-tabs .btnSwipePrev,
+.NavSlider .has-tabs .btnSwipeNext {
   display: block;
 }
 
