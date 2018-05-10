@@ -14,6 +14,7 @@ const rootStyle = {
 
 const storiesPanelStyle = (showStoriesPanel, storiesPanelOnTop) => ({
   width: '100%',
+  height: '100%',
   display: showStoriesPanel ? 'flex' : 'none',
   flexDirection: storiesPanelOnTop ? 'column' : 'row',
   alignItems: 'stretch',
@@ -52,8 +53,8 @@ const contentPanelStyle = (addonPanelInRight, storiesPanelOnTop) => ({
   boxSizing: 'border-box',
   width: '100%',
   height: '100%',
-  padding: addonPanelInRight ? '10px 2px 10px 0' : '10px 10px 2px 0',
-  paddingTop: storiesPanelOnTop ? 0 : 10,
+  // padding: addonPanelInRight ? '10px 2px 10px 0' : '10px 10px 2px 0',
+  // paddingTop: storiesPanelOnTop ? 0 : 10,
 });
 
 const normalPreviewStyle = {

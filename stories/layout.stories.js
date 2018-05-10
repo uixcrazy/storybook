@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import Layout from '../core/ui/layout';
 
 const panelStyle = {
-  position: 'absolute',
+  // position: 'absolute',
   height: '100%',
   width: '100%',
   color: 'white',

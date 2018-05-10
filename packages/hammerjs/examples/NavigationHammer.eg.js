@@ -10,6 +10,7 @@ const TABS = [
   {id: 41420, name: "お肌をいたわる、心落ち着く香り"},
   {id: 1421, name: "お肌の調子を整える"},
   {id: 1422, name: "シェービングクリーム Dirty"},
+  {id: 1015, name: "Ixora"},
   {id: 1425, name: "ドリームクリーム Dream cream"},
 ];
 

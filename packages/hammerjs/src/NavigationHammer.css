@@ -14,7 +14,6 @@
 .NavSlider .hammer {
   overflow: hidden;
   position: relative;
-  border: 1px solid #e6e9ed;
 }
 
 /* .NavSlider .hasTabs  */
@@ -35,6 +34,8 @@
   font-size: 14px;
   padding: 8px 17px;
   border-right: 1px solid #e6e9ed;
+  border-top: 1px solid #e6e9ed;
+  border-bottom: 1px solid #e6e9ed;
 }
 
 .NavSlider .tab-item.tab-active {
@@ -52,10 +53,10 @@ opacity: 0.8;
   position: absolute;
   width: 26px;
   height: 39px;
+  line-height: 39px;
   top: 0;
   left: 0;
   font-size: 18px;
-  padding: 8px 0;
   color: #fff;
   background: #4abdac;
   z-index: 1;
