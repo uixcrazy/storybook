@@ -9,4 +9,7 @@
 ## Test Case
   - Touch Slider
 
+## Issue
+  - làm sao reset hammer
+
 

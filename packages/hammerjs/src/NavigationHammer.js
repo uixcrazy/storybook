@@ -131,15 +131,18 @@ class NavigationHammer extends Component {
       velocity: 0.1,
       preventDefault: true,
     };
-    const mc = new Hammerjs(this.swiper, options);
-    mc.on('swipeleft swiperight', (ev) => {
-      ev.preventDefault();
-      if (ev.type === 'swipeleft') {
-        this.nextSlide();
-      } else if (ev.type === 'swiperight') {
-        this.prevSlide();
-      }
-    });
+    if (!this.state.mc) {
+      const mc = new Hammerjs(this.swiper, options);
+      this.setState({ mc });
+      mc.on('swipeleft swiperight', (ev) => {
+        ev.preventDefault();
+        if (ev.type === 'swipeleft') {
+          this.nextSlide();
+        } else if (ev.type === 'swiperight') {
+          this.prevSlide();
+        }
+      });
+    }
   }
 
   getActiveSlide(number) {

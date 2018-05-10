@@ -37,11 +37,22 @@ storiesOf('hammerjs', module)
   )
   .add('Nav Slider', () => <Layout
     showStoriesPanel
-    showAddonPanel
+    showAddonPanel={false}
     goFullScreen={false}
-    addonPanelInRight
+    addonPanelInRight={false}
     storiesPanel={mockStoriesPanel}
     addonPanel={mockAddonPanel}
     preview={mockPreviewPanel}
   />
 )
+
+
+{/* <Layout
+      showStoriesPanel
+      showAddonPanel={false}
+      goFullScreen={false}
+      addonPanelInRight={false}
+      storiesPanel={mockStoriesPanel}
+      addonPanel={mockAddonPanel}
+      preview={mockPreviewPanel}
+    /> */}
