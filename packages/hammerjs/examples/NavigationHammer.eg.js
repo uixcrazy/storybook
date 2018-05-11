@@ -14,13 +14,22 @@ const TABS = [
   { id: 1425, name: 'ドリームクリーム Dream cream' },
 ];
 
+const TABS2 = [
+  { id: 1111, name: 'Chrysanthemum' },
+  { id: 10125, name: 'Ixora' },
+  { id: 15423, name: 'Wild Sunflower' },
+  { id: 15422, name: 'Bougainvillaea' },
+];
+
 class NavigationHammerEg extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tabActive: 0,
+      tabActive2: 0,
     };
     this.changeTab = this.changeTab.bind(this);
+    this.changeTab2 = this.changeTab2.bind(this);
   }
   // actionChangeItem(item) {
   //   console.log('click item', item);
@@ -45,6 +54,13 @@ class NavigationHammerEg extends Component {
       tabActive: index,
     });
   }
+
+  changeTab2(index) {
+    console.log('change Tab', TABS2[index]);
+    this.setState({
+      tabActive2: index,
+    });
+  }
   //   height: '100%', padding: 10,
   render() {
     return (
@@ -59,6 +75,26 @@ class NavigationHammerEg extends Component {
                   key={tab.id}
                   onClick={() => {
                     this.changeTab(index);
+                  }}
+                  className={tabClass}
+                >
+                  {tab.name}
+                </li>
+              );
+            })
+          }
+        </NavigationHammer>
+
+        <NavigationHammer>
+          {
+            TABS2.map((tab, index) => {
+              const isActive = TABS[this.state.tabActive2].id === tab.id ? 'tab-active' : '';
+              const tabClass = `tab-item ${isActive}`;
+              return (
+                <li
+                  key={tab.id}
+                  onClick={() => {
+                    this.changeTab2(index);
                   }}
                   className={tabClass}
                 >

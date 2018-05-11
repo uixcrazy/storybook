@@ -32,7 +32,7 @@ class NavigationHammer extends Component {
   }
 
   componentDidUpdate() {
-    this.updateUI();
+    this.updateUI(); // not resize on Browser
   }
 
   componentWillUnmount() {
@@ -52,7 +52,7 @@ class NavigationHammer extends Component {
           widthEachSlide,
           posEachSlideNext,
         } = this.getWidthEachSlide();
-        const maxTx = -(widthTabs - (widthSwiper + paddingRight));
+        const maxTx = -(widthTabs - (widthSwiper - paddingRight));
         const posEachSlidePrev =
           this.getPosEachSlidePrev(widthEachSlide, posEachSlideNext, maxTx);
         this.createSlider();
@@ -179,7 +179,7 @@ class NavigationHammer extends Component {
       }
       this.setState({
         activeSlide: crrActiveSlide,
-        translateX: (posEachSlidePrev[crrActiveSlide] < paddingLeft)
+        translateX: (posEachSlidePrev[crrActiveSlide] < paddingLeft) && (activeSlide !== 0)
           ? posEachSlidePrev[crrActiveSlide] : paddingLeft,
       });
     }
@@ -227,6 +227,7 @@ class NavigationHammer extends Component {
             style={{
               width: widthTabs || 'auto',
               transform: `translateX(${hasTabs ? translateX : 0}px)`,
+              display: 'flex', // style={{ flex: '1 0 auto' }} forChildren
             }}>
             {this.props.children}
           </ul>
