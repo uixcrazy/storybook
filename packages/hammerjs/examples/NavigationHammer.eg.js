@@ -57,7 +57,9 @@ class NavigationHammerEg extends Component {
               return (
                 <li
                   key={tab.id}
-                  onClick={this.changeTab(index)}
+                  onClick={() => {
+                    this.changeTab(index);
+                  }}
                   className={tabClass}
                 >
                   {tab.name}
