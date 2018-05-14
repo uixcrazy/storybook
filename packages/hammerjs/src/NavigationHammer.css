@@ -16,8 +16,6 @@
   position: relative;
 }
 
-/* .NavSlider .has-tabs  */
-
 .NavSlider .tabs {
   display: flex;
   /* overflow: hidden; */
@@ -26,10 +24,8 @@
 }
 
 .NavSlider .tab-item {
-  /* flex: 1 0 auto; flex-shrink: 0; */
-  flex-shrink: 0;
+  flex-shrink: 0; /* flex: 1 0 auto; */
   cursor: pointer;
-
   color: #434a54;
   font-weight: 300;
   font-size: 14px;
@@ -44,38 +40,39 @@
   color: #4abdac;
 }
 
-.NavSlider .btnSwipePrev,
-.NavSlider .btnSwipeNext {
-
-opacity: 0.8;
-
+.NavSlider .btn-prev,
+.NavSlider .btn-next {
   cursor: pointer;
   display: none;
   position: absolute;
-  width: 26px;
-  height: 39px;
-  line-height: 39px;
   top: 0;
   left: 0;
+  padding: 8px 17px;
   font-size: 18px;
   color: #fff;
   background: #4abdac;
   z-index: 1;
   border: 0;
 }
+.NavSlider .btn-prev span,
+.NavSlider .btn-next span {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 
-.NavSlider .btnSwipePrev:disabled,
-.NavSlider .btnSwipeNext:disabled {
+.NavSlider .btn-prev:disabled,
+.NavSlider .btn-next:disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-.NavSlider .has-tabs .btnSwipePrev,
-.NavSlider .has-tabs .btnSwipeNext {
+.NavSlider .has-tabs .btn-prev,
+.NavSlider .has-tabs .btn-next {
   display: block;
 }
 
-.NavSlider .btnSwipeNext {
+.NavSlider .btn-next {
   left: auto;
   right: 0;
 }

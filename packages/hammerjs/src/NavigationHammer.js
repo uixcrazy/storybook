@@ -16,10 +16,12 @@ class NavigationHammer extends Component {
       hasTabs: false,
       widthTabs: null,
       widthSwiper: null,
+      widthEachSlide: [],
       posEachSlidePrev: [],
       posEachSlideNext: [],
       maxTx: null,
     };
+    this.changeTab = this.changeTab.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +61,7 @@ class NavigationHammer extends Component {
         this.setState({
           activeSlide: 0,
           slideCount,
+          widthEachSlide,
           posEachSlidePrev,
           posEachSlideNext,
           translateX: paddingLeft,
@@ -70,6 +73,7 @@ class NavigationHammer extends Component {
       } else {
         this.setState({
           slideCount: 0,
+          widthEachSlide: [],
           hasTabs: false,
           widthTabs,
           widthSwiper,
@@ -177,10 +181,15 @@ class NavigationHammer extends Component {
       if (posEachSlidePrev[crrActiveSlide] === translateX && crrActiveSlide > 0) {
         crrActiveSlide = this.getActiveSlide(crrActiveSlide - 1);
       }
+      const newTranslateX =
+      (posEachSlidePrev[crrActiveSlide] < paddingLeft) && (activeSlide !== 0)
+        ? posEachSlidePrev[crrActiveSlide] : paddingLeft;
+      // if (newTranslateX < translateX) {
+      //   console.log('OMB');
+      // }
       this.setState({
         activeSlide: crrActiveSlide,
-        translateX: (posEachSlidePrev[crrActiveSlide] < paddingLeft) && (activeSlide !== 0)
-          ? posEachSlidePrev[crrActiveSlide] : paddingLeft,
+        translateX: newTranslateX,
       });
     }
   }
@@ -202,10 +211,66 @@ class NavigationHammer extends Component {
     }
   }
 
+  goToSlide(number) {
+    this.setState({
+      activeSlide: number,
+      translateX: this.state.posEachSlideNext[number],
+    });
+  }
+
+  checkActiveTabHidden(index) {
+    const {
+      paddingLeft,
+      paddingRight,
+    } = this.props;
+    const {
+      widthSwiper,
+      translateX,
+      posEachSlideNext,
+      widthEachSlide,
+    } = this.state;
+
+    const realWidthSlider = widthSwiper - paddingLeft - paddingRight;
+    const opencastNext = realWidthSlider + (posEachSlideNext[index] - translateX);
+    // realWidthSlider
+    // + ((posEachSlideNext[index] - (translateX - paddingLeft))
+    // - paddingLeft);
+    const opencastPrev = -(
+      (posEachSlideNext[index] - paddingLeft)
+      - (widthEachSlide[index] + (translateX - paddingLeft)));
+
+    if (widthEachSlide[index] > opencastNext) {
+      console.log('%c Overlap at Right ', 'background: #222; color: #bada55');
+      console.log(opencastNext);
+      this.nextSlide();
+    }
+
+    if (widthEachSlide[index] > opencastPrev) {
+      console.log('%c overlap at Left', 'background: #222; color: #bada55');
+      console.log(opencastPrev, index);
+      // this.prevSlide();
+      this.goToSlide(index);
+    }
+  }
+
+  changeTab(id, name, index) {
+    const {
+      defaultSelected,
+      items,
+    } = this.props;
+    const isActive = items && items[index] && items[defaultSelected].id === items[index].id;
+    if (!isActive) {
+      this.checkActiveTabHidden(index);
+      console.log('updateData', items[index]);
+    }
+  }
+
   render() {
     const {
       paddingLeft,
       paddingRight,
+      items,
+      defaultSelected,
     } = this.props;
     const {
       translateX,
@@ -229,21 +294,36 @@ class NavigationHammer extends Component {
               transform: `translateX(${hasTabs ? translateX : 0}px)`,
               display: 'flex', // style={{ flex: '1 0 auto' }} forChildren
             }}>
-            {this.props.children}
+            {items.map((tab, index) => {
+              const isActive = items && items[index]
+                && items[defaultSelected].id === items[index].id ? 'tab-active' : '';
+              const tabClass = `tab-item ${isActive}`;
+              return (
+                <li
+                  key={tab.id}
+                  onClick={() => {
+                    this.changeTab(tab.id, tab.name, index);
+                  }}
+                  style={{ flexShrink: 0 }}
+                  className={tabClass}>
+                  {tab.name}
+                </li>
+              );
+            })}
           </ul>
           <button
             disabled={disabledLeft}
-            className="btnSwipePrev"
+            className="btn-prev"
             style={{ width: paddingLeft }}
             onClick={this.prevSlide.bind(this)}>
-            ⇠
+            <span>⇠</span>
           </button>
           <button
             disabled={disabledRight}
-            className="btnSwipeNext"
+            className="btn-next"
             style={{ width: paddingRight }}
             onClick={this.nextSlide.bind(this)}>
-            ⇢
+            <span>⇢</span>
           </button>
         </div>
       </div>
@@ -254,12 +334,15 @@ class NavigationHammer extends Component {
 NavigationHammer.defaultProps = {
   paddingLeft: 30,
   paddingRight: 30,
+  defaultSelected: 0,
 };
 
 NavigationHammer.propTypes = {
   paddingLeft: PropTypes.number,
   paddingRight: PropTypes.number,
-  children: PropTypes.node.isRequired,
+  // children: PropTypes.node.isRequired,
+  items: PropTypes.array,
+  defaultSelected: PropTypes.number,
 };
 
 export default NavigationHammer;

@@ -1,8 +1,6 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Hammerjs from 'hammerjs';
-import { indexOfObject } from '../../../core/helper/sf-lib';
 
 export default function makeTabbableWidget(Widget) {
   class TabbableWidget extends Component {
@@ -18,8 +16,8 @@ export default function makeTabbableWidget(Widget) {
         activeSlide: 0,
         slideCount: 0,
         translateX: 0,
-        hasTabs: false,
-        widthTabs: null,
+        hasitems: false,
+        widthitems: null,
         widthSwiper: null,
         widthEachSlide: [],
         posEachSlidePrev: [],
@@ -64,28 +62,28 @@ export default function makeTabbableWidget(Widget) {
 
     switchNextTab() {
       const props = this.props;
-      const portfolioId = props.portfolio;
-      if (portfolioId) {
-        let index = indexOfObject(props.tabs, 'id', portfolioId);
-        const totalTabs = props.tabs.length;
-        index = index + 1 === totalTabs ? 0 : index + 1;
-        const tab = props.tabs[index];
+      const defaultSelectedId = props.defaultSelected;
+      if (defaultSelectedId) {
+        let index = indexOfObject(props.items, 'id', defaultSelectedId);
+        const totalitems = props.items.length;
+        index = index + 1 === totalitems ? 0 : index + 1;
+        const tab = props.items[index];
         this.changeTab(tab.id, tab.name, index, false);
       }
     }
 
     updateUI() {
-      const widthTabs = this.getWidthTabs();
-      const widthSwiper = this.tabsElement && this.tabsElement.clientWidth;
+      const widthitems = this.getWidthitems();
+      const widthSwiper = this.itemsElement && this.itemsElement.clientWidth;
       const { paddingLeft, paddingRight } = this.props;
-      if (this.state.widthTabs !== widthTabs || this.state.widthSwiper !== widthSwiper) {
-        if (widthSwiper < widthTabs) {
+      if (this.state.widthitems !== widthitems || this.state.widthSwiper !== widthSwiper) {
+        if (widthSwiper < widthitems) {
           const {
             slideCount,
             widthEachSlide,
             posEachSlideNext,
           } = this.getWidthEachSlide();
-          const maxTx = -(widthTabs - (widthSwiper - paddingRight));
+          const maxTx = -(widthitems - (widthSwiper - paddingRight));
           const posEachSlidePrev =
             this.getPosEachSlidePrev(widthEachSlide, posEachSlideNext, maxTx);
           this.createSlider();
@@ -96,8 +94,8 @@ export default function makeTabbableWidget(Widget) {
             posEachSlidePrev,
             posEachSlideNext,
             translateX: paddingLeft,
-            hasTabs: true,
-            widthTabs,
+            hasitems: true,
+            widthitems,
             widthSwiper,
             maxTx,
           });
@@ -105,139 +103,12 @@ export default function makeTabbableWidget(Widget) {
           this.setState({
             slideCount: 0,
             widthEachSlide: [],
-            hasTabs: false,
-            widthTabs,
+            hasitems: false,
+            widthitems,
             widthSwiper,
           });
         }
       }
-    }
-
-    getWidthTabs() {
-      const listChildNodes = this.tabs && this.tabs.childNodes;
-      let widthTabs = 0;
-      if (listChildNodes && listChildNodes.length > 0) {
-        const nodesArray = [].slice.call(listChildNodes);
-        widthTabs = nodesArray.reduce((accumulator, currentNode) => (
-          accumulator + currentNode.offsetWidth
-        ), 0);
-      }
-      return widthTabs;
-    }
-
-    getPosEachSlidePrev(widthEachSlide, posEachSlideNext, maxTx) {
-      const posEachSlidePrev = [];
-      let i = 1;
-      [].concat(posEachSlideNext).reduceRight((accumulator, currentValue, currentIndex) => {
-        let pos = maxTx;
-        if (currentValue >= maxTx) {
-          pos = accumulator + widthEachSlide[widthEachSlide.length - i];
-          i += 1;
-        }
-        const j = currentIndex - 1;
-        if (j >= 0) posEachSlidePrev[j] = pos;
-        return pos;
-      }, maxTx);
-      return posEachSlidePrev;
-    }
-
-    getWidthEachSlide() {
-      const { paddingLeft } = this.props;
-      const listChildNodes = this.tabs && this.tabs.childNodes;
-      let widthTabs = 0;
-      const posEachSlideNext = [];
-      const widthEachSlide = [];
-      let slideCount = 0;
-      if (listChildNodes && listChildNodes.length > 0) {
-        slideCount = listChildNodes.length;
-        const nodesArray = [].slice.call(listChildNodes);
-        widthTabs = nodesArray.reduce((accumulator, currentNode, currentIndex) => {
-          const pos = (currentIndex === 0) ? paddingLeft : -(accumulator - paddingLeft);
-          posEachSlideNext.push(pos);
-          widthEachSlide.push(currentNode.offsetWidth);
-          return accumulator + currentNode.offsetWidth;
-        }, 0);
-      }
-      return { widthTabs, slideCount, widthEachSlide, posEachSlideNext };
-    }
-
-    createSlider() {
-      const options = {
-        threshold: 1,
-        velocity: 0.1,
-        preventDefault: true,
-      };
-      if (!this.state.mc) {
-        const mc = new Hammerjs(this.tabsElement, options);
-        this.setState({ mc });
-        mc.on('swipeleft swiperight', (ev) => {
-          ev.preventDefault();
-          if (ev.type === 'swipeleft') {
-            this.nextSlide();
-          } else if (ev.type === 'swiperight') {
-            this.prevSlide();
-          }
-        });
-      }
-    }
-
-    getActiveSlide(number) {
-      const { slideCount } = this.state;
-      let activeSlide = null;
-      if (number < 0) {
-        activeSlide = 0;
-      } else if (number > slideCount - 1) {
-        activeSlide = slideCount - 1;
-      } else {
-        activeSlide = number;
-      }
-      return activeSlide;
-    }
-
-    prevSlide() {
-      const { paddingLeft } = this.props;
-      const {
-        translateX,
-        activeSlide,
-        posEachSlidePrev,
-      } = this.state;
-      if (translateX < paddingLeft) {
-        let crrActiveSlide = this.getActiveSlide(activeSlide - 1);
-        if (posEachSlidePrev[crrActiveSlide] === translateX && crrActiveSlide > 0) {
-          crrActiveSlide = this.getActiveSlide(crrActiveSlide - 1);
-        }
-        const newTranslateX =
-          (posEachSlidePrev[crrActiveSlide] < paddingLeft) && (activeSlide !== 0)
-            ? posEachSlidePrev[crrActiveSlide] : paddingLeft;
-        this.setState({
-          activeSlide: crrActiveSlide,
-          translateX: newTranslateX,
-        });
-      }
-    }
-
-    nextSlide() {
-      const {
-        translateX,
-        activeSlide,
-        posEachSlideNext,
-        maxTx,
-      } = this.state;
-      if (maxTx < translateX) {
-        const crrActiveSlide = this.getActiveSlide(activeSlide + 1);
-        this.setState({
-          activeSlide: crrActiveSlide,
-          translateX: (posEachSlideNext[crrActiveSlide] > maxTx)
-            ? posEachSlideNext[crrActiveSlide] : maxTx,
-        });
-      }
-    }
-
-    goToSlide(number) {
-      this.setState({
-        activeSlide: number,
-        translateX: this.state.posEachSlideNext[number],
-      });
     }
 
     checkActiveTabHidden(index) {
@@ -270,12 +141,12 @@ export default function makeTabbableWidget(Widget) {
     changeTab(id, name, index, isTracking) {
       // setTimeout(() => { // old code
       const {
-        portfolio,
-        tabs,
+        defaultSelected,
+        items,
       } = this.props;
 
-      const isActive = portfolio && tabs[index]
-        && this.props.portfolio === tabs[index].id;
+      const isActive = defaultSelected && items[index]
+        && this.props.defaultSelected === items[index].id;
       if (!isActive) {
         this.checkActiveTabHidden(index);
         this.props.updateData(id, name, isTracking);
@@ -285,70 +156,20 @@ export default function makeTabbableWidget(Widget) {
 
     render() {
       const {
-        tabs,
+        items,
         paddingLeft,
         paddingRight,
       } = this.props;
       const {
         translateX,
-        widthTabs,
-        hasTabs,
+        widthitems,
+        hasitems,
         maxTx,
       } = this.state;
       const disabledLeft = (translateX === paddingLeft);
       const disabledRight = (maxTx >= translateX);
       return (
-        <div className="sf-tabbable-widget" tabIndex="-1"
-          onMouseEnter={this.handleMouseHover}>
-          {tabs && (
-            <div className="sf-tabs-wrapper">
-              <div ref={(DOM) => {
-                this.tabsElement = DOM;
-              }}
-              className={`hammer ${hasTabs ? 'sf-has-tabs' : ''}`}
-              >
-                <ul className="sf-tabs"
-                  ref={(DOM) => { this.tabs = DOM; }}
-                  style={{
-                    width: widthTabs || 'auto',
-                    transform: `translateX(${hasTabs ? translateX : 0}px)`,
-                    display: 'flex',
-                  }}>
-                  {tabs.map((tab, index) => {
-                    const isActive = this.props.portfolio && this.props.portfolio === tab.id ? 'sf-tab-active' : '';
-                    const tabClass = `sf-tab-item sf-tab-${tab.id} ${isActive}`;
-                    return (
-                      <li
-                        key={tab.id}
-                        onClick={() => {
-                          this.changeTab(tab.id, tab.name, index, true);
-                        }}
-                        style={{ flexShrink: 0 }}
-                        className={tabClass}>
-                        {tab.name}
-                      </li>
-                    );
-                  })}
-                </ul>
-                <button
-                  disabled={disabledLeft}
-                  className="sf-previous-btn sf-tab-nav"
-                  style={{ width: paddingLeft }}
-                  onClick={this.prevSlide.bind(this)}>
-                  <span data-icon="&#xe018;" className="icon" />
-                </button>
-                <button
-                  disabled={disabledRight}
-                  className="sf-next-btn sf-tab-nav"
-                  style={{ width: paddingRight }}
-                  onClick={this.nextSlide.bind(this)}>
-                  <span data-icon="&#xe017;" className="icon" />
-                </button>
-              </div>
-            </div>
-          )}
-          <Widget {...this.props} />
-        </div>
+        <div>test</div>
       );
     }
   }
@@ -359,8 +180,8 @@ export default function makeTabbableWidget(Widget) {
   };
 
   TabbableWidget.propTypes = {
-    tabs: PropTypes.array,
-    portfolio: PropTypes.number,
+    items: PropTypes.array,
+    defaultSelected: PropTypes.number,
     updateData: PropTypes.func,
     intervalTab: PropTypes.func,
     tabInterval: PropTypes.number,
