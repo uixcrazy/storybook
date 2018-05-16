@@ -35,6 +35,11 @@
   border-bottom: 1px solid #e6e9ed;
 }
 
+.NavSlider .notabs .tab-item {
+  flex-grow: 1;
+  text-align: center;
+}
+
 .NavSlider .tab-item.tab-active {
   border-bottom: 2px solid #4abdac;
   color: #4abdac;

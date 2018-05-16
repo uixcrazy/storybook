@@ -280,17 +280,18 @@ class NavigationHammer extends Component {
     } = this.state;
     const disabledLeft = (translateX === paddingLeft);
     const disabledRight = (maxTx >= translateX);
+    const finalWidthTabs = hasTabs ? widthTabs : '100%';
     return (
       <div className="NavSlider">
         <div ref={(DOM) => {
           this.swiper = DOM;
         }}
-        className={`hammer ${hasTabs ? 'has-tabs' : ''}`}
+        className={`hammer ${hasTabs ? 'has-tabs' : 'notabs'}`}
         >
           <ul className="tabs"
             ref={(DOM) => { this.tabs = DOM; }}
             style={{
-              width: widthTabs || 'auto',
+              width: finalWidthTabs || 'auto',
               transform: `translateX(${hasTabs ? translateX : 0}px)`,
               display: 'flex', // style={{ flex: '1 0 auto' }} forChildren
             }}>
