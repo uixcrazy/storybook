@@ -261,7 +261,10 @@ class NavigationHammer extends Component {
     const isActive = items && items[index] && items[defaultSelected].id === items[index].id;
     if (!isActive) {
       this.checkActiveTabHidden(index);
-      console.log('updateData', items[index]);
+      this.setState({
+        activeSlide: index,
+      });
+      console.log('updateUI', items[index], id, name);
     }
   }
 
