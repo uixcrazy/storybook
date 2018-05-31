@@ -95,6 +95,6 @@ BasicDropdown.defaultProps = {
 BasicDropdown.propTypes = {
   items: PropTypes.array,
   actionChangeItem: PropTypes.func,
-}
+};
 
 export default BasicDropdown;

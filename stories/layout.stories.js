@@ -21,7 +21,7 @@ storiesOf('Layout', module)
       showStoriesPanel
       showAddonPanel
       goFullScreen={false}
-      addonPanelInRight={false}
+      addonPanelInRight
       storiesPanel={mockStoriesPanel}
       addonPanel={mockAddonPanel}
       preview={mockPreviewPanel}
@@ -43,7 +43,7 @@ storiesOf('Layout', module)
       showStoriesPanel={false}
       showAddonPanel
       goFullScreen={false}
-      addonPanelInRight={false}
+      addonPanelInRight
       storiesPanel={mockStoriesPanel}
       addonPanel={mockAddonPanel}
       preview={mockPreviewPanel}
@@ -55,17 +55,6 @@ storiesOf('Layout', module)
       showAddonPanel={false}
       goFullScreen={false}
       addonPanelInRight={false}
-      storiesPanel={mockStoriesPanel}
-      addonPanel={mockAddonPanel}
-      preview={mockPreviewPanel}
-    />
-  ))
-  .add('addon panel in right', () => (
-    <Layout
-      showStoriesPanel
-      showAddonPanel
-      goFullScreen={false}
-      addonPanelInRight
       storiesPanel={mockStoriesPanel}
       addonPanel={mockAddonPanel}
       preview={mockPreviewPanel}

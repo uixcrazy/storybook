@@ -1,4 +1,4 @@
-import { I18n } from '../../../assets/js/i18n';
+import { I18n } from '../../assets/third-party/i18n';
 
 const EN = {
   noData: 'No data available',
@@ -8,6 +8,7 @@ const DE = {
 };
 const FR = { };
 
+/* eslint-disable */
 export const i18n = (() => {
   /*
    * docs: https://github.com/fnando/i18n-js/blob/master/app/assets/javascripts/i18n.js
@@ -27,11 +28,10 @@ export const i18n = (() => {
       }
     })();
   });
+
   /**
    * hhd: overwrite
    */
-
-
   ii18n.missingTranslation = function(scope, options) {
     console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
 

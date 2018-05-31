@@ -5,9 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Button from '../packages/button/src';
 
 storiesOf('Button Atlaskit', module)
- .add('Basic', () => <Button appearance="warning" isSelected>
-Selected
-</Button>);
+  .add('Basic', () => <Button appearance="warning" isSelected>Selected</Button>);
 storiesOf('Button Atlaskit', module)
- .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
- .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);
+  .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
+  .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);

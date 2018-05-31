@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 import Layout from '../core/ui/layout';
 
-import '../core/stylesheets/normalize.css';
+// import '../core/stylesheets/normalize.css';
 
 import TouchSliderHammer from '../packages/hammerjs/src/TouchSliderHammer';
 import NavigationHammerEg from '../packages/hammerjs/examples/NavigationHammer.eg';

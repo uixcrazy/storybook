@@ -1,0 +1,59 @@
+.simplecss {
+  padding: 0 15px;
+}
+
+.simplecss h3 {
+  margin-top: 20px;
+  font-weight: 400;
+  color: #555;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+
+.icon-bicycle {
+  -webkit-mask: url(https://image.flaticon.com/icons/svg/861/861156.svg) no-repeat;
+  mask: url(https://image.flaticon.com/icons/svg/861/861156.svg) no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.icon-windmill {
+  -webkit-mask: url(https://image.flaticon.com/icons/svg/861/861191.svg) no-repeat;
+  mask: url(https://image.flaticon.com/icons/svg/861/861191.svg) no-repeat;
+}
+
+.icon-house {
+  -webkit-mask: url(https://image.flaticon.com/icons/svg/861/861184.svg) no-repeat;
+  mask: url(https://image.flaticon.com/icons/svg/861/861184.svg) no-repeat;
+}
+
+.icon-solar-panel {
+  -webkit-mask: url(https://image.flaticon.com/icons/svg/861/861185.svg) no-repeat;
+  mask: url(https://image.flaticon.com/icons/svg/861/861185.svg) no-repeat;
+}
+
+.icon-water {
+  -webkit-mask: url(https://image.flaticon.com/icons/svg/861/861190.svg) no-repeat;
+  mask: url(https://image.flaticon.com/icons/svg/861/861190.svg) no-repeat;
+}
+
+.icon-maroon {
+  background-color: maroon;
+}
+
+.icon-purple {
+  background-color: purple;
+}
+
+.icon-olive {
+  background-color: olive;
+}
+
+.icon-gradient {
+  background: -webkit-radial-gradient(50% 50%, lime, cyan);
+  background: radial-gradient(50% 50%, lime, cyan);
+}
