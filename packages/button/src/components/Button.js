@@ -14,6 +14,7 @@ import getButtonStyles from '../styled/getButtonStyles';
 import ButtonContent from '../styled/ButtonContent';
 import ButtonWrapper from '../styled/ButtonWrapper';
 import IconWrapper from '../styled/IconWrapper';
+import LoadingSpinner from '../styled/LoadingSpinner';
 
 import type { ButtonProps } from '../types';
 
@@ -55,12 +56,13 @@ type State = {
 };
 
 class Button extends Component<ButtonProps, State> {
-  /* eslint-disable react/no-unused-prop-types */
+  button: HTMLElement;
 
   static defaultProps = {
     appearance: 'default',
     isDisabled: false,
     isSelected: false,
+    isLoading: false,
     spacing: 'default',
     type: 'button',
     shouldFitContainer: false,
@@ -78,9 +80,17 @@ class Button extends Component<ButtonProps, State> {
     }
   }
 
+  componentDidMount() {
+    if (this.props.autoFocus && this.button) {
+      this.button.focus();
+    }
+  }
+
   customComponent = null;
 
-  onMouseEnter = () => this.setState({ isHover: true });
+  onMouseEnter = () => {
+    this.setState({ isHover: true });
+  };
 
   onMouseLeave = () => this.setState({ isHover: false, isActive: false });
 
@@ -128,13 +138,23 @@ class Button extends Component<ButtonProps, State> {
     return StyledButton;
   }
 
+  getInnerRef = (ref: HTMLElement) => {
+    this.button = ref;
+
+    if (this.props.innerRef) this.props.innerRef(ref);
+  };
+
   render() {
     const {
       children,
       iconBefore,
       iconAfter,
-      innerRef,
+      isLoading,
       shouldFitContainer,
+      spacing,
+      appearance,
+      isSelected,
+      isDisabled,
     } = this.props;
 
     const buttonProps = getButtonProps(this);
@@ -144,12 +164,20 @@ class Button extends Component<ButtonProps, State> {
       (iconBefore && !iconAfter && !children) ||
       (iconAfter && !iconBefore && !children)
     );
-
     return (
-      <StyledComponent innerRef={innerRef} {...buttonProps}>
+      <StyledComponent innerRef={this.getInnerRef} {...buttonProps}>
         <ButtonWrapper onClick={this.onInnerClick} fit={!!shouldFitContainer}>
+          {isLoading ? (
+            <LoadingSpinner
+              spacing={spacing}
+              appearance={appearance}
+              isSelected={isSelected}
+              isDisabled={isDisabled}
+            />
+          ) : null}
           {iconBefore ? (
             <IconWrapper
+              isLoading={isLoading}
               spacing={buttonProps.spacing}
               isOnlyChild={iconIsOnlyChild}
             >
@@ -158,6 +186,7 @@ class Button extends Component<ButtonProps, State> {
           ) : null}
           {children ? (
             <ButtonContent
+              isLoading={isLoading}
               followsIcon={!!iconBefore}
               spacing={buttonProps.spacing}
             >
@@ -166,6 +195,7 @@ class Button extends Component<ButtonProps, State> {
           ) : null}
           {iconAfter ? (
             <IconWrapper
+              isLoading={isLoading}
               spacing={buttonProps.spacing}
               isOnlyChild={iconIsOnlyChild}
             >
