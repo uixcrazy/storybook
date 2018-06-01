@@ -6,6 +6,8 @@ làm sao đổi
 ``` import '../../../core/stylesheets/normalize.css'; ```
 thành ``` import 'core/stylesheets/normalize.css'; ```
 
+Atlaskit Tabs ko load được styles
+
 ## Installation
 
 #### Before you start
