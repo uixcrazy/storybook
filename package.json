@@ -52,6 +52,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
+    "flow": "flow",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
@@ -59,15 +60,16 @@
     "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
-    "@storybook/react": "^3.4.0",
     "@storybook/addon-actions": "^3.4.0",
     "@storybook/addon-links": "^3.4.0",
+    "@storybook/react": "^3.4.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-flow": "^6.23.0"
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.73.0"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -105,6 +107,7 @@
   },
   "babel": {
     "presets": [
+      "flow",
       "react-app"
     ]
   },
