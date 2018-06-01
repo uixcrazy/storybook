@@ -44,18 +44,18 @@ class BasicDropdown extends Component {
   }
 
   toggle() {
-    this.setState({ isShow: !this.state.isShow })
+    this.setState({ isShow: !this.state.isShow });
   }
 
   hide() {
-    this.setState({ isShow: false })
+    this.setState({ isShow: false });
   }
 
   renderUI() {
     const { isShow, items, currentItem } = this.state;
     const crrItem = currentItem || items[0];
     return (
-      <div ref={(node) => {this.dropdownRef = node}}
+      <div ref={(node) => { this.dropdownRef = node; }}
         className={`dropbox ${isShow ? 'active' : ''}`}>
         <div className="current" onClick={this.toggle.bind(this)}>
           <span>{crrItem && crrItem.name}</span>
@@ -67,24 +67,24 @@ class BasicDropdown extends Component {
               items.map((item, index) => (
                 <li key={index}
                   onClick={this.handleChangeItem.bind(this, item)}>
-                    <span>{item.name}</span>
-                    {/* {(item.name === crrItem.name) ? <span class="checkmark" /> : '' } */}
+                  <span>{item.name}</span>
+                  {/* {(item.name === crrItem.name) ? <span class="checkmark" /> : '' } */}
                 </li>
               ))
             }
           </ul>
         </div>
       </div>
-    )
+    );
   }
 
-	render() {
+  render() {
     const { items } = this.state;
     return (
       <React.Fragment>
         { items.length > 0 ? this.renderUI() : <span>no data</span>}
       </React.Fragment>
-    )
+    );
   }
 }
 

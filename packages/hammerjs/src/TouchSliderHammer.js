@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Hammerjs from 'hammerjs';
-
 import './TouchSliderHammer.css';
 
 class TouchSliderHammer extends Component {
   constructor(props) {
     super(props);
-  //   this.state = {
-  //     // isShow: false,
-  //     // items: this.props.items,
-  //     // currentItem: null,
-  //   };
-    this.goToSlide = this.goToSlide.bind(this);
+    this.state = {
+      activeSlide: 0,
+      slideCount: 5,
+    };
     this.createSlider = this.createSlider.bind(this);
   }
-
-  static propTypes = {
-    name: PropTypes.string,
-  }
-
-  static defaultProps = {
-    name: 'ngoc',
-  };
-
-  state = {
-    activeSlide: 0,
-    slideCount: 5,
-  };
 
   componentDidMount() {
     this.createSlider();
@@ -108,9 +91,15 @@ class TouchSliderHammer extends Component {
             ⇢
           </button>
         </div>
-
+        {/* eslint-disable */}
         <a href="https://blog.envylabs.com/build-your-own-touch-slider-with-hammerjs-af99665d2869"
-          target="_blank" style={{color: '#0ff', position: 'absolute', bottom: 0, right: 0}}>Refs</a>
+          target="_blank"
+          style={{
+            color: '#0ff',
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+          }}>Refs</a>
       </div>
     )
   }
