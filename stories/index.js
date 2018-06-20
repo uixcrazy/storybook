@@ -1,3 +1,11 @@
+import React from 'react';
+
+import { storiesOf } from '@storybook/react';
+import App from "../src/App";
+
+storiesOf("App", module)
+  .add("default", () => <App />);
+
 import '../core/stylesheets/normalize.css';
 import './common.css';
 

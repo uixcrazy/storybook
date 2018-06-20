@@ -6,8 +6,7 @@
   "repository": "https://github.com/uixcrazy/hhd-storybook",
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.3.1",
-    "prop-types": "^15.6.1"
-  },
-  "devDependencies": {}
+    "react": "^16.4.1",
+    "prop-types": "^15.6.2"
+  }
 }
