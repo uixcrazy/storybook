@@ -1,0 +1,15 @@
+.red {
+  background: red;
+  padding: 30px;
+}
+
+.blue {
+  background: blue;
+  padding: 30px;
+}
+
+.green {
+  background: green;
+  padding: 30px;
+  color: #fff;
+}

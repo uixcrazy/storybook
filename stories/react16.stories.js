@@ -3,10 +3,11 @@ import { storiesOf } from '@storybook/react';
 import SayHello from '../nopacks/react16/SayHello';
 import ErrorBoundary from '../nopacks/react16/ErrorBoundary';
 import ErrorEvent from '../nopacks/react16/ErrorEvent';
+import App from '../nopacks/react16-context/App';
 
 const MyWidget = ({ content }) => content;
 
-storiesOf('Dropdown', module)
+storiesOf('React16', module)
   .add('Arrow Function', () => <SayHello />)
   .add('Portals', () => <div>Portals</div>)
   .add('ErrorBoundary', () => <div>
@@ -18,3 +19,4 @@ storiesOf('Dropdown', module)
     </ErrorBoundary>
   </div>)
   .add('ErrorEvent', () => <ErrorEvent />)
+  .add('Context', () => <App />)
