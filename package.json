@@ -1,5 +1,5 @@
 {
-  "name": "hhd-storybook",
+  "name": "storybook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -48,36 +48,30 @@
     "promise": "8.0.1",
     "prop-types": "^15.6.2",
     "raf": "3.4.0",
+    "raw-loader": "^0.5.1",
     "react": "^16.4.1",
     "react-dev-utils": "6.0.0-next.3e165448",
     "react-dom": "^16.4.1",
+    "react-jss": "^8.6.1",
+    "react-syntax-highlighter": "^8.0.1",
     "resolve": "1.6.0",
     "sass-loader": "7.0.1",
-    "style-loader": "^0.21.0",
+    "style-loader": "0.21.0",
     "svgr": "1.9.2",
     "sw-precache-webpack-plugin": "0.11.5",
     "thread-loader": "1.1.5",
     "uglifyjs-webpack-plugin": "1.2.5",
     "url-loader": "1.0.1",
     "webpack": "^4.12.1",
-    "webpack-cli": "^3.0.8",
     "webpack-dev-server": "3.1.4",
     "webpack-manifest-plugin": "2.0.3",
     "whatwg-fetch": "2.0.4"
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^3.4.7",
-    "@storybook/addon-links": "^3.4.7",
-    "@storybook/react": "^3.4.7",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-styled-components": "^1.5.1",
-    "flow-bin": "^0.73.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "browserslist": {
@@ -131,5 +125,12 @@
       "node",
       "mjs"
     ]
+  },
+  "devDependencies": {
+    "@storybook/addon-links": "4.0.0-alpha.12",
+    "@storybook/addon-options": "4.0.0-alpha.12",
+    "@storybook/addons": "4.0.0-alpha.12",
+    "@storybook/react": "4.0.0-alpha.12",
+    "marked": "^0.4.0"
   }
 }
