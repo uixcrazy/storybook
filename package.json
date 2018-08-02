@@ -4,14 +4,14 @@
   "private": true,
   "dependencies": {
     "@babel/cli": "^7.0.0-beta.51",
-    "@babel/core": "7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
-    "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.51",
-    "@babel/plugin-transform-runtime": "7.0.0-beta.51",
-    "@babel/preset-env": "7.0.0-beta.51",
-    "@babel/preset-flow": "7.0.0-beta.51",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.51",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/preset-flow": "^7.0.0-beta.51",
     "@babel/preset-react": "^7.0.0-beta.51",
-    "@babel/runtime": "7.0.0-beta.51",
+    "@babel/runtime": "^7.0.0-beta.51",
     "autoprefixer": "8.5.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "8.2.3",
@@ -71,7 +71,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6009",
     "build-storybook": "build-storybook"
   },
   "browserslist": {
@@ -127,10 +127,10 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-links": "4.0.0-alpha.12",
-    "@storybook/addon-options": "4.0.0-alpha.12",
-    "@storybook/addons": "4.0.0-alpha.12",
-    "@storybook/react": "4.0.0-alpha.12",
+    "@storybook/addon-links": "4.0.0-alpha.14",
+    "@storybook/addon-options": "4.0.0-alpha.14",
+    "@storybook/addons": "4.0.0-alpha.14",
+    "@storybook/react": "4.0.0-alpha.14",
     "marked": "^0.4.0"
   }
 }

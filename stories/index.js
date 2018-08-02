@@ -11,7 +11,8 @@ storiesOf("App", module)
 
 // import './react16.stories';
 // import './layout.stories';
-// import './dropdown.stories';
+import './slider.stories';
+import './dropdown.stories';
 // import './translation-i18n.stories';
-// import './hammerjs.stories';
+import './hammerjs.stories';
 // import './multi-colored-svg.stories';

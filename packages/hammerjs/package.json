@@ -1,0 +1,14 @@
+{
+  "name": "@uixcrazy/hammerjstest",
+  "version": "0.1.0",
+  "description": "test hammerjs",
+  "author": "uixcrazy",
+  "repository": "https://github.com/uixcrazy/storybook",
+  "dependencies": {
+    "hammerjs": "^2.0.8"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "prop-types": "^15.6.2"
+  }
+}

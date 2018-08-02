@@ -1,0 +1,78 @@
+.NavSlider *,
+.NavSlider *:before,
+.NavSlider *:after {
+  /* simple reset */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.NavSlider {
+  width: 100%;
+}
+
+.NavSlider .hammer {
+  overflow: hidden;
+  position: relative;
+}
+
+.NavSlider .tabs {
+  display: flex;
+  list-style: none;
+  transition: transform 400ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.NavSlider .tab-item {
+  flex-shrink: 0; /* flex: 1 0 auto; */
+  cursor: pointer;
+  color: #434a54;
+  font-weight: 300;
+  font-size: 14px;
+  padding: 8px 15px;
+  border-right: 1px solid #e6e9ed;
+  border-top: 1px solid #e6e9ed;
+  border-bottom: 1px solid #e6e9ed;
+}
+
+.NavSlider .notabs .tab-item {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.NavSlider .tab-item.tab-active {
+  border-bottom: 2px solid #4abdac;
+  color: #4abdac;
+}
+
+.NavSlider .btn-prev,
+.NavSlider .btn-next {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  font-size: 18px;
+  color: #fff;
+  background: #4abdac;
+  z-index: 1;
+  border: 0;
+  align-content: center;
+  justify-content: center;
+}
+
+.NavSlider .btn-prev:disabled,
+.NavSlider .btn-next:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.NavSlider .has-tabs .btn-prev,
+.NavSlider .has-tabs .btn-next {
+  display: flex;
+}
+
+.NavSlider .btn-next {
+  left: auto;
+  right: 0;
+}
