@@ -8,6 +8,8 @@ const styles = (theme) => ({
     flexDirection: 'column',
     backgroundColor: '#fff',
     height: '100%',
+    flex: 1,
+    overflow: 'hidden',
   },
   figureImage: {
     display: 'block',

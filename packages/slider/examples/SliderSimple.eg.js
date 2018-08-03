@@ -1,5 +1,3 @@
-// tính phương thức mobile
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
@@ -10,10 +8,9 @@ import data from './data.json';
 import styles from './SliderEg.style';
 // components
 import SlideCt from './SlideCt';
-import HammerSlider from '../src/HammerSlider';
-import HammerSliderCarousel from '../src/HammerSliderCarousel';
+import SliderSimple from '../src/SliderSimple';
 
-class HammerSliderCarouselEg extends Component {
+class SliderSimpleEg extends Component {
   state = {
     dataBanner: data,
   }
@@ -30,18 +27,19 @@ class HammerSliderCarouselEg extends Component {
     return (
       <div className={classes.hsTest}>
         <div className={classes.slider}>
-          <HammerSlider data={bannerEl} />
+          <SliderSimple data={bannerEl}/>
         </div>
-        <div className={classes.slider}>
-          <HammerSliderCarousel data={bannerEl} />
-        </div>
+        <p>---</p>
+        {/* <div className={classes.slider}>
+          <SliderSimple data={bannerEl} infiniteLoop/>
+        </div> */}
       </div>
     )
   }
 }
 
-HammerSliderCarouselEg.propTypes = {
+SliderSimpleEg.propTypes = {
   classes: PropTypes.object,
 };
 
-export default injectSheet(styles)(HammerSliderCarouselEg);
+export default injectSheet(styles)(SliderSimpleEg);

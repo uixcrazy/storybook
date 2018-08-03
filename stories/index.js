@@ -6,8 +6,8 @@ import App from "../src/App";
 storiesOf("App", module)
   .add("default", () => <App />);
 
-// import '../core/stylesheets/normalize.css';
-// import './common.css';
+import '../assets/styles/normalize.css';
+import '../assets/styles/nothing-reset.css';
 
 // import './react16.stories';
 // import './layout.stories';
