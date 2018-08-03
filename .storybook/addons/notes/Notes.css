@@ -83,3 +83,18 @@
   font-size: 12px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table thead th,
+table tbody td {
+  border: solid 1px #e0e0e0;
+  padding: 14px;
+  font-size: 14px;
+  vertical-align: top;
+}
+table tbody tr:nth-child(odd) {
+  background: #f9f9f9;
+}

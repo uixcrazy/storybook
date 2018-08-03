@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import addons from '@storybook/addons';
+import marked from 'marked';
 import { ADD_NOTES_EVENT } from './constants';
 
-const WithNotes =  ({children, notes }) => {
+const renderMarkdown = (text, options) => {
+  marked.setOptions({ ...marked.defaults, options });
+  return marked(text);
+}
+
+const WithNotes =  ({children, notes, markdownOptions }) => {
   const channel = addons.getChannel();
-  channel.emit(ADD_NOTES_EVENT, notes);
+  channel.emit(ADD_NOTES_EVENT, renderMarkdown(notes, markdownOptions));
   return children;
 }
 

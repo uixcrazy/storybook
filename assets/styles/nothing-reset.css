@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i');
 /* @import url('https://fonts.googleapis.com/css?family=Archivo:400,400i,500,500i,600,600i,700,700i'); */
 /* @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i'); */
 /* ⇡ ⇡ ⇡ not good on Window ⇡ ⇡ ⇡  */
@@ -7,11 +8,20 @@ html, body {
   height: 100%;
   font-size: 100%;
 }
-#root {
+
+/* #root {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+} */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  margin: 0;
 }
+
+
 /* body {
   display: flex;
   flex-direction: column;
