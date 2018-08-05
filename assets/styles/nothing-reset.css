@@ -9,11 +9,11 @@ html, body {
   font-size: 100%;
 }
 
-/* #root {
+#root {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-} */
+}
 
 body {
   font-family: 'Open Sans', sans-serif;

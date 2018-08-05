@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { debounce } from '../../../assets/third-party/throttle-debounce';
@@ -10,9 +10,16 @@ class SliderSimple extends Component {
     data: PropTypes.arrayOf(PropTypes.element),
     speed: PropTypes.number,
     infiniteLoop: PropTypes.bool,
+    showDots: PropTypes.bool,
+    showBtnNextPrev: PropTypes.bool,
+    // easing
+    // autoplay
+    // autoplaySpeed
   }
   static defaultProps = {
     infiniteLoop: false,
+    showDots: true,
+    showBtnNextPrev: true,
     speed: 500,
   }
   state = {
@@ -51,7 +58,7 @@ class SliderSimple extends Component {
 
   updateDimensions() {
     this.setState({
-      sliderWidth: this.slider.offsetWidth,
+      sliderWidth: this.slider.clientWidth,
     });
   }
 
@@ -76,8 +83,13 @@ class SliderSimple extends Component {
   }
 
   goToNextSlide(stt) {
+    const { slideCount } = this.state;
+    let isNext = true;
+    if (!this.props.infiniteLoop && stt >= slideCount) {
+      isNext = false;
+    }
     // Right to Left   ⟵
-    if (this.state.crrSlide === null) {
+    if (this.state.crrSlide === null && isNext) {
       this.setState({
         crrSlide: stt,
         prevSlide: null,
@@ -87,8 +99,12 @@ class SliderSimple extends Component {
   }
 
   goToPrevSlide(stt) {
+    let isPrev = true;
+    if (!this.props.infiniteLoop && stt < 0) {
+      isPrev = false;
+    }
     // Left to Right   ⟶
-    if (this.state.crrSlide === null) {
+    if (this.state.crrSlide === null && isPrev) {
       this.setState({
         crrSlide: stt,
         prevSlide: null,
@@ -97,7 +113,17 @@ class SliderSimple extends Component {
     }
   }
 
-  render() {
+  handleClick(stt) {
+    const { activeSlide } = this.state;
+    if (stt>activeSlide) {
+      this.goToNextSlide(stt);
+    }
+    if (stt<activeSlide) {
+      this.goToPrevSlide(stt);
+    }
+  }
+
+  renderSlider() {
     const { classes, speed } = this.props;
     const {
       data,
@@ -106,8 +132,112 @@ class SliderSimple extends Component {
       direction,
       sliderWidth,
       prevSlide,
-      // slideCount
     } = this.state;
+    return (
+      <div
+        className={classes.slider}>
+        {
+          data.map((item, index) => {
+            let leftP = (direction === 'left') ? `${sliderWidth}px` : `-${sliderWidth}px`;
+            let transition = `left ${speed}ms linear`;
+            switch(index) {
+            case crrSlide:
+              transition = 'none';
+              break;
+            case activeSlide:
+              leftP = 0;
+              break;
+            case prevSlide:
+              leftP = (direction === 'left') ? `-${sliderWidth}px` : `${sliderWidth}px`;
+              break;
+            default:
+              transition = 'none';
+            }
+            return (
+              <div
+                className={classes.slide} key={index}
+                style={
+                  {
+                    left: leftP,
+                    transition,
+                  }
+                }>
+                {item}
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
+  renderBtnNextPrev() {
+    const { classes } = this.props;
+    const {
+      activeSlide,
+    } = this.state;
+    return (
+      <Fragment>
+        <button
+          className={classes.btnPrev}
+          onClick={debounce(() => {
+            this.goToPrevSlide(activeSlide - 1);
+          }, 250)}>
+          ⇠
+        </button>
+        <button
+          className={classes.btnNext}
+          onClick={debounce(() => {
+            this.goToNextSlide(activeSlide + 1);
+          }, 250)}>
+          ⇢
+        </button>
+      </Fragment>
+    );
+  }
+
+  renderDots() {
+    const {
+      classes,
+      speed,
+    } = this.props;
+    const {
+      activeSlide,
+      slideCount
+    } = this.state;
+    return (
+      <div className={classes.pagination}>
+        {
+          [...Array(slideCount)].map((item, index) => (
+            <button
+              key={index}
+              disabled={activeSlide === index}
+              className={
+                activeSlide === index
+                  ? classes.btnBadgeActive
+                  : classes.btnBadge
+              }
+              style={{
+                transition: `backgroundColor ${speed/2}ms linear ${speed/2}ms`,
+              }}
+              onClick={() => {
+                this.handleClick(index);
+              }}>
+              <span className={classes.circleBadge}/>
+            </button>
+          ))
+        }
+      </div>
+    )
+  }
+
+  render() {
+    const {
+      classes,
+      showDots,
+      showBtnNextPrev,
+    } = this.props;
+    const { data } = this.state;
     return data && data.length > 0 ?
       (
         <div
@@ -115,54 +245,9 @@ class SliderSimple extends Component {
             this.slider = DOM;
           }}
           className={classes.wrapper}>
-          <div
-            className={classes.slider}>
-            {
-              data.map((item, index) => {
-                let leftP = (direction === 'left') ? `${sliderWidth}px` : `-${sliderWidth}px`;
-                let transition = `left ${speed}ms linear`;
-                switch(index) {
-                case crrSlide:
-                  transition = 'none';
-                  break;
-                case activeSlide:
-                  leftP = 0;
-                  break;
-                case prevSlide:
-                  leftP = (direction === 'left') ? `-${sliderWidth}px` : `${sliderWidth}px`;
-                  break;
-                default:
-                  transition = 'none';
-                }
-                return (
-                  <div
-                    className={classes.slide} key={index}
-                    style={
-                      {
-                        left: leftP,
-                        transition,
-                      }
-                    }>
-                    {item}
-                  </div>
-                )
-              })
-            }
-          </div>
-          <button
-            className={classes.btnPrev}
-            onClick={debounce(() => {
-              this.goToPrevSlide(activeSlide - 1);
-            }, 250)}>
-            ⇠
-          </button>
-          <button
-            className={classes.btnNext}
-            onClick={debounce(() => {
-              this.goToNextSlide(activeSlide + 1);
-            }, 250)}>
-            ⇢
-          </button>
+          {this.renderSlider()}
+          {showBtnNextPrev && this.renderBtnNextPrev()}
+          {showDots && this.renderDots()}
         </div>
       ) : null;
   }
