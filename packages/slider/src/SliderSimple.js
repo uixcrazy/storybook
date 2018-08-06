@@ -16,18 +16,20 @@ class SliderSimple extends Component {
     // autoplay
     // autoplaySpeed
   }
+
   static defaultProps = {
+    speed: 500,
     infiniteLoop: false,
     showDots: true,
     showBtnNextPrev: true,
-    speed: 500,
   }
+
   state = {
-    data: this.props.data,
-    activeSlide: 0,
-    crrSlide: null,
-    prevSlide: null,
+    activeIndex: 0,
+    newIndex: null,
+    oldIndex: null,
     direction: 'left', // left - right
+    data: this.props.data,
     slideCount: this.props.data ? this.props.data.length : null,
     sliderWidth: 0,
   };
@@ -39,7 +41,7 @@ class SliderSimple extends Component {
       return {
         data: nextProps.data,
         slideCount: nextProps.data ? nextProps.data.length : null,
-        sliderWidth: this.slider.offsetWidth,
+        sliderWidth: this.slider.clientWidth,
       };
     }
     return null;
@@ -49,10 +51,10 @@ class SliderSimple extends Component {
     this.updateDimensions();
   }
 
-  componentDidUpdate() { // prevProps, prevState
-    const { crrSlide } = this.state;
-    if (crrSlide !== null) {
-      this.goToSlide(crrSlide);
+  componentDidUpdate() { // prevProps, prevState, snapshot
+    const { newIndex } = this.state;
+    if (newIndex !== null) {
+      this.goToSlide(newIndex);
     }
   }
 
@@ -64,62 +66,60 @@ class SliderSimple extends Component {
 
   goToSlide(stt) {
     const {
-      infiniteLoop
+      infiniteLoop,
     } = this.props;
-    const { activeSlide, slideCount } = this.state;
-    let newActiveSlide = null;
+    const { slideCount } = this.state;
+    let _activeSlide = stt; // eslint-disable-line no-underscore-dangle
     if (stt < 0) {
-      newActiveSlide = infiniteLoop ? slideCount - 1 : 0;
+      _activeSlide = infiniteLoop ? slideCount - 1 : 0;
     } else if (stt > slideCount - 1) {
-      newActiveSlide = infiniteLoop ? 0 : slideCount - 1;
-    } else {
-      newActiveSlide = stt;
+      _activeSlide = infiniteLoop ? 0 : slideCount - 1;
     }
-    this.setState({
-      activeSlide: newActiveSlide,
-      crrSlide: null,
-      prevSlide: activeSlide,
-    });
+    this.setState(prevState => ({
+      activeIndex: _activeSlide,
+      newIndex: null,
+      oldIndex: prevState.activeIndex,
+    }));
   }
 
-  goToNextSlide(stt) {
+  onSlideNext(newIndex) {
     const { slideCount } = this.state;
     let isNext = true;
-    if (!this.props.infiniteLoop && stt >= slideCount) {
+    if (!this.props.infiniteLoop && newIndex >= slideCount) {
       isNext = false;
     }
     // Right to Left   ⟵
-    if (this.state.crrSlide === null && isNext) {
+    if (this.state.newIndex === null && isNext) {
       this.setState({
-        crrSlide: stt,
-        prevSlide: null,
+        newIndex,
+        oldIndex: null,
         direction: 'left',
       });
     }
   }
 
-  goToPrevSlide(stt) {
+  onSlidePrev(newIndex) {
     let isPrev = true;
-    if (!this.props.infiniteLoop && stt < 0) {
+    if (!this.props.infiniteLoop && newIndex < 0) {
       isPrev = false;
     }
     // Left to Right   ⟶
-    if (this.state.crrSlide === null && isPrev) {
+    if (this.state.newIndex === null && isPrev) {
       this.setState({
-        crrSlide: stt,
-        prevSlide: null,
+        newIndex,
+        oldIndex: null,
         direction: 'right',
       });
     }
   }
 
   handleClick(stt) {
-    const { activeSlide } = this.state;
-    if (stt>activeSlide) {
-      this.goToNextSlide(stt);
+    const { activeIndex } = this.state;
+    if (stt > activeIndex) {
+      this.onSlideNext(stt);
     }
-    if (stt<activeSlide) {
-      this.goToPrevSlide(stt);
+    if (stt < activeIndex) {
+      this.onSlidePrev(stt);
     }
   }
 
@@ -127,31 +127,32 @@ class SliderSimple extends Component {
     const { classes, speed } = this.props;
     const {
       data,
-      activeSlide,
-      crrSlide,
+      activeIndex,
       direction,
       sliderWidth,
-      prevSlide,
+      oldIndex,
+      // newIndex
     } = this.state;
+    console.log(oldIndex, activeIndex, direction);
     return (
       <div
         className={classes.slider}>
         {
           data.map((item, index) => {
-            let leftP = (direction === 'left') ? `${sliderWidth}px` : `-${sliderWidth}px`;
-            let transition = `left ${speed}ms linear`;
-            switch(index) {
-            case crrSlide:
-              transition = 'none';
-              break;
-            case activeSlide:
-              leftP = 0;
-              break;
-            case prevSlide:
-              leftP = (direction === 'left') ? `-${sliderWidth}px` : `${sliderWidth}px`;
-              break;
-            default:
-              transition = 'none';
+            let leftP = null;
+            let transition = null;
+            switch (index) {
+              case oldIndex:
+                leftP = (direction === 'left') ? `-${sliderWidth}px` : `${sliderWidth}px`;
+                transition = `left ${speed}ms linear`;
+                break;
+              case activeIndex:
+                leftP = 0;
+                transition = `left ${speed}ms linear`;
+                break;
+              default:
+                leftP = (direction === 'left') ? `${sliderWidth}px` : `-${sliderWidth}px`;
+                transition = 'none';
             }
             return (
               <div
@@ -164,31 +165,31 @@ class SliderSimple extends Component {
                 }>
                 {item}
               </div>
-            )
+            );
           })
         }
       </div>
-    )
+    );
   }
 
   renderBtnNextPrev() {
     const { classes } = this.props;
     const {
-      activeSlide,
+      activeIndex,
     } = this.state;
     return (
       <Fragment>
         <button
           className={classes.btnPrev}
           onClick={debounce(() => {
-            this.goToPrevSlide(activeSlide - 1);
+            this.onSlidePrev(activeIndex - 1);
           }, 250)}>
           ⇠
         </button>
         <button
           className={classes.btnNext}
           onClick={debounce(() => {
-            this.goToNextSlide(activeSlide + 1);
+            this.onSlideNext(activeIndex + 1);
           }, 250)}>
           ⇢
         </button>
@@ -202,7 +203,7 @@ class SliderSimple extends Component {
       speed,
     } = this.props;
     const {
-      activeSlide,
+      activeIndex,
       slideCount
     } = this.state;
     return (
@@ -211,9 +212,9 @@ class SliderSimple extends Component {
           [...Array(slideCount)].map((item, index) => (
             <button
               key={index}
-              disabled={activeSlide === index}
+              disabled={activeIndex === index}
               className={
-                activeSlide === index
+                activeIndex === index
                   ? classes.btnBadgeActive
                   : classes.btnBadge
               }

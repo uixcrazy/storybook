@@ -1,4 +1,4 @@
-# 😎 😎 😎 -- hhd storybook -- 😀 😀 😀
+# 🐾 🐾 🐾 -- storybook -- 🐾 🐾 🐾
 
 ## My issue
 
@@ -79,8 +79,12 @@ my-app/
   stories/
     ...
 
+  assets/
+    styles/
+    third-party/
+    ...
+
   core/
-    stylesheets/
   ...
 
   packages/

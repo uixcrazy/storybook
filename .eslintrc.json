@@ -1,7 +1,36 @@
 {
-  "extends": "react-app",
+  "extends": ["react-app", "airbnb-base"],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "allowImportExportEverywhere": true
+  },
   "rules": {
-    "indent": ["warn", 2],
-    "react/jsx-indent": ["warn", 2]
+    "linebreak-style": 0,
+    "indent": [ "error", 2, { "SwitchCase": 1 } ],
+    "max-len": [ 2, 120, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }],
+    "comma-dangle": ["error", "always-multiline", {
+        "functions": "ignore"
+    }],
+    "no-use-before-define": [ "error", "nofunc" ],
+    "react/jsx-uses-vars": 2,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "class-methods-use-this": 0,
+    "import/prefer-default-export": 0
   }
 }
