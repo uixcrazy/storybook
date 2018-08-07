@@ -25,7 +25,7 @@ class SliderSimple extends Component {
     easing: 'linear',
     // linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n)
     autoplay: true,
-    autoplaySpeed: 1000, // 4500
+    autoplaySpeed: 4500,
   }
 
   state = {
@@ -226,13 +226,17 @@ class SliderSimple extends Component {
   }
 
   renderBtnNextPrev() {
-    const { classes } = this.props;
+    const { classes, infiniteLoop } = this.props;
     const {
       activeIndex,
+      slideCount,
     } = this.state;
+    const disabledLeft = !infiniteLoop && activeIndex === 0;
+    const disabledRight = !infiniteLoop && activeIndex === (slideCount - 1);
     return (
       <Fragment>
         <button
+          disabled={disabledLeft}
           className={classes.btnPrev}
           onClick={debounce(() => {
             this.onSlidePrev(activeIndex - 1);
@@ -241,6 +245,7 @@ class SliderSimple extends Component {
           ⇠
         </button>
         <button
+          disabled={disabledRight}
           className={classes.btnNext}
           onClick={debounce(() => {
             this.onSlideNext(activeIndex + 1);
