@@ -5,7 +5,7 @@ import injectSheet from 'react-jss';
 // data
 import data from './data.json';
 // style
-import styles from './SliderEg.style';
+import styles from './styles/SliderEg.style';
 // components
 import SlideCt from './SlideCt';
 import HammerSlider from '../src/HammerSlider';
@@ -15,10 +15,8 @@ class HammerSliderEg extends Component {
     dataBanner: data,
   }
 
-  renderBanner(data) {
-    if (data) {
-      return data.map((item, index) => <SlideCt item={item} key={index} keya={index}/>)
-    }
+  renderBanner(d) {
+    return d && d.map((item, index) => <SlideCt item={item} key={index} keya={index}/>);
   }
 
   render() {
@@ -30,7 +28,7 @@ class HammerSliderEg extends Component {
           <HammerSlider data={bannerEl} />
         </div>
       </div>
-    )
+    );
   }
 }
 

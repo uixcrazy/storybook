@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { debounce } from '../../../assets/third-party/throttle-debounce';
-import styles from './SliderSimple.style';
+import defaultStyles from './SliderSimple.style';
 
-class SliderSimple extends Component {
+export class SliderSimple extends Component {
   static propTypes = {
     classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.element),
@@ -323,4 +323,8 @@ class SliderSimple extends Component {
   }
 }
 
-export default injectSheet(styles)(SliderSimple);
+export const withStyles = (WrappedComponent, styles) => (
+  injectSheet(styles || defaultStyles)(WrappedComponent)
+);
+
+export default withStyles(SliderSimple);

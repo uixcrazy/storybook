@@ -1,14 +1,14 @@
 const btnNav = {
   position: 'absolute',
-  top: 'calc(50% - 27px)',
+  top: 'calc(50% - 12px)',
   cursor: 'pointer',
-  color: '#f5f5f5',
-  fontSize: 28,
+  color: '#000',
+  fontSize: 12,
   display: 'block',
-  lineHeight: '54px',
-  width: 54,
-  height: 54,
-  border: '2px solid #f5f5f5',
+  lineHeight: '24px',
+  width: 24,
+  height: 24,
+  border: '2px solid #000',
   background: 'transparent',
   zIndex: 10,
   '&:disabled': { // https://www.w3schools.com/cssref/sel_disabled.asp
@@ -62,30 +62,24 @@ export default () => { // eslint-disable-line
       height: 30,
     },
     btnBadge: {
-      width: 12,
-      height: 12,
+      width: 24,
+      height: 24,
       display: 'block',
       backgroundColor: 'transparent',
       borderRadius: '50%',
-      border: '1px solid #ccc',
+      border: '1px solid cyan',
       cursor: 'pointer',
       margin: 8,
     },
     btnBadgeActive: {
       composes: '$btnBadge',
       cursor: 'auto',
-      backgroundColor: '#999',
+      backgroundColor: 'cyan',
     },
     btnBadgeDisabled: {
       composes: '$btnBadge',
       cursor: 'auto',
       opacity: 0.2,
     },
-    // btnBadgeActiveDisabled: {
-    //   composes: ['$btnBadgeActive', '$btnBadgeDisabled']
-    // },
-    // '&:before': {
-    //   content: "''",
-    // }
   });
 };

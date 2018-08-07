@@ -1,7 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 
-const styles = (theme) => ({
+const styles = () => ({
   slideCt: {
     position: 'relative',
     display: 'flex',
@@ -31,6 +31,6 @@ const SlideCt = ({ classes, item, keya }) => (
     <img className={classes.figureImage} src={item.photoUrl} alt={item.id} />
     <figcaption className={classes.figcaption}>{keya} {item.title}</figcaption>
   </figure>
-)
+);
 
 export default injectSheet(styles)(SlideCt);

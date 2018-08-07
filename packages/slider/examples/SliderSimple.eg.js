@@ -5,10 +5,11 @@ import injectSheet from 'react-jss';
 // data
 import data from './data.json';
 // style
-import styles from './SliderEg.style';
+import styles from './styles/SliderEg.style';
+import stylesTest from './styles/SliderSimple__test.style';
 // components
 import SlideCt from './SlideCt';
-import SliderSimple from '../src/SliderSimple';
+import Slider, { SliderSimple, withStyles } from '../src/SliderSimple';
 
 class SliderSimpleEg extends Component {
   state = {
@@ -22,18 +23,23 @@ class SliderSimpleEg extends Component {
   render() {
     const { classes } = this.props;
     const bannerEl = this.renderBanner(this.state.dataBanner);
+    const CustomSlider = withStyles(SliderSimple, stylesTest);
     return (
       <div className={classes.hsTest}>
         <div className={classes.slider}>
-          <SliderSimple data={bannerEl}/>
+          <Slider data={bannerEl}/>
         </div>
         <p>---</p>
         <div className={classes.slider}>
-          <SliderSimple data={bannerEl} infiniteLoop/>
+          <Slider data={bannerEl} infiniteLoop/>
         </div>
         <p>---</p>
         <div className={classes.slider}>
-          <SliderSimple data={bannerEl} infiniteLoop autoplay={false}/>
+          <Slider data={bannerEl} infiniteLoop autoplay={false}/>
+        </div>
+        <p>---</p>
+        <div className={classes.slider}>
+          <CustomSlider data={bannerEl}/>
         </div>
 
       </div>
