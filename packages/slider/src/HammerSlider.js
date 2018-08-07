@@ -9,6 +9,7 @@ class HammerSlider extends Component {
     classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.element),
   }
+
   state = {
     data: this.props.data,
     activeSlide: 0,

@@ -12,9 +12,9 @@ class SliderSimple extends Component {
     infiniteLoop: PropTypes.bool,
     showDots: PropTypes.bool,
     showBtnNextPrev: PropTypes.bool,
-    // easing
-    // autoplay
-    // autoplaySpeed
+    easing: PropTypes.string,
+    autoplay: PropTypes.bool,
+    autoplaySpeed: PropTypes.number,
   }
 
   static defaultProps = {
@@ -22,6 +22,10 @@ class SliderSimple extends Component {
     infiniteLoop: false,
     showDots: true,
     showBtnNextPrev: true,
+    easing: 'linear',
+    // linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n)
+    autoplay: true,
+    autoplaySpeed: 1000, // 4500
   }
 
   state = {
@@ -32,7 +36,12 @@ class SliderSimple extends Component {
     data: this.props.data,
     slideCount: this.props.data ? this.props.data.length : null,
     sliderWidth: 0,
+    autoplay: this.props.autoplay,
+    infiniteLoopAutoplay: false,
   };
+
+  // this.slider
+  // this.autoSlide
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // It can return an object to update state,
@@ -44,17 +53,34 @@ class SliderSimple extends Component {
         sliderWidth: this.slider.clientWidth,
       };
     }
+    if (nextProps.autoplay !== prevState.autoplay) {
+      return {
+        autoplay: nextProps.autoplay,
+      };
+    }
     return null;
+  }
+
+  componentWillUnmount() {
+    console.log('%c componentWillUnmount', 'background: #222; color: #bada55');
+    // if (this.mc) this.mc.destroy(); hammer
+    this.stopAuto();
   }
 
   componentDidMount() {
     this.updateDimensions();
+    this.startAuto();
   }
 
-  componentDidUpdate() { // prevProps, prevState, snapshot
-    const { newIndex } = this.state;
+  componentDidUpdate(prevProps, prevState) { // prevProps, prevState, snapshot
+    const { newIndex, autoplay } = this.state;
     if (newIndex !== null) {
-      this.goToSlide(newIndex);
+      setTimeout(() => {
+        this.goToSlide(newIndex);
+      }, 0);
+    }
+    if (autoplay === true && autoplay !== prevState.autoplay) {
+      this.startAuto();
     }
   }
 
@@ -68,17 +94,17 @@ class SliderSimple extends Component {
     const {
       infiniteLoop,
     } = this.props;
-    const { slideCount } = this.state;
+    const { slideCount, infiniteLoopAutoplay } = this.state;
     let _activeSlide = stt; // eslint-disable-line no-underscore-dangle
     if (stt < 0) {
       _activeSlide = infiniteLoop ? slideCount - 1 : 0;
     } else if (stt > slideCount - 1) {
-      _activeSlide = infiniteLoop ? 0 : slideCount - 1;
+      _activeSlide = (infiniteLoop || infiniteLoopAutoplay) ? 0 : slideCount - 1;
     }
     this.setState(prevState => ({
-      activeIndex: _activeSlide,
       newIndex: null,
       oldIndex: prevState.activeIndex,
+      activeIndex: _activeSlide,
     }));
   }
 
@@ -121,38 +147,64 @@ class SliderSimple extends Component {
     if (stt < activeIndex) {
       this.onSlidePrev(stt);
     }
+    this.startAuto(); // reset
+  }
+
+  stopAuto() {
+    if (this.autoSlide) clearInterval(this.autoSlide);
+    this.setState({
+      infiniteLoopAutoplay: false,
+    });
+  }
+
+  startAuto() { // autoChangeNext
+    this.stopAuto();
+    this.autoSlide = setInterval(() => {
+      const { activeIndex } = this.state;
+      // Right to Left   ⟵
+      if (this.state.newIndex === null) {
+        this.setState({
+          infiniteLoopAutoplay: true,
+          newIndex: activeIndex + 1,
+          oldIndex: null,
+          direction: 'left',
+        });
+      }
+    }, this.props.autoplaySpeed);
   }
 
   renderSlider() {
-    const { classes, speed } = this.props;
+    const {
+      classes,
+      speed,
+      easing,
+    } = this.props;
     const {
       data,
       activeIndex,
       direction,
       sliderWidth,
       oldIndex,
-      // newIndex
+      newIndex,
     } = this.state;
-    console.log(oldIndex, activeIndex, direction);
+    const leftPosition = (direction === 'left') ? sliderWidth : -sliderWidth;
+    const transition = newIndex === null ? `left ${speed}ms ${easing}` : 'none';
     return (
       <div
         className={classes.slider}>
         {
           data.map((item, index) => {
-            let leftP = null;
-            let transition = null;
+            let leftP = `${leftPosition}px`;
+            let zIndex = 1;
             switch (index) {
               case oldIndex:
-                leftP = (direction === 'left') ? `-${sliderWidth}px` : `${sliderWidth}px`;
-                transition = `left ${speed}ms linear`;
+                leftP = `${-leftPosition}px`;
                 break;
               case activeIndex:
                 leftP = 0;
-                transition = `left ${speed}ms linear`;
+                zIndex = 2;
                 break;
               default:
-                leftP = (direction === 'left') ? `${sliderWidth}px` : `-${sliderWidth}px`;
-                transition = 'none';
             }
             return (
               <div
@@ -161,6 +213,7 @@ class SliderSimple extends Component {
                   {
                     left: leftP,
                     transition,
+                    zIndex,
                   }
                 }>
                 {item}
@@ -183,6 +236,7 @@ class SliderSimple extends Component {
           className={classes.btnPrev}
           onClick={debounce(() => {
             this.onSlidePrev(activeIndex - 1);
+            this.startAuto();
           }, 250)}>
           ⇠
         </button>
@@ -190,6 +244,7 @@ class SliderSimple extends Component {
           className={classes.btnNext}
           onClick={debounce(() => {
             this.onSlideNext(activeIndex + 1);
+            this.startAuto();
           }, 250)}>
           ⇢
         </button>
@@ -201,10 +256,11 @@ class SliderSimple extends Component {
     const {
       classes,
       speed,
+      easing,
     } = this.props;
     const {
       activeIndex,
-      slideCount
+      slideCount,
     } = this.state;
     return (
       <div className={classes.pagination}>
@@ -219,7 +275,7 @@ class SliderSimple extends Component {
                   : classes.btnBadge
               }
               style={{
-                transition: `backgroundColor ${speed/2}ms linear ${speed/2}ms`,
+                transition: `backgroundColor ${speed / 2}ms ${easing} ${speed / 2}ms`,
               }}
               onClick={() => {
                 this.handleClick(index);
@@ -229,7 +285,7 @@ class SliderSimple extends Component {
           ))
         }
       </div>
-    )
+    );
   }
 
   render() {
@@ -239,18 +295,23 @@ class SliderSimple extends Component {
       showBtnNextPrev,
     } = this.props;
     const { data } = this.state;
-    return data && data.length > 0 ?
-      (
-        <div
-          ref={(DOM) => {
-            this.slider = DOM;
-          }}
-          className={classes.wrapper}>
-          {this.renderSlider()}
-          {showBtnNextPrev && this.renderBtnNextPrev()}
-          {showDots && this.renderDots()}
-        </div>
-      ) : null;
+    return data && data.length > 0
+      ? <div
+        ref={(DOM) => {
+          this.slider = DOM;
+        }}
+        className={classes.wrapper}
+        onMouseEnter={() => {
+          this.stopAuto();
+        }}
+        onMouseLeave={() => {
+          this.startAuto();
+        }}>
+        {this.renderSlider()}
+        {showBtnNextPrev && this.renderBtnNextPrev()}
+        {showDots && this.renderDots()}
+      </div>
+      : null;
   }
 }
 

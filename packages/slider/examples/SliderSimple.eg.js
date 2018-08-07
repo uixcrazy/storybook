@@ -15,10 +15,8 @@ class SliderSimpleEg extends Component {
     dataBanner: data,
   }
 
-  renderBanner(data) {
-    if (data) {
-      return data.map((item, index) => <SlideCt item={item} key={index} keya={index}/>)
-    }
+  renderBanner(d) {
+    return d && d.map((item, index) => <SlideCt item={item} key={index} keya={index}/>);
   }
 
   render() {
@@ -30,11 +28,11 @@ class SliderSimpleEg extends Component {
           <SliderSimple data={bannerEl}/>
         </div>
         <p>---</p>
-        {/* <div className={classes.slider}>
+        <div className={classes.slider}>
           <SliderSimple data={bannerEl} infiniteLoop/>
-        </div> */}
+        </div>
       </div>
-    )
+    );
   }
 }
 

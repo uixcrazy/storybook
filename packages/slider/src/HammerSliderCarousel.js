@@ -11,6 +11,7 @@ class HammerSliderCarousel extends Component {
     infinite: PropTypes.bool,
     duration: PropTypes.number,
   }
+
   static defaultProps = {
     infinite: true,
     duration: 800,
@@ -21,7 +22,7 @@ class HammerSliderCarousel extends Component {
     activeSlide: 1,
     slideCount: this.props.data ? this.props.data.length : null,
     realSlideCount: this.props.data ? this.props.data.length + 2 : null,
-    transition: `transform ${this.props.duration}ms cubic-bezier(0.5, 0, 0.5, 1)`
+    transition: `transform ${this.props.duration}ms cubic-bezier(0.5, 0, 0.5, 1)`,
   };
 
   // componentDidMount() { this.createSlider(); }
@@ -34,7 +35,7 @@ class HammerSliderCarousel extends Component {
         data: nextProps.data,
         slideCount: nextProps.data ? nextProps.data.length : null,
         realSlideCount: nextProps.data ? nextProps.data.length + 2 : null,
-        transition: `transform ${nextProps.duration}ms cubic-bezier(0.5, 0, 0.5, 1)`
+        transition: `transform ${nextProps.duration}ms cubic-bezier(0.5, 0, 0.5, 1)`,
       };
     }
     return null;
@@ -85,7 +86,7 @@ class HammerSliderCarousel extends Component {
     this.goToSlide(activeSlide - 1);
     if (activeSlide === 1) {
       setTimeout(() => {
-        this.goToSlide(realSlideCount-2, 'none');
+        this.goToSlide(realSlideCount - 2, 'none');
         this.autoChangeNext();
       }, duration + 100);
     } else {
@@ -167,7 +168,7 @@ class HammerSliderCarousel extends Component {
             }}>
             {
               <div className={classes.slide}>
-                {data[data.length-1]}
+                {data[data.length - 1]}
               </div>
             }
             {

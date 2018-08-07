@@ -10,6 +10,7 @@ const btnNav = {
   height: 54,
   border: '2px solid #f5f5f5',
   background: 'transparent',
+  zIndex: 10,
   '&:disabled': { // https://www.w3schools.com/cssref/sel_disabled.asp
     cursor: 'auto',
     opacity: 0.2,
@@ -19,8 +20,7 @@ const btnNav = {
 
 // transition: property duration timing-function delay|initial|inherit;
 
-export default (theme) => {
-  console.log(theme);
+export default (theme) => { // eslint-disable-line
   return ({
     wrapper: { // include: slider, Next/Previous Btn...
       overflow: 'hidden',
