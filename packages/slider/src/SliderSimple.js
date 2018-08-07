@@ -65,11 +65,13 @@ class SliderSimple extends Component {
     console.log('%c componentWillUnmount', 'background: #222; color: #bada55');
     // if (this.mc) this.mc.destroy(); hammer
     this.stopAuto();
+    window.removeEventListener('resize', this.updateDimensions());
   }
 
   componentDidMount() {
     this.updateDimensions();
     this.startAuto();
+    window.addEventListener('resize', this.updateDimensions());
   }
 
   componentDidUpdate(prevProps, prevState) { // prevProps, prevState, snapshot
@@ -79,7 +81,7 @@ class SliderSimple extends Component {
         this.goToSlide(newIndex);
       }, 0);
     }
-    if (autoplay === true && autoplay !== prevState.autoplay) {
+    if (autoplay !== prevState.autoplay) {
       this.startAuto();
     }
   }
@@ -120,6 +122,7 @@ class SliderSimple extends Component {
         newIndex,
         oldIndex: null,
         direction: 'left',
+        infiniteLoopAutoplay: false,
       });
     }
   }
@@ -135,6 +138,7 @@ class SliderSimple extends Component {
         newIndex,
         oldIndex: null,
         direction: 'right',
+        infiniteLoopAutoplay: false,
       });
     }
   }
@@ -152,25 +156,24 @@ class SliderSimple extends Component {
 
   stopAuto() {
     if (this.autoSlide) clearInterval(this.autoSlide);
-    this.setState({
-      infiniteLoopAutoplay: false,
-    });
   }
 
   startAuto() { // autoChangeNext
-    this.stopAuto();
-    this.autoSlide = setInterval(() => {
-      const { activeIndex } = this.state;
-      // Right to Left   ⟵
-      if (this.state.newIndex === null) {
-        this.setState({
-          infiniteLoopAutoplay: true,
-          newIndex: activeIndex + 1,
-          oldIndex: null,
-          direction: 'left',
-        });
-      }
-    }, this.props.autoplaySpeed);
+    if (this.state.autoplay === true) {
+      this.stopAuto();
+      this.autoSlide = setInterval(() => {
+        const { activeIndex } = this.state;
+        // Right to Left   ⟵
+        if (this.state.newIndex === null) {
+          this.setState({
+            infiniteLoopAutoplay: true,
+            newIndex: activeIndex + 1,
+            oldIndex: null,
+            direction: 'left',
+          });
+        }
+      }, this.props.autoplaySpeed);
+    }
   }
 
   renderSlider() {

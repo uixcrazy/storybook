@@ -31,6 +31,11 @@ class SliderSimpleEg extends Component {
         <div className={classes.slider}>
           <SliderSimple data={bannerEl} infiniteLoop/>
         </div>
+        <p>---</p>
+        <div className={classes.slider}>
+          <SliderSimple data={bannerEl} infiniteLoop autoplay={false}/>
+        </div>
+
       </div>
     );
   }
