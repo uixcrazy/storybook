@@ -9,7 +9,8 @@ import styles from './styles/SliderEg.style';
 import stylesTest from './styles/SliderSimple__test.style';
 // components
 import SlideCt from './SlideCt';
-import Slider, { SliderSimple, withStyles } from '../src/SliderSimple';
+import Slider, { SliderSimple } from '../src/SliderSimple';
+import { withStyles } from '../../../core/AddStyles';
 
 class SliderSimpleEg extends Component {
   state = {

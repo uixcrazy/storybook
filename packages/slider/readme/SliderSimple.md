@@ -41,7 +41,10 @@
 | ------ | ------ |
 | Right | Left |
 | left to Right | right to Left |
-| ![chuthich](/images/chutthich.png) |
-| ![chuthich](images/chutthich.png) | ![chuthich](images/chutthich.png) |
+| ![chuthich](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/chuthich.png) |
+| ![left-to-right-prepare](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/left-to-right-prepare.png)  | ![right-to-left-prepare](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/right-to-left-prepare.png)  |
+| ![left-to-right](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/left-to-right.png)  | ![right-to-left](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/right-to-left.png)  |
 
-## có thể impove
+## ... and more
+
+  - add HammerJS

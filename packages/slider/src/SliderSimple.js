@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
+import { withStyles } from '../../../core/AddStyles';
 import { debounce } from '../../../assets/third-party/throttle-debounce';
 import defaultStyles from './SliderSimple.style';
 
@@ -323,8 +323,4 @@ export class SliderSimple extends Component {
   }
 }
 
-export const withStyles = (WrappedComponent, styles) => (
-  injectSheet(styles || defaultStyles)(WrappedComponent)
-);
-
-export default withStyles(SliderSimple);
+export default withStyles(SliderSimple, defaultStyles);
