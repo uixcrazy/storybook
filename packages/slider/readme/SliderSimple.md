@@ -1,6 +1,6 @@
-# SliderSimple
+# 🐾 🐾 🐾    SliderSimple    🐾 🐾 🐾
 
-## How to use
+## Usage
 
 1. Default
 
@@ -20,15 +20,28 @@
   <Slider data={bannerEl} infiniteLoop autoplay={false}/>
   ```
 
-## Options:
+  **data** is necessary, a react component. It means you must prepare UI for all slide before.
 
-| Name | Default | Description |
-| ------ | ------ | ------ |
-| speed _(int)_| 500 | Slide transition duration (in ms) |
-| infiniteLoop _(boolean)_| false | If _true_, clicking **"Next"** while on the last slide will transition to the first slide and vice-versa |
-| easing _(linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n))_| linear | 	The type of "easing" to use during transitions. In CSS transitions, include a value for the transition-timing-function property |
-| showDots _(boolean)_| true | show dots/bullets/indicators |
-| showBtnNextPrev _(boolean)_| true | show Next/previous controls |
-| autoplay _(boolean)_| true | enables Autoplay |
-| autoplaySpeed _(int)_| 4500 | Autoplay Speed in milliseconds |
+## Props:
 
+| Name | Type | Default | Description |
+| ------ | ------ | ------ | ------ |
+| data | react.Element<*> |
+| speed | int | 500 | Slide transition duration (in ms) |
+| infiniteLoop | bool | false | If _true_, clicking **"Next"** while on the last slide will transition to the first slide and vice-versa |
+| easing _(linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n))_| string | linear | 	The type of _"easing"_ to use during transitions. In CSS transitions, include a value for the transition-timing-function property |
+| showDots| bool | true | show dots/bullets/indicators |
+| showBtnNextPrev | bool | true | show Next/Previous controls |
+| autoplay | bool | true | Enables Autoplay |
+| autoplaySpeed | int | 4500 | Autoplay Speed (in ms) |
+
+## Core Concepts
+
+| Prev | Next |
+| ------ | ------ |
+| Right | Left |
+| left to Right | right to Left |
+| ![chuthich](/images/chutthich.png) |
+| ![chuthich](images/chutthich.png) | ![chuthich](images/chutthich.png) |
+
+## có thể impove
