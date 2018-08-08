@@ -48,3 +48,4 @@
 ## ... and more
 
   - add HammerJS
+  - chưa test cho mobile
