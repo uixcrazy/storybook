@@ -13,14 +13,17 @@ import HammerSliderCarouselReadme
   from '../packages/slider/readme/HammerSliderCarousel.md';
 import SliderSimpleReadme
   from '../packages/slider/readme/SliderSimple.md';
+import CarouselSimpleReadme
+  from '../packages/slider/readme/CarouselSimple.md';
 
 import HammerSliderEg
-  from '../packages/slider/examples/HammerSlider.eg.js';
+  from '../packages/slider/examples/HammerSlider.eg';
 import HammerSliderCarouselEg
   from '../packages/slider/examples/HammerSliderCarousel.eg';
 import SliderSimpleEg
   from '../packages/slider/examples/SliderSimple.eg';
-  // SliderSimple
+import CarouselSimpleEg
+  from '../packages/slider/examples/CarouselSimple.eg';
 
 import '../assets/styles/normalize.css';
 import '../assets/styles/nothing-reset.css';
@@ -31,7 +34,7 @@ const HammerSlider = () => (
       <HammerSliderEg />
     </ThemeProvider>
   </WithNotes>
-)
+);
 
 const HammerSliderCarousel = () => (
   <WithNotes notes={HammerSliderCarouselReadme}>
@@ -39,7 +42,7 @@ const HammerSliderCarousel = () => (
       <HammerSliderCarouselEg />
     </ThemeProvider>
   </WithNotes>
-)
+);
 
 const SliderSimple = () => (
   <WithNotes notes={SliderSimpleReadme}>
@@ -47,9 +50,19 @@ const SliderSimple = () => (
       <SliderSimpleEg />
     </ThemeProvider>
   </WithNotes>
-)
+);
 
-storiesOf('Slider', module)
+// CarouselSimpleEg
+const CarouselSimple = () => (
+  <WithNotes notes={CarouselSimpleReadme}>
+    <ThemeProvider theme={theme}>
+      <CarouselSimpleEg />
+    </ThemeProvider>
+  </WithNotes>
+);
+
+storiesOf('Slider - Carousel', module)
+  .add('Carousel', () => <CarouselSimple />)
+  .add('Slider', () => <SliderSimple />)
   .add('Hammer Slider', () => <HammerSlider />)
   .add('Hammer Slider Carousel', () => <HammerSliderCarousel />)
-  .add('Slider Simple', () => <SliderSimple />)

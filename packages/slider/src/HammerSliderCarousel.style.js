@@ -15,10 +15,10 @@ const btnNav = {
     cursor: 'auto',
     opacity: 0.2,
     transition: 'opacity 400ms linear 400ms',
-  }
-}
+  },
+};
 
-export default (theme) => ({
+export default () => ({
   hammer: {
     overflow: 'hidden',
     position: 'relative',
