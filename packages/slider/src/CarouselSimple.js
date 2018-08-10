@@ -1,13 +1,10 @@
-// implements Carousel
-// CarouselSimple
-
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Hammerjs from 'hammerjs';
 import { withStyles } from '../../../core/AddStyles';
 import defaultStyles from './CarouselSimple.style';
 
-class CarouselSimple extends Component {
+export class CarouselSimple extends Component {
   static propTypes = {
     classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.element),

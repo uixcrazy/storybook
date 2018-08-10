@@ -37,17 +37,11 @@
 
 ## Core Concepts
 
-| Prev | Next |
-| ------ | ------ |
-| Right | Left |
-| left to Right | right to Left |
-| ![chuthich](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/chuthich.png) |
-| ![left-to-right-prepare](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/left-to-right-prepare.png)  | ![right-to-left-prepare](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/right-to-left-prepare.png)  |
-| ![left-to-right](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/left-to-right.png)  | ![right-to-left](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/right-to-left.png)  |
+![carousel](https://raw.githubusercontent.com/uixcrazy/storybook/master/packages/slider/readme/images/carousel.png)
 
 ## ... and more
 
-  - ```handleClick``` so sánh activeIndev với index -> tăng speed, để bớt giựt
-  - còn phần ```startAuto```
+  - **handleClick** so sánh activeIndev với index -> tăng speed, để bớt giựt
+  - còn phần **startAuto**
   - support casoursel với styles mới
   - chưa test cho mobile
