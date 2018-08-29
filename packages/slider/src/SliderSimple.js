@@ -4,27 +4,31 @@ import { withStyles } from '../../../core/AddStyles';
 import { debounce } from '../../../assets/third-party/throttle-debounce';
 import defaultStyles from './SliderSimple.style';
 
+import Hammerjs from 'hammerjs';
+
 export class SliderSimple extends Component {
   static propTypes = {
     classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.element),
+    easing: PropTypes.string,
     speed: PropTypes.number,
     infiniteLoop: PropTypes.bool,
     showDots: PropTypes.bool,
     showBtnNextPrev: PropTypes.bool,
-    easing: PropTypes.string,
     autoplay: PropTypes.bool,
+    swipeEnabled: PropTypes.bool,
     autoplaySpeed: PropTypes.number,
   }
 
   static defaultProps = {
+    easing: 'linear',
+    // linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n)
     speed: 500,
     infiniteLoop: false,
     showDots: true,
     showBtnNextPrev: true,
-    easing: 'linear',
-    // linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n)
     autoplay: true,
+    swipeEnabled: true,
     autoplaySpeed: 4500,
   }
 
@@ -71,6 +75,7 @@ export class SliderSimple extends Component {
   componentDidMount() {
     this.updateDimensions();
     this.startAuto();
+    this.createSwipe();
     window.addEventListener('resize', this.updateDimensions());
   }
 
@@ -173,6 +178,27 @@ export class SliderSimple extends Component {
           });
         }
       }, this.props.autoplaySpeed);
+    }
+  }
+
+  createSwipe() {
+    if (this.slider && this.props.swipeEnabled) {
+      const options = {
+        // direction: Hammerjs.DIRECTION_ALL, // swipeup swipedown
+        threshold: 1,
+        velocity: 0.1,
+        preventDefault: true,
+      };
+      this.mc = new Hammerjs(this.slider, options);
+      this.mc.on('swipeleft swiperight', (ev) => {
+        ev.preventDefault();
+        if (ev.type === 'swipeleft') {
+          this.onSlideNext(this.state.activeIndex + 1);
+        } else if (ev.type === 'swiperight') {
+          this.onSlidePrev(this.state.activeIndex - 1);
+        }
+        this.startAuto();
+      });
     }
   }
 

@@ -22,6 +22,8 @@
 
   **data** is necessary, a react component. It means you must prepare UI for all slide before.
 
+  [Options Ref](https://bxslider.com/options/)
+
 ## Props:
 
 | Name | Type | Default | Description |
