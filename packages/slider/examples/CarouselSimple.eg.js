@@ -26,9 +26,9 @@ class CarouselSimpleEg extends Component {
     const bannerEl = this.renderBanner(this.state.dataBanner);
     return (
       <div className={classes.hsTest}>
-        <div className={classes.slider}>
+        {/* <div className={classes.slider}>
           <CarouselSimple data={bannerEl} />
-        </div>
+        </div> */}
         <div className={classes.slider}>
           <CarouselSimple data={bannerEl} infiniteLoop/>
         </div>

@@ -68,7 +68,7 @@ export default () => ({
     // },
   },
   hide: {
-    display: 'none',
+    display: 'none !important',
   },
   btnBadgeActive: {
     composes: '$btnBadge',

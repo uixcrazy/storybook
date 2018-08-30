@@ -8,29 +8,30 @@ export class CarouselSimple extends Component {
   static propTypes = {
     classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.element),
+    easing: PropTypes.string,
     speed: PropTypes.number,
     infiniteLoop: PropTypes.bool,
     showDots: PropTypes.bool,
     showBtnNextPrev: PropTypes.bool,
-    easing: PropTypes.string,
     autoplay: PropTypes.bool,
+    swipeEnabled: PropTypes.bool,
     autoplaySpeed: PropTypes.number,
   }
 
   static defaultProps = {
     speed: 500,
+    easing: 'cubic-bezier(0.5, 0, 0.5, 1)',
+    // linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n)
     infiniteLoop: false,
     showDots: true,
     showBtnNextPrev: true,
-    easing: 'cubic-bezier(0.5, 0, 0.5, 1)',
-    // linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n)
     autoplay: true,
+    swipeEnabled: true,
     autoplaySpeed: 4500,
   }
 
   state = this.initState(this.props);
 
-  // componentDidMount() { this.createSlider(); }
   // handleChange = e => { this.setState({ text: e.target.value }) }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -53,36 +54,44 @@ export class CarouselSimple extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.data !== prevState.data) {
-      this.createSlider();
-    }
-  }
-
   componentWillUnmount() {
     console.log('%c componentWillUnmount', 'background: #222; color: #bada55');
     if (this.mc) this.mc.destroy();
     this.stopAuto();
   }
 
-  createSlider() {
-    if (this.swiper) {
+  componentDidMount() {
+    this.createSwipe();
+    this.startAuto();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.data !== prevState.data) {
+      this.createSlider();
+    }
+    if (this.props.autoplay !== prevProps.autoplay) {
+      this.startAuto();
+    }
+  }
+
+  createSwipe() {
+    if (this.slider && this.props.swipeEnabled) {
       const options = {
         // direction: Hammerjs.DIRECTION_ALL, // swipeup swipedown
-        threshold: 10,
+        threshold: 1,
         velocity: 0.1,
         preventDefault: true,
       };
-      this.mc = new Hammerjs(this.swiper, options);
+      this.mc = new Hammerjs(this.slider, options);
       this.mc.on('swipeleft swiperight', (ev) => {
         ev.preventDefault();
         if (ev.type === 'swipeleft') {
-          this.goToSlide(this.state.activeIndex + 1);
+          this.onSlideNext(this.state.activeIndex + 1);
         } else if (ev.type === 'swiperight') {
-          this.goToSlide(this.state.activeIndex - 1);
+          this.onSlidePrev(this.state.activeIndex - 1);
         }
+        this.startAuto();
       });
-      // this.startAuto();
     }
   }
 
@@ -97,10 +106,7 @@ export class CarouselSimple extends Component {
     if (infiniteLoop && activeIndex === 1) {
       setTimeout(() => {
         this.goToSlide(realSlideCount - 2, 'none');
-        // this.startAuto();
       }, speed + 100);
-    } else {
-      // this.startAuto();
     }
   }
 
@@ -111,10 +117,7 @@ export class CarouselSimple extends Component {
     if (infiniteLoop && activeIndex === (realSlideCount - 2)) {
       setTimeout(() => {
         this.goToSlide(1, 'none');
-        // this.startAuto();
       }, speed + 100);
-    } else {
-      // this.startAuto();
     }
   }
 
@@ -147,7 +150,7 @@ export class CarouselSimple extends Component {
   handleClick(index) {
     this.goToSlide(index);
     // update transition có speed mới
-    // this.startAuto();
+    this.startAuto();
   }
 
   renderSlider() {
@@ -209,6 +212,7 @@ export class CarouselSimple extends Component {
           className={classes.btnPrev}
           onClick={() => {
             this.onSlidePrev(activeIndex);
+            this.startAuto();
           }}>
           ⇠
         </button>
@@ -217,6 +221,7 @@ export class CarouselSimple extends Component {
           className={classes.btnNext}
           onClick={() => {
             this.onSlideNext(activeIndex);
+            this.startAuto();
           }}>
           ⇢
         </button>
@@ -239,7 +244,7 @@ export class CarouselSimple extends Component {
       <div className={classes.pagination}>
         {
           [...Array(realSlideCount)].map((item, index) => {
-            const klass = [classes.btnBadge];
+            const klass = [activeIndex === index ? classes.btnBadgeActive : classes.btnBadge];
             if (infiniteLoop && (index === 0 || index === (realSlideCount - 1))) {
               klass.push(classes.hide);
             }
@@ -247,11 +252,7 @@ export class CarouselSimple extends Component {
               <button
                 key={index}
                 disabled={activeIndex === index}
-                className={
-                  activeIndex === index
-                    ? classes.btnBadgeActive
-                    : klass.join(' ')
-                }
+                className={klass.join(' ')}
                 style={{
                   transition: `backgroundColor ${speed / 2}ms ${easing} ${speed / 2}ms`,
                 }}
@@ -280,12 +281,12 @@ export class CarouselSimple extends Component {
           this.slider = DOM;
         }}
         className={classes.hammer}
-        // onMouseEnter={() => {
-        //   this.stopAuto();
-        // }}
-        // onMouseLeave={() => {
-        //   this.startAuto();
-        // }}
+        onMouseEnter={() => {
+          this.stopAuto();
+        }}
+        onMouseLeave={() => {
+          this.startAuto();
+        }}
       >
         {this.renderSlider()}
         {showBtnNextPrev && this.renderBtnNextPrev()}

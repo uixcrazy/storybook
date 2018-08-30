@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Hammerjs from 'hammerjs';
 import { withStyles } from '../../../core/AddStyles';
 import { debounce } from '../../../assets/third-party/throttle-debounce';
 import defaultStyles from './SliderSimple.style';
-
-import Hammerjs from 'hammerjs';
 
 export class SliderSimple extends Component {
   static propTypes = {
@@ -43,9 +42,6 @@ export class SliderSimple extends Component {
     autoplay: this.props.autoplay,
     infiniteLoopAutoplay: false,
   };
-
-  // this.slider
-  // this.autoSlide
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // It can return an object to update state,
