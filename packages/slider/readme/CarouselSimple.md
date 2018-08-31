@@ -29,6 +29,7 @@
 | data | react.Element<*> |
 | speed | int | 500 | Slide transition duration (in ms) |
 | infiniteLoop | bool | false | If _true_, clicking **"Next"** while on the last slide will transition to the first slide and vice-versa |
+| swipeEnabled | bool | true | If true, slider will allow touch swipe transitions |
 | easing _(linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n,n,n,n))_| string | linear | 	The type of _"easing"_ to use during transitions. In CSS transitions, include a value for the transition-timing-function property |
 | showDots| bool | true | show dots/bullets/indicators |
 | showBtnNextPrev | bool | true | show Next/Previous controls |
@@ -41,7 +42,7 @@
 
 ## ... and more
 
-  - **handleClick** so sánh activeIndev với index -> tăng speed, để bớt giựt
-  - còn phần **startAuto**
-  - support casoursel với styles mới
-  - chưa test cho mobile
+  - [ ] **handleClick** so sánh activeIndev với index → tăng speed, để bớt giựt
+  - [x] còn phần **startAuto**
+  - [x] support casoursel với styles mới (đã làm → **chưa tạo demo**)
+  - [x] chưa test cho mobile (đã test một phần, tạm thời ổn định)

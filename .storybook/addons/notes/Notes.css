@@ -1,3 +1,11 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 1` */
+}
+
 .addon-notes-container {
   padding: 10px;
   box-sizing: border-box;
@@ -97,4 +105,9 @@ table tbody td {
 }
 table tbody tr:nth-child(odd) {
   background: #f9f9f9;
+}
+
+ul {
+  list-style: none;
+  padding-left: 10px;
 }

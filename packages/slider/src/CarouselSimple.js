@@ -86,9 +86,9 @@ export class CarouselSimple extends Component {
       this.mc.on('swipeleft swiperight', (ev) => {
         ev.preventDefault();
         if (ev.type === 'swipeleft') {
-          this.onSlideNext(this.state.activeIndex + 1);
+          this.onSlideNext(this.state.activeIndex);
         } else if (ev.type === 'swiperight') {
-          this.onSlidePrev(this.state.activeIndex - 1);
+          this.onSlidePrev(this.state.activeIndex);
         }
         this.startAuto();
       });

@@ -16,4 +16,8 @@ export default () => ({
       height: 400,
     },
   },
+  heading02: {
+    color: '#364959',
+    padding: '20px 10px 10px',
+  }
 });
