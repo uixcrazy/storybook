@@ -17,20 +17,22 @@ const panelStyle = {
 // '#f7b733'
 const mockStoriesPanel = () => <div style={{ ...panelStyle, background: '#4abdac' }}>Stories</div>;
 const mockAddonPanel = () => <div style={{ ...panelStyle, background: '#fc4a1a' }}>Addon</div>;
-const mockPreviewPanel = () =>
+const mockPreviewPanel = () => (
   <div style={{ ...panelStyle, background: '#fff' }}>
     <NavigationHammerEg />
-  </div>;
+  </div>
+);
 
 storiesOf('Hammer', module)
   .add('Touch Slider', () => <TouchSliderHammer />)
   .add('Nav Slider Pure', () => <NavigationHammerEg />)
-  .add('Nav Slider Pure three', () =>
+  .add('Nav Slider Pure three', () => (
     <div style={{ width: '100%' }}>
       <NavigationHammerEg />
       <NavigationHammerEg />
       <NavigationHammerEg />
-    </div>)
+    </div>
+  ))
   .add('Nav Slider', () => <Layout
     showStoriesPanel
     showAddonPanel={false}

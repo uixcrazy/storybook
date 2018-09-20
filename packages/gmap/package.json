@@ -1,0 +1,16 @@
+{
+  "name": "@uixcrazy/gmap",
+  "version": "0.1.0",
+  "description": "gmap",
+  "author": "uixcrazy",
+  "repository": "https://github.com/uixcrazy/storybook",
+  "dependencies": {
+    "lodash.debounce": "^4.0.8",
+    "react-google-maps": "^9.4.5"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "prop-types": "^15.6.2",
+    "react-jss": "^8.6.1"
+  }
+}

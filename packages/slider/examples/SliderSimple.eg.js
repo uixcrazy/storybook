@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 
-// data
 import data from './data.json';
-// style
 import styles from './styles/SliderEg.style';
 import stylesTest from './styles/SliderSimple__test.style';
-// components
 import SlideCt from './SlideCt';
 import Slider, { SliderSimple } from '../src/SliderSimple';
 import { withStyles } from '../../../core/AddStyles';
