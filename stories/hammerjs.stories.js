@@ -22,7 +22,7 @@ const mockPreviewPanel = () =>
     <NavigationHammerEg />
   </div>;
 
-storiesOf('hammerjs', module)
+storiesOf('Hammer', module)
   .add('Touch Slider', () => <TouchSliderHammer />)
   .add('Nav Slider Pure', () => <NavigationHammerEg />)
   .add('Nav Slider Pure three', () =>

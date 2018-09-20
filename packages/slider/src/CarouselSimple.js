@@ -61,6 +61,9 @@ export class CarouselSimple extends Component {
   }
 
   componentDidMount() {
+    // server-side rendering
+    // const hammerjs = require('hammerjs'); // cham wa!!
+    // this.hammer = hammerjs;
     this.createSwipe();
     this.startAuto();
   }

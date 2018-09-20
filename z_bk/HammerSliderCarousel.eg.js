@@ -1,3 +1,5 @@
+// tính phương thức mobile
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
@@ -5,12 +7,13 @@ import injectSheet from 'react-jss';
 // data
 import data from './data.json';
 // style
-import styles from './styles/SliderEg.style';
+import styles from '../packages/slider/examples/styles/SliderEg.style';
 // components
-import SlideCt from './SlideCt';
+import SlideCt from '../packages/slider/examples/SlideCt';
 import HammerSlider from '../src/HammerSlider';
+import HammerSliderCarousel from '../src/HammerSliderCarousel';
 
-class HammerSliderEg extends Component {
+class HammerSliderCarouselEg extends Component {
   state = {
     dataBanner: data,
   }
@@ -27,13 +30,16 @@ class HammerSliderEg extends Component {
         <div className={classes.slider}>
           <HammerSlider data={bannerEl} />
         </div>
+        <div className={classes.slider}>
+          <HammerSliderCarousel data={bannerEl} />
+        </div>
       </div>
-    );
+    )
   }
 }
 
-HammerSliderEg.propTypes = {
+HammerSliderCarouselEg.propTypes = {
   classes: PropTypes.object,
 };
 
-export default injectSheet(styles)(HammerSliderEg);
+export default injectSheet(styles)(HammerSliderCarouselEg);
