@@ -1,4 +1,4 @@
-# Dropdown
+# Hammer-js
 
 ![hammerjs](http://hammerjs.github.io/)
 
