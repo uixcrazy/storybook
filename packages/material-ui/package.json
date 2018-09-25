@@ -1,0 +1,16 @@
+{
+  "name": "@uixcrazy/materialui",
+  "version": "0.1.0",
+  "description": "materialui",
+  "author": "uixcrazy",
+  "repository": "https://github.com/uixcrazy/storybook",
+  "dependencies": {
+    "@material-ui/core": "^3.1.1",
+    "@material-ui/icons": "^3.0.1"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "prop-types": "^15.6.2",
+    "react-jss": "^8.6.1"
+  }
+}
