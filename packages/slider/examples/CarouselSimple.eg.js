@@ -25,7 +25,7 @@ class CarouselSimpleEg extends Component {
       <div className={classes.hsTest}>
         <h2 className={classes.heading02}>detault</h2>
         <div className={classes.slider}>
-          <CarouselSimpleDefault data={bannerEl} />
+          <CarouselSimpleDefault data={bannerEl} autoplay={false}/>
         </div>
         <h2 className={classes.heading02}>infiniteLoop vs swipeEnabled</h2>
         <div className={classes.slider}>

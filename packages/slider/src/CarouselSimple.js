@@ -125,15 +125,17 @@ export class CarouselSimple extends Component {
   }
 
   startAuto() { // autoChangeNext
-    this.stopAuto();
-    this.autoSlide = setInterval(() => {
-      const { activeIndex, slideCount } = this.state;
-      if (activeIndex < slideCount - 1) {
-        this.goToSlide(activeIndex + 1);
-      } else {
-        this.goToSlide(0);
-      }
-    }, this.props.autoplaySpeed);
+    if (this.props.autoplay) {
+      this.stopAuto();
+      this.autoSlide = setInterval(() => {
+        const { activeIndex, slideCount } = this.state;
+        if (activeIndex < slideCount - 1) {
+          this.goToSlide(activeIndex + 1);
+        } else {
+          this.goToSlide(0);
+        }
+      }, this.props.autoplaySpeed);
+    }
   }
 
   goToSlide(number,

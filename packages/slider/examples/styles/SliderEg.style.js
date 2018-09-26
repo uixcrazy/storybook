@@ -13,7 +13,7 @@ export default () => ({
     '@media only screen and (max-width: 1280px)': {
       maxWidth: 700,
       width: '100%',
-      height: 400,
+      height: 300,
     },
   },
   heading02: {

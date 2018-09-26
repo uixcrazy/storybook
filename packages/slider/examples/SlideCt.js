@@ -4,16 +4,19 @@ import injectSheet from 'react-jss';
 const styles = () => ({
   slideCt: {
     position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
+    textAlign: 'center',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'center',
     backgroundColor: '#fff',
     height: '100%',
     flex: 1,
     overflow: 'hidden',
   },
   figureImage: {
-    display: 'block',
-    width: '100%',
+    display: 'inline-block',
+    maxWidth: '100%',
+    maxHeight: '100%',
   },
   figcaption: {
     color: '#fff',
