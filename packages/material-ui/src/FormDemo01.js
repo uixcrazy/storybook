@@ -8,9 +8,6 @@ import withTheme from './withTheme';
 import { postData } from './fetch-api';
 import styles from './FormDemo01.style';
 
-// - .projectId (context project)"
-// get tu props
-
 class FormDemo extends Component {
   constructor(props) {
     super(props);
@@ -31,14 +28,16 @@ class FormDemo extends Component {
     const {
       fullname,
       mobile,
+      email,
       comment,
     } = this.state;
     postData({
-      apiURL: 'https://api',
-      endpoint: '/form',
+      apiURL: 'https://httpbin.org',
+      endpoint: '/post',
       data: {
         fullname,
         mobile,
+        email,
         comment,
       },
     }).then((jsonData) => {
@@ -61,7 +60,7 @@ class FormDemo extends Component {
     let emailValid = true;
     switch (fieldName) {
       case 'fullname':
-        fullnameValid = Boolean(value.match(/^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/));
+        fullnameValid = Boolean(value.match(/^([a-zA-Z'-\s]+){2,}$/));
         break;
       case 'email': {
         if (value) {
@@ -80,13 +79,12 @@ class FormDemo extends Component {
 
   validateForm() {
     const {
-      fullname,
       mobile,
       fullnameValid,
       emailValid,
     } = this.state;
     let formValid = false;
-    if (fullname && fullnameValid && emailValid && mobile) {
+    if (fullnameValid && emailValid && mobile) {
       formValid = true;
     }
     this.setState({ formValid });

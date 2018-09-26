@@ -11,9 +11,9 @@ const theme = createMuiTheme({
 });
 
 const withTheme = (WrappedComponent) => {
-  const Layout = () => (
+  const Layout = props => (
     <MuiThemeProvider theme={theme}>
-      <WrappedComponent />
+      <WrappedComponent {...props}/>
     </MuiThemeProvider>
   );
   return Layout;
