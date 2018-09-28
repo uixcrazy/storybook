@@ -51,6 +51,7 @@ class Search extends Component {
           onChange={this.handleInputChange}
         />
         <Suggestions results={this.state.results} />
+        <div style={{ color: 'red' }}>check lại để results hiển thị ra</div>
       </form>
     );
   }
