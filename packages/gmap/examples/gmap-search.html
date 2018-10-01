@@ -37,8 +37,10 @@
         console.log(place);
         console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
         console.log(place.address_components);
-        console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
-        console.log(place.geometry.location.lat(), place.geometry.location.lng());
+        if (place.geometry) {
+          console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
+          console.log(place.geometry.location.lat(), place.geometry.location.lng());
+        }
       });
     }
 
