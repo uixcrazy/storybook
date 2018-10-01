@@ -1,5 +1,6 @@
 import React from 'react';
-
+// Từ Khoá Hot
+// Lịch Sử Tìm Kiếm
 class SearchBar extends React.Component {
   // https://github.com/SanderKnape/reactjs-google-maps
   // docs here: https://sanderknape.com/2017/07/integrating-reactjs-google-maps-widget/

@@ -1,0 +1,13 @@
+.container {
+  padding: 10px;
+}
+input[type="text"] {
+  width: 100%;
+  border: 1px solid #ced4da;
+  padding: 10px 12px;
+  font-size: .875rem;
+  border-radius: 3px;
+}
+.suggestions {
+  margin-top: 10px;
+}

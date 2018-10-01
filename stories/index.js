@@ -7,6 +7,7 @@ import './hammerjs.stories';
 import './gmap.stories';
 import './searchbox.stories';
 import './material-ui.stories';
+import './api.stories';
 
 import { storiesOf } from '@storybook/react';
 import App from '../src/App';

@@ -32,7 +32,7 @@ export default [{
     },
     {
       name: 'Arseny',
-      job: 'Software Engineer',
+      job: 'QA',
       company: 'Enki',
     },
   ],

@@ -2,10 +2,8 @@
   padding: 10px 10px;
   height: 52px;
   position: relative;
-  border: 1px solid #ddd;
+  border: 1px solid #eee;
   background: #fff;
-  /* temp */
-  margin: 10px;
 }
 
 .search-input::before {
@@ -31,7 +29,41 @@
   height: 32px;
   position: relative;
 }
-
+/* demo */
 .search-input > input:focus {
   outline: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background: #eeefef;
+  color: #0099cc;
+  font-family: sans-serif;
+}
+.container {
+  /* temp */
+  margin: 10px;
+}
+.search-input {
+  margin-bottom: 2px;
+}
+.mail {
+  height: 65px;
+  background: #FFF;
+  padding-left: 2em;
+  border-bottom: 1px solid #eee;
+}
+
+.from {
+  padding-top: 15px;
+}
+
+.subject{
+  padding-top: 3px;
 }

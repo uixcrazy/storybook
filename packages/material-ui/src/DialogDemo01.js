@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import IconClose from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import { postData } from './fetch-api';
+import { postData } from '../../../core/fetch-api';
 
 import withTheme from './withTheme';
 import styles from './DialogDemo01.style';

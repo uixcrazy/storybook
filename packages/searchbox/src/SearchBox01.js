@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import SearchInput, { createFilter } from 'react-search-input';
-import emails from './mails';
-import './react-search-input.css';
+import emails from './SearchBox01/mails';
+import './SearchBox01/react-search-input.css';
 
-const KEYS_TO_FILTERS = ['user.name', 'subject', 'dest.name', 'id'];
-// Từ Khoá Hot
-// Lịch Sử Tìm Kiếm
+const KEYS_TO_FILTERS = ['user.name', 'subject', 'dest.name'];
 
 class SearchBox extends Component {
   constructor(props) {
@@ -18,9 +16,8 @@ class SearchBox extends Component {
 
   render() {
     const filteredEmails = emails.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
-
     return (
-      <div>
+      <div className="container">
         <SearchInput className='search-input' onChange={this.searchUpdated} />
         {filteredEmails.map(email => (
           <div className="mail" key={email.id}>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Suggestions from './SearchBox02/Suggestions';
-
-const API_URL = 'https://api.unsplash.com/search';
+import ListPhotos from './SearchBox02/ListPhotos';
+import { getData } from '../../../core/fetch-api';
+import '../../../assets/styles/normalize.css';
+import './SearchBox02.css';
 
 class Search extends Component {
   state = {
@@ -11,21 +11,39 @@ class Search extends Component {
     results: [],
   }
 
-  // fetch('https://api.unsplash.com/search?query=autumn&xp=&per_page=10&page=5&client_id=9ad80b14098bcead9c7de952435e937cc3723ae61084ba8e729adb642daf0251').then(response => response.json()).then((jsonData) => {
-  //   console.log('using a client_id query parameter:', jsonData);
-  // });
-
   getInfo = () => {
-    axios.get(`${API_URL}?query=${this.state.query}&xp=&per_page=10&page=5&client_id=9ad80b14098bcead9c7de952435e937cc3723ae61084ba8e729adb642daf0251`)
-      .then(({ data }) => {
+    getData({
+      apiURL: 'https://api.unsplash.com',
+      // change API /search?query=autumn&xp=&per_page=20
+      endpoint: '/search',
+      headers: {
+        Authorization: 'Client-ID 9ad80b14098bcead9c7de952435e937cc3723ae61084ba8e729adb642daf0251',
+      },
+      params: {
+        query: this.state.query,
+        xp: '',
+        per_page: 10,
+        page: 5,
+      },
+    })
+      .then((data) => {
         this.setState({
-          results: data.photos.results,
+          ...(data.errors
+            ? { error: { message: data.errors.join(', ') } }
+            : {
+              items: data.photos.results,
+              otherInfo: {
+                totalCollections: data.collections.total,
+                totalPhotos: data.photos.total,
+                totalPhotographer: data.users.total,
+                relatedSearches: data.related_searches,
+              },
+            }
+          ),
         });
       })
       .catch(() => this.setState({ error: true }));
   }
-
-  // autumn
 
   handleInputChange = () => {
     this.setState({
@@ -42,17 +60,23 @@ class Search extends Component {
     });
   }
 
+  // {/* <form> */} {/* </form> */}
   render() {
     return (
-      <form>
-        <input
-          placeholder="Search for..."
-          ref={input => this.search = input}
+      <div className="container">
+        <input type="text"
+          placeholder="What are you looking for?"
+          ref={(input) => { this.search = input; }}
           onChange={this.handleInputChange}
         />
-        <Suggestions results={this.state.results} />
-        <div style={{ color: 'red' }}>check lại để results hiển thị ra</div>
-      </form>
+        <div className="suggestions">
+          <ListPhotos
+            isLoaded={true}
+            listPhotos={this.state.items}
+            handleClickTag={this.handleClickTag}
+          />
+        </div>
+      </div>
     );
   }
 }
