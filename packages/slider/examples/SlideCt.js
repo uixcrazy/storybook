@@ -1,5 +1,5 @@
 import React from 'react';
-import injectSheet from 'react-jss';
+import injectSheet from '../../../core/injectSheetWithTheme';
 
 const styles = () => ({
   slideCt: {
@@ -36,4 +36,4 @@ const SlideCt = ({ classes, item, keya }) => (
   </figure>
 );
 
-export default injectSheet(styles)(SlideCt);
+export default injectSheet(styles, SlideCt);

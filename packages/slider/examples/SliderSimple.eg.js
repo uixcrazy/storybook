@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
+import injectSheet from '../../../core/injectSheetWithTheme';
+import styles from './styles/SliderEg.style';
 
 import data from './data.json';
-import styles from './styles/SliderEg.style';
 import stylesTest from './styles/SliderSimple__test.style';
 import SlideCt from './SlideCt';
 import Slider, { SliderSimple } from '../src/SliderSimple';
@@ -49,4 +49,4 @@ SliderSimpleEg.propTypes = {
   classes: PropTypes.object,
 };
 
-export default injectSheet(styles)(SliderSimpleEg);
+export default injectSheet(styles, SliderSimpleEg);

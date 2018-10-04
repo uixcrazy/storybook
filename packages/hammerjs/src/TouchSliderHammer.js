@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Hammerjs from 'hammerjs';
-import './TouchSliderHammer.css';
+import attachRawCss from '../../../core/attachRawCss';
+import styles from '!!raw-loader!./TouchSliderHammer.css'; // eslint-disable-line
 
 class TouchSliderHammer extends Component {
   constructor(props) {
@@ -105,4 +105,4 @@ class TouchSliderHammer extends Component {
   }
 }
 
-export default TouchSliderHammer;
+export default attachRawCss(styles, 'TouchSliderHammer', TouchSliderHammer);

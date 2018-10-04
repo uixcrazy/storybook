@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
+import { attachStyleSheet, detachStyleSheet } from '../../core/attachRawCss';
 import logo from './logo.svg';
-import './App.css';
+//  ⇣  ⇣  ⇣  ⇣  ⇣  import './App.css';
+import appStyle from '!!raw-loader!./App.css'; // eslint-disable-line
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.sheet = null;
+  }
+
+  componentWillUnmount() {
+    if (this.sheet) {
+      detachStyleSheet(this.sheet);
+    }
+  }
+
+  componentDidMount() {
+    this.sheet = attachStyleSheet(appStyle, 'App');
+  }
+
   render() {
     return (
       <div className="App">
@@ -24,5 +41,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

@@ -6,16 +6,18 @@ import injectSheet, { ThemeProvider } from 'react-jss';
 
 const injectSheetWithTheme = (styles, App) => {
   const theme = {
-    palette: { // it's wrong!!!
+    palette: {
       primary: {
-        light: '#fff352',
-        main: '#fef035',
-        dark: '#e5d900',
+        light: '#fef35d',
+        main: '#fef035', // FEF035
+        dark: '#e5d900', // E5D900
+        contrastText: '#35495a',
       },
       secondary: {
-        light: '#014c8c',
-        main: '#014c8c',
-        dark: '#014c8c',
+        light: '#5d6d7b',
+        main: '#35495A', // #364959
+        dark: '#373A3C',
+        contrastText: '#fff',
       },
     },
   };

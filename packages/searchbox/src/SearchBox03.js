@@ -1,81 +1,76 @@
-import React from 'react';
-import GoogleMaps from '@google/maps';
-import Promise from 'promise';
+import React, { Fragment } from 'react';
+import loadjs from 'loadjs';
+import debounce from 'lodash.debounce';
 
-const googleMapsClient = GoogleMaps.createClient({
-  key: 'AIzaSyDxOgJ-NH-JRJ54rDbP4ZxB52ATJGcBvpo',
-  Promise,
-});
 // Từ Khoá Hot
 // Lịch Sử Tìm Kiếm
 
 // https://github.com/googlemaps/google-maps-services-js/blob/master/spec/e2e/places-spec.js
+// <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?region=VN&language=vi-VN&key=AIzaSyDxOgJ-NH-JRJ54rDbP4ZxB52ATJGcBvpo&libraries=places&callback=initAutocomplete"
+// async defer></script>
 
+const GMAP_API_KEY = 'AIzaSyDxOgJ-NH-JRJ54rDbP4ZxB52ATJGcBvpo';
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.autocomplete = null;
     // this.handleScriptLoad = this.handleScriptLoad.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.loadAutoComplete = debounce(this.loadAutoComplete.bind(this), 1000);
   }
 
   componentDidMount() {
-    // region=VN&language=vi-VN&key=
-    // &libraries=places&callback=initAutocomplete
-    // region: 'VN',
-    // language: 'vi-VN',
-    // libraries: 'places',
-    googleMapsClient.places({
-      query: 'fast food',
-      language: 'en',
-      location: [-33.865, 151.038],
-      radius: 5000,
-      minprice: 1,
-      maxprice: 4,
-      opennow: true,
-      type: 'restaurant',
-    })
-      .asPromise()
-      .then((response) => {
-        console.log(response.json);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // lat: 10.7890511, lng: 106.7031739
+    loadjs(
+      [
+        `https://maps.googleapis.com/maps/api/js?key=${GMAP_API_KEY}&libraries=places&region=VN&language=vi-VN`,
+      ],
+      () => {
+        this.bound = new google.maps.LatLngBounds(
+          new google.maps.LatLng(10.611725943176097, 106.48552346292001),
+          new google.maps.LatLng(10.971052056823904, 106.85131853707992)
+        );
+        this.service = new google.maps.places.AutocompleteService();
+      }
+    );
   }
 
-  // handleScriptLoad() {
-  //   this.autocomplete = googleMapsClient.placesAutoComplete(
-  //     // /** @type {!HTMLInputElement} */
-  //     (this.search), {
-  //       types: ['geocode'],
-  //       // types: ['(cities)'],
-  //       componentRestrictions: { country: 'vn' },
-  //     }
-  //   );
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.searchVal.value);
+  }
 
-  //   this.autocomplete.addListener('place_changed', () => {
-  //     // Get the place details from the autocomplete object.
-  //     const place = this.autocomplete.getPlace();
-  //     console.log(place);
-  //     console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
-  //     console.log(place.address_components);
-  //     console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
-  //     console.log(place.geometry.location.lat(), place.geometry.location.lng());
-  //   });
-  // }
+  loadAutoComplete() {
+    const kw = this.searchVal.value;
+    this.service.getQueryPredictions(
+      { input: kw, bounds: this.bound },
+      (predictions, status) => {
+        if (status != google.maps.places.PlacesServiceStatus.OK) {
+          console.error(status);
+          return;
+        }
+
+        console.info("autosuggest", predictions);
+      }
+    );
+  }
 
   render() {
     return (
-      <div className="container">
-        <input type="text"
-          placeholder="What are you looking for?"
-          ref={(input) => { this.search = input; }}
-          onChange={this.handleInputChange}
-        />
+      <Fragment>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="search"
+            placeholder="What are you looking for?"
+            ref={(input) => { this.searchVal = input; }}
+            onChange={this.loadAutoComplete}
+          />
+        </form>
         <div className="suggestions">
           aaa
         </div>
-      </div>
+        <div className='search-input'>sgdf</div>
+      </Fragment>
     );
   }
 }

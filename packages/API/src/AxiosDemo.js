@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ListPhotos from '../../searchbox/src/SearchBox02/ListPhotos';
-import '../../../assets/styles/normalize.css';
 
 axios.defaults.baseURL = 'https://api.unsplash.com';
 axios.defaults.headers.common['Authorization'] = 'Client-ID 9ad80b14098bcead9c7de952435e937cc3723ae61084ba8e729adb642daf0251'; // eslint-disable-line

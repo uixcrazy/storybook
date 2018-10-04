@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ListPhotos from './SearchBox02/ListPhotos';
 import { getData } from '../../../core/fetch-api';
-import '../../../assets/styles/normalize.css';
-import './SearchBox02.css';
+import attachRawCss from '../../../core/attachRawCss';
+import searchBox02Style from '!!raw-loader!./SearchBox02.css'; // eslint-disable-line
 
 class Search extends Component {
   state = {
@@ -81,4 +81,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default attachRawCss(searchBox02Style, 'SearchBox 02', Search);

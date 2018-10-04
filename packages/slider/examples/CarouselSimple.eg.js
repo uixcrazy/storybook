@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
+import injectSheet from '../../../core/injectSheetWithTheme';
 
 import data from './data.json';
 import styles from './styles/SliderEg.style';
@@ -40,4 +40,4 @@ CarouselSimpleEg.propTypes = {
   classes: PropTypes.object,
 };
 
-export default injectSheet(styles)(CarouselSimpleEg);
+export default injectSheet(styles, CarouselSimpleEg);

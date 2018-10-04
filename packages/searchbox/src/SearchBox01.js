@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import SearchInput, { createFilter } from 'react-search-input';
 import emails from './SearchBox01/mails';
-import './SearchBox01/react-search-input.css';
+import attachRawCss from '../../../core/attachRawCss';
+import styles from '!!raw-loader!./SearchBox01/react-search-input.css'; // eslint-disable-line
 
 const KEYS_TO_FILTERS = ['user.name', 'subject', 'dest.name'];
 
@@ -34,4 +35,4 @@ class SearchBox extends Component {
   }
 }
 
-export default SearchBox;
+export default attachRawCss(styles, 'SearchBox 01', SearchBox);

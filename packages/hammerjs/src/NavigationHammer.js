@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Hammerjs from 'hammerjs';
-import './NavigationHammer.css';
+import attachRawCss from '../../../core/attachRawCss';
+import styles from '!!raw-loader!./NavigationHammer.css'; // eslint-disable-line
 
 export default function makeTabs(Content) {
   class NavigationHammer extends Component {
@@ -351,5 +352,5 @@ export default function makeTabs(Content) {
     defaultSelected: PropTypes.number,
   };
 
-  return NavigationHammer;
+  return attachRawCss(styles, 'NavigationHammer', NavigationHammer);
 }
