@@ -5,7 +5,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import withTheme from './withTheme';
-import { postData } from '../../../core/fetch-api';
+import { postData } from '../../../utils/fetch-api';
 import styles from './FormDemo01.style';
 
 class FormDemo extends Component {

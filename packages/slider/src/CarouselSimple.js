@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Hammerjs from 'hammerjs';
-import { withStyles } from '../../../core/AddStyles';
+import { withStyles } from '../../../utils/withStyles';
 import defaultStyles from './CarouselSimple.style';
 
 export class CarouselSimple extends Component {

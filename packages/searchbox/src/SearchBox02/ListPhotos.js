@@ -1,7 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../../core/injectSheetWithTheme';
+import injectSheet from '../../../../utils/injectSheetWithTheme';
 import ListTags from './ListTags';
 import styles from './ListPhotos.style';
 

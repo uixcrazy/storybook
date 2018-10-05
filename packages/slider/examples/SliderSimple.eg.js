@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../core/injectSheetWithTheme';
+import injectSheet from '../../../utils/injectSheetWithTheme';
 import styles from './styles/SliderEg.style';
 
 import data from './data.json';
 import stylesTest from './styles/SliderSimple__test.style';
 import SlideCt from './SlideCt';
 import Slider, { SliderSimple } from '../src/SliderSimple';
-import { withStyles } from '../../../core/AddStyles';
+import { withStyles } from '../../../utils/withStyles';
 
 class SliderSimpleEg extends Component {
   state = {

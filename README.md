@@ -3,7 +3,7 @@
 ## My issue
 
 làm sao đổi
-``` import '../../../core/stylesheets/normalize.css'; ```
+``` import '../../../utils/stylesheets/normalize.css'; ```
 thành ``` import 'core/stylesheets/normalize.css'; ```
 
 Atlaskit Tabs ko load được styles

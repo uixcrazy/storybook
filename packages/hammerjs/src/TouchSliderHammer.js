@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Hammerjs from 'hammerjs';
-import attachRawCss from '../../../core/attachRawCss';
+import attachRawCss from '../../../utils/attachRawCss';
 import styles from '!!raw-loader!./TouchSliderHammer.css'; // eslint-disable-line
 
 class TouchSliderHammer extends Component {

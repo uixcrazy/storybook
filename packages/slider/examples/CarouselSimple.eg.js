@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../core/injectSheetWithTheme';
+import injectSheet from '../../../utils/injectSheetWithTheme';
 
 import data from './data.json';
 import styles from './styles/SliderEg.style';

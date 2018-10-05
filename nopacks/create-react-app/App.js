@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { attachStyleSheet, detachStyleSheet } from '../../core/attachRawCss';
+import { attachStyleSheet, detachStyleSheet } from '../../utils/attachRawCss';
 import logo from './logo.svg';
 //  ⇣  ⇣  ⇣  ⇣  ⇣  import './App.css';
 import appStyle from '!!raw-loader!./App.css'; // eslint-disable-line

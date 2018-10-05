@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 // import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
-import Layout from '../core/ui/layout';
+import Layout from '../utils/ui/layout';
 
 import TouchSliderHammer from '../packages/hammerjs/src/TouchSliderHammer';
 import NavigationHammerEg from '../packages/hammerjs/examples/NavigationHammer.eg';

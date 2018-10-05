@@ -1,6 +1,6 @@
 import React from 'react';
 import { lorem01 } from './lorem';
-import attachRawCss from '../../core/attachRawCss';
+import attachRawCss from '../../utils/attachRawCss';
 import serif from '!!raw-loader!./serif.css'; // eslint-disable-line
 
 const Serif = () => (

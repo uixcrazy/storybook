@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchInput, { createFilter } from 'react-search-input';
 import emails from './SearchBox01/mails';
-import attachRawCss from '../../../core/attachRawCss';
+import attachRawCss from '../../../utils/attachRawCss';
 import styles from '!!raw-loader!./SearchBox01/react-search-input.css'; // eslint-disable-line
 
 const KEYS_TO_FILTERS = ['user.name', 'subject', 'dest.name'];

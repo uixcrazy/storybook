@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ListPhotos from './SearchBox02/ListPhotos';
-import { getData } from '../../../core/fetch-api';
-import attachRawCss from '../../../core/attachRawCss';
+import { getData } from '../../../utils/fetch-api';
+import attachRawCss from '../../../utils/attachRawCss';
 import searchBox02Style from '!!raw-loader!./SearchBox02.css'; // eslint-disable-line
 
 class Search extends Component {

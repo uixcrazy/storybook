@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { i18n } from '../../../core/helper/sf-lib';
+import { i18n } from '../../../utils/helper/sf-lib';
 
 class LatestTimeUpdated extends Component {
   constructor(props) {

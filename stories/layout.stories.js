@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Layout from '../core/ui/layout';
+import Layout from '../utils/ui/layout';
 
 const panelStyle = {
   // position: 'absolute',

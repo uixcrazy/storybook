@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../../core/injectSheetWithTheme';
+import injectSheet from '../../../../utils/injectSheetWithTheme';
 import styles from './ListTags.style';
 
 const ListTags = ({ classes, tags, handleClick }) => (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import attachRawCss from '../../../core/attachRawCss';
+import attachRawCss from '../../../utils/attachRawCss';
 import styles from '!!raw-loader!./BasicDropdown.css'; // eslint-disable-line
 
 class BasicDropdown extends Component {

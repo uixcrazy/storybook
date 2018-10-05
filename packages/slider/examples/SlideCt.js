@@ -1,5 +1,5 @@
 import React from 'react';
-import injectSheet from '../../../core/injectSheetWithTheme';
+import injectSheet from '../../../utils/injectSheetWithTheme';
 
 const styles = () => ({
   slideCt: {

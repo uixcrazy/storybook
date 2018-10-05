@@ -1,4 +1,4 @@
-import { I18n } from '../../assets/third-party/i18n';
+import { I18n } from './i18n';
 
 const EN = {
   noData: 'No data available',
