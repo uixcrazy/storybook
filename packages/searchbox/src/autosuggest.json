@@ -1,0 +1,26 @@
+{
+  "description": "Sài Gòn, Hồ Chí Minh",
+  "id": "04625769fd933612c8619246ef022a7c73dc794a",
+  "matched_substrings": [{
+    "length": 7,
+    "offset": 0
+  }],
+  "place_id": "ChIJ0T2NLikpdTERKxE8d61aX_E",
+  "reference": "ChIJ0T2NLikpdTERKxE8d61aX_E",
+  "structured_formatting": {
+    "main_text": "Sài Gòn",
+    "main_text_matched_substrings": [{
+      "length": 7,
+      "offset": 0
+    }],
+    "secondary_text": "Hồ Chí Minh"
+  },
+  "terms": [{
+    "offset": 0,
+    "value": "Sài Gòn"
+  }, {
+    "offset": 9,
+    "value": "Hồ Chí Minh"
+  }],
+  "types": ["locality", "political", "geocode"]
+}

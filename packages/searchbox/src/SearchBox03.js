@@ -2,19 +2,24 @@ import React, { Fragment } from 'react';
 import loadjs from 'loadjs';
 import debounce from 'lodash.debounce';
 
-// Từ Khoá Hot
-// Lịch Sử Tìm Kiếm
-
+// Từ Khoá Hot || Lịch Sử Tìm Kiếm
 // https://github.com/googlemaps/google-maps-services-js/blob/master/spec/e2e/places-spec.js
 // <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?region=VN&language=vi-VN&key=AIzaSyDxOgJ-NH-JRJ54rDbP4ZxB52ATJGcBvpo&libraries=places&callback=initAutocomplete"
 // async defer></script>
+
+/**
+ * https://developers.google.com/places/web-service/query
+ *
+ * https://stackoverflow.com/questions/25928948/get-lat-lang-from-a-place-id-returned-by-autocomplete-place-api
+ * get latitude vs longitude
+ * https://developers.google.com/places/web-service/details
+ */
 
 const GMAP_API_KEY = 'AIzaSyDxOgJ-NH-JRJ54rDbP4ZxB52ATJGcBvpo';
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.autocomplete = null;
-    // this.handleScriptLoad = this.handleScriptLoad.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.loadAutoComplete = debounce(this.loadAutoComplete.bind(this), 1000);
   }
@@ -43,6 +48,7 @@ class SearchBar extends React.Component {
   loadAutoComplete() {
     const kw = this.searchVal.value;
     this.service.getQueryPredictions(
+      // getQueryPredictions, getPredictions. getPlacePredictions
       { input: kw, bounds: this.bound },
       (predictions, status) => {
         if (status != google.maps.places.PlacesServiceStatus.OK) {
