@@ -1,8 +1,6 @@
-// tính phương thức mobile
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../utils/injectSheetWithTheme';
+import injectSheet from 'react-jss';
 
 import data from './data.json';
 import styles from './styles/SliderEg.style';
@@ -40,4 +38,4 @@ CarouselSimpleEg.propTypes = {
   classes: PropTypes.object,
 };
 
-export default injectSheet(styles, CarouselSimpleEg);
+export default injectSheet(styles)(CarouselSimpleEg);

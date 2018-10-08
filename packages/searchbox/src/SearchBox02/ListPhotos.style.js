@@ -1,4 +1,4 @@
-export default () => ({
+const styles = {
   listPhotos: {
     columnGap: '1.5em',
     '-webkit-column-gap': '1.5em', // Chrome, Safari, Opera
@@ -54,5 +54,5 @@ export default () => ({
       width: '100%',
     },
   },
-
-});
+};
+export default styles;

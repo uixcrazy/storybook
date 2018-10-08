@@ -345,4 +345,4 @@ export class SliderSimple extends Component {
   }
 }
 
-export default withStyles(SliderSimple, defaultStyles);
+export default withStyles(defaultStyles, SliderSimple);

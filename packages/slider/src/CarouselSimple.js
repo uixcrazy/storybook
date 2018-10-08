@@ -301,4 +301,4 @@ export class CarouselSimple extends Component {
   }
 }
 
-export default withStyles(CarouselSimple, defaultStyles);
+export default withStyles(defaultStyles, CarouselSimple);

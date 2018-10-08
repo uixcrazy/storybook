@@ -1,4 +1,4 @@
-export default () => ({
+const styles = {
   hsTest: {
     marginTop: 35,
     '@media only screen and (max-width: 1280px)': {
@@ -19,5 +19,6 @@ export default () => ({
   heading02: {
     color: '#364959',
     padding: '20px 10px 10px',
-  }
-});
+  },
+};
+export default styles;

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../utils/injectSheetWithTheme';
-import styles from './styles/SliderEg.style';
+import injectSheet from 'react-jss';
 
 import data from './data.json';
 import stylesTest from './styles/SliderSimple__test.style';
 import SlideCt from './SlideCt';
 import Slider, { SliderSimple } from '../src/SliderSimple';
 import { withStyles } from '../../../utils/withStyles';
+import styles from './styles/SliderEg.style';
 
 class SliderSimpleEg extends Component {
   state = {
@@ -21,7 +21,7 @@ class SliderSimpleEg extends Component {
   render() {
     const { classes } = this.props;
     const bannerEl = this.renderBanner(this.state.dataBanner);
-    const CustomSlider = withStyles(SliderSimple, stylesTest);
+    const CustomSlider = withStyles(stylesTest, SliderSimple);
     return (
       <div className={classes.hsTest}>
         <div className={classes.slider}>
@@ -49,4 +49,4 @@ SliderSimpleEg.propTypes = {
   classes: PropTypes.object,
 };
 
-export default injectSheet(styles, SliderSimpleEg);
+export default injectSheet(styles)(SliderSimpleEg);

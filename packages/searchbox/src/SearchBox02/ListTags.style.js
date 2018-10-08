@@ -1,4 +1,7 @@
-export default () => ({
+/**
+ * function when using theme
+ */
+const styles = {
   tags: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -25,4 +28,5 @@ export default () => ({
     transition: 'all .1s ease-in-out',
     textTransform: 'capitalize',
   },
-});
+};
+export default styles;

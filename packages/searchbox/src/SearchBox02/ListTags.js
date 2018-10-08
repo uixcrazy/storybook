@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../../utils/injectSheetWithTheme';
+import injectSheet from 'react-jss';
 import styles from './ListTags.style';
 
 const ListTags = ({ classes, tags, handleClick }) => (
@@ -22,4 +22,4 @@ ListTags.propTypes = {
   handleClick: PropTypes.func,
 };
 
-export default injectSheet(styles, ListTags);
+export default injectSheet(styles)(ListTags);

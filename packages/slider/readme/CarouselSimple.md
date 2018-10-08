@@ -12,7 +12,7 @@
 
   ```
   import { CarouselSimple, withStyles } from '../src/CarouselSimple';
-  const CustomCarousel = withStyles(CarouselSimple, yourStyles);
+  const CustomCarousel = withStyles(yourStyles, CarouselSimple);
   ```
 3. Add options:
 

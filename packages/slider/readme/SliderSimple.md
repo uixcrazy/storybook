@@ -12,7 +12,7 @@
 
   ```
   import { SliderSimple, withStyles } from '../src/SliderSimple';
-  const CustomSlider = withStyles(SliderSimple, yourStyles);
+  const CustomSlider = withStyles(yourStyles, SliderSimple);
   ```
 3. Add options:
 

@@ -1,8 +1,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from '../../../../utils/injectSheetWithTheme';
 import ListTags from './ListTags';
+import { withStyles } from '../../../../utils/withStyles';
 import styles from './ListPhotos.style';
 
 const ListPhotos = ({
@@ -41,4 +41,4 @@ ListPhotos.propTypes = {
   handleClickTag: PropTypes.func,
 };
 
-export default injectSheet(styles, ListPhotos);
+export default withStyles(styles, ListPhotos);

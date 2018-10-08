@@ -18,7 +18,7 @@ const btnNav = {
   },
 };
 
-export default () => ({
+const styles = {
   hammer: {
     overflow: 'hidden',
     position: 'relative',
@@ -88,4 +88,5 @@ export default () => ({
   // '&:before': {
   //   content: "''",
   // }
-});
+};
+export default styles;
