@@ -16,13 +16,23 @@ class BasicDropdown extends Component {
   }
 
   // not good at React v.16 ↓↓↓ → we have to change it
-  componentWillReceiveProps(nextProps) {
-    if (JSON.stringify(this.state.items) !== JSON.stringify(nextProps.items)) {
-      this.setState({
+  // componentWillReceiveProps(nextProps) {
+  //   if (JSON.stringify(this.state.items) !== JSON.stringify(nextProps.items)) {
+  //     this.setState({
+  //       items: nextProps.items,
+  //       currentItem: null,
+  //     });
+  //   }
+  // }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (JSON.stringify(prevState.items) !== JSON.stringify(nextProps.items)) {
+      return {
         items: nextProps.items,
         currentItem: null,
-      });
+      };
     }
+    return null;
   }
 
   componentDidMount() {
