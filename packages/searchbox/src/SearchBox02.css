@@ -1,7 +1,14 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 1` */
+}
 .container {
   padding: 10px;
 }
-input[type="text"] {
+input[type="search"] {
   width: 100%;
   border: 1px solid #ced4da;
   padding: 10px 12px;
