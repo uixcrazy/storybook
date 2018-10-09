@@ -25,6 +25,14 @@ const styles = {
     position: 'relative',
     width: '100%',
     height: '100%',
+    '&, & *, & *::before, & *::after': {
+      boxSizing: 'border-box',
+      margin: 0,
+      padding: 0,
+    },
+    '& *:focus': {
+      outline: 'none',
+    },
   },
   slider: { // only have slide
     height: 'calc(100% - 30px)',

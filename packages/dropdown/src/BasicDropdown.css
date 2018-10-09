@@ -16,8 +16,8 @@
 } */
 
 .dropbox *,
-.dropbox *:before,
-.dropbox *:after {
+.dropbox *::before,
+.dropbox *::before {
   /* simple reset */
   margin: 0;
   padding: 0;

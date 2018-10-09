@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ListPhotos from '../../searchbox/src/SearchBox02/ListPhotos';
-
+import attachRawCss from '../../../utils/attachRawCss';
+import resetStyles from '!!raw-loader!../../../utils/normalize.css';// eslint-disable-line
 axios.defaults.baseURL = 'https://api.unsplash.com';
 axios.defaults.headers.common['Authorization'] = 'Client-ID 9ad80b14098bcead9c7de952435e937cc3723ae61084ba8e729adb642daf0251'; // eslint-disable-line
 axios.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
@@ -29,7 +30,7 @@ class AxiosDemo extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div style={{ padding: 10 }}>
         <ListPhotos
           isLoaded={true}
           listPhotos={this.state.photos}
@@ -39,4 +40,4 @@ class AxiosDemo extends Component {
   }
 }
 
-export default AxiosDemo;
+export default attachRawCss(resetStyles, 'normalize', AxiosDemo);
