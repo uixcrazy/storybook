@@ -7,12 +7,19 @@
   box-sizing: border-box;
 }
 
+.NavSlider *:focus {
+  outline: none;
+}
+
 .NavSlider {
   width: 100%;
+  overflow-x: hidden;
+  height: 46px; /* set lại giá trị đúng  */
+  margin-bottom: -8px/* và  */
 }
 
 .NavSlider .hammer {
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 
@@ -26,6 +33,7 @@
   flex-shrink: 0; /* flex: 1 0 auto; */
   cursor: pointer;
   color: #434a54;
+  position: relative;
   font-weight: 300;
   font-size: 14px;
   padding: 8px 15px;
@@ -42,6 +50,17 @@
 .NavSlider .tab-item.tab-active {
   border-bottom: 2px solid #4abdac;
   color: #4abdac;
+}
+
+.NavSlider .tab-item.tab-active:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border-top: 8px solid #4abdac;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  margin-left: -8px;
 }
 
 .NavSlider .btn-prev,
