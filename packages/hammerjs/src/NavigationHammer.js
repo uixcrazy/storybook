@@ -56,8 +56,7 @@ export default function makeTabs(Content) {
             posEachSlideNext,
           } = this.getWidthEachSlide();
           const maxTx = -(widthTabs - (widthSwiper - paddingRight));
-          const posEachSlidePrev =
-            this.getPosEachSlidePrev(widthEachSlide, posEachSlideNext, maxTx);
+          const posEachSlidePrev = this.getPosEachSlidePrev(widthEachSlide, posEachSlideNext, maxTx);
           this.createSlider();
           this.setState({
             activeSlide: 0,
@@ -182,8 +181,7 @@ export default function makeTabs(Content) {
         if (posEachSlidePrev[crrActiveSlide] === translateX && crrActiveSlide > 0) {
           crrActiveSlide = this.getActiveSlide(crrActiveSlide - 1);
         }
-        const newTranslateX =
-        (posEachSlidePrev[crrActiveSlide] < paddingLeft) && (activeSlide !== 0)
+        const newTranslateX = (posEachSlidePrev[crrActiveSlide] < paddingLeft) && (activeSlide !== 0)
           ? posEachSlidePrev[crrActiveSlide] : paddingLeft;
         // if (newTranslateX < translateX) {
         //   console.log('OMB');
