@@ -238,4 +238,6 @@ DialogDemo01.propTypes = {
   toggleOpen: PropTypes.func,
 };
 
+export const DialogA = injectSheet(styles)(DialogDemo01);
+
 export default withTheme(injectSheet(styles)(DialogDemo01));

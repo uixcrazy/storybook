@@ -2,9 +2,7 @@
 
 ## My issue
 
-làm sao đổi
-``` import '../../../utils/stylesheets/normalize.css'; ```
-thành ``` import 'core/stylesheets/normalize.css'; ```
+  * data:image cho thẻ *<img src= *
 
 Atlaskit Tabs ko load được styles
 

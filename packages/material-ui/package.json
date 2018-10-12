@@ -5,6 +5,8 @@
   "author": "uixcrazy",
   "repository": "https://github.com/uixcrazy/storybook",
   "dependencies": {
+    "loadjs": "^3.5.4",
+    "lodash.debounce": "^4.0.8",
     "@material-ui/core": "^3.1.1",
     "@material-ui/icons": "^3.0.1"
   },

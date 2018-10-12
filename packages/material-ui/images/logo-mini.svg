@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="420px" height="538px" viewBox="0 0 420 538" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>logo-mini</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo-mini" fill-rule="nonzero">
+            <g id="Vector" transform="translate(0.000000, 28.000000)" fill="#B57EE5">
+                <g id="path0_fill-link">
+                    <polygon id="path0_fill" points="42 492 18 0 0 0 18 492"></polygon>
+                </g>
+            </g>
+            <g id="Vector" transform="translate(28.000000, 0.000000)" fill="#F1618C">
+                <g id="path1_fill-link">
+                    <polygon id="path1_fill" points="24 520 0 28 392 0 392 538"></polygon>
+                </g>
+            </g>
+            <g id="Vector-2" transform="translate(320.000000, 0.000000)" fill="#FFFFFF">
+                <g id="path2_fill-link" transform="translate(0.000000, 1.000000)">
+                    <polygon id="path2_fill" points="0 71 5 4 52 0 52 71 28.3636 49.6182"></polygon>
+                </g>
+            </g>
+            <g id="S" transform="translate(121.000000, 96.000000)" fill="#FFFFFF">
+                <g id="path9_fill-link">
+                    <path d="M136.28,114.56 L213.56,112.64 C215.48,37.76 176.6,0.80002 108.92,0.80002 C41.24,0.80002 3.32,39.2 3.32,96.8 C3.32,197.12 132.92,199.04 132.92,253.76 C132.92,269.12 125.72,278.24 109.88,278.24 C89.24,278.24 81.08,264.8 82.04,227.36 L0.92,227.36 C-5.32,320 48.92,341.12 110.84,341.12 C170.84,341.12 217.88,313.28 217.88,252.8 C217.88,145.28 86.36,148.16 86.36,94.88 C86.36,73.28 101.72,70.4 110.84,70.4 C120.44,70.4 137.72,74.24 136.28,114.56 Z" id="path9_fill"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

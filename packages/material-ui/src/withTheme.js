@@ -1,11 +1,11 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import lime from '@material-ui/core/colors/lime';
 import cyan from '@material-ui/core/colors/cyan';
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: lime,
     secondary: cyan,
   },
 });
