@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import IconButton from '@material-ui/core/IconButton';
 import PhoneIcon from '@material-ui/icons/Phone';
+import MenuIcon from '@material-ui/icons/Menu';
 import styles from './HeaderPrimary.style';
 import SearchBox from './SearchBox';
 import Drawer from './Drawer';
+
+const HOTLINE = '1900 5214';
 
 class HeaderPrimary extends Component {
   state = {
@@ -23,16 +26,23 @@ class HeaderPrimary extends Component {
     return (
       <Fragment>
         <div className={classes.headerPrimary}>
-          <div className={classes.logo}
-            onClick={this.toggleDrawer(true)}
-          >logo</div>
-          <SearchBox placeholder={placeholder} />
-          <IconButton className={classes.iconBtnCall}>
-            <PhoneIcon
+          <div className={classes.menu} onClick={this.toggleDrawer(true)}>
+            <MenuIcon
               classes={{
                 root: classes.iconMenu,
               }}/>
-          </IconButton>
+            <div className={classes.logo}>logo</div>
+          </div>
+          <SearchBox placeholder={placeholder} />
+          <a className={classes.btnCallWrap} href={`tel:${HOTLINE}`}>
+            <IconButton>
+              <PhoneIcon
+                classes={{
+                  root: classes.iconCall,
+                }}/>
+            </IconButton>
+            <span className={classes.labelCall}>Dii Giant</span>
+          </a>
         </div>
         <Drawer
           openDrawer={this.state.openDrawer}

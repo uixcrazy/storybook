@@ -199,6 +199,7 @@ class DialogDemo01 extends Component {
                 disabled={!this.state.formValid}
               >Submit</button>
             </div>
+            <div>(*) Vui lòng không được để trống.</div>
           </form>
         </Dialog>
         {

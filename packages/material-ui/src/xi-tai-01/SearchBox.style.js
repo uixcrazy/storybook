@@ -11,12 +11,27 @@ export default theme => ({
     height: '2.75rem',
     lineHeight: '2.25rem',
     color: '#aaa',
-    paddingLeft: 3,
+    paddingLeft: 2,
     marginLeft: 5,
   },
+  btnBlurSearch: {
+    position: 'absolute',
+    left: -50,
+    top: 0,
+    zIndex: 10,
+    width: 50,
+    height: '100%',
+    backgroundColor: theme.palette.primary.main,
+    padding: 0,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+  arrowBackIcon: {
+    marginLeft: 5,
+    color: '#fff',
+  },
   searchInput: {
-    // display: 'flex',
-    // alignItems: 'center',
     outline: 0,
     width: '100%',
     fontSize: '0.875rem',
@@ -24,12 +39,15 @@ export default theme => ({
     lineHeight: '2.5rem',
     paddingLeft: '2rem',
     paddingRight: '.5rem',
-    border: '1px solid rgba(151,151,151,.2)',
+    border: 0,
     borderRadius: '4px',
-    paddingTop: '2px',
+    paddingTop: '3px',
     opacity: 0.9,
     '&:focus': {
       opacity: 1,
+      // '& + $btnBlurSearch': {
+      //   display: 'block',
+      // },
     },
   },
   suggestions: {
@@ -39,20 +57,41 @@ export default theme => ({
     top: '3.5rem',
     borderBottom: '1px solid #efefef',
   },
-  predictionsItem: {
+  predictions: {
+    borderBottom: '2px solid #efefef',
+    paddingBottom: theme.spacing.unit / 2,
+  },
+  suggestBox: {
+    paddingTop: theme.spacing.unit / 2,
+    borderBottom: '2px solid #efefef',
+    paddingBottom: theme.spacing.unit / 2,
+  },
+  prdTitle: {
     padding: {
-      top: theme.spacing.unit / 2,
-      right: theme.spacing.unit,
+      top: theme.spacing.unit,
+      left: theme.spacing.unit,
       bottom: theme.spacing.unit / 2,
+      right: theme.spacing.unit,
+    },
+    color: '#888',
+    textTransform: 'uppercase',
+    fontSize: '0.813rem',
+  },
+  prdItem: {
+    padding: {
+      top: 6,
+      right: theme.spacing.unit,
+      bottom: 6,
       left: theme.spacing.unit / 2,
     },
     display: 'flex',
+    alignItems: 'center',
     '&:hover': {
       background: '#fffef7',
     },
   },
-  predictionsItemActive: {
-    composes: '$predictionsItem',
+  prdItemActive: {
+    composes: '$prdItem',
     background: '#eee',
   },
   prdIcon: {
@@ -64,19 +103,31 @@ export default theme => ({
   prdCt: {
 
   },
-  placeIcon: {
+  prdIconIco: {
     color: '#ccc',
     fontSize: '1.25rem',
   },
   mainText: {
-    fontSize: '0.875rem',
+    fontSize: '1rem',
     color: '#333',
   },
   secondaryText: {
     display: 'block',
     color: '#888',
     fontSize: '0.813rem',
-    fontStyle: 'italic',
+    // fontStyle: 'italic',
+  },
+  tagList: {
+    display: 'flex',
+    listStyle: 'none',
+    padding: theme.spacing.unit,
+  },
+  tagItem: {
+    background: '#f3f4f7',
+    color: '#333',
+    fontSize: '0.813rem',
+    borderRadius: '3px',
+    padding: '8px 10px',
+    marginRight: theme.spacing.unit,
   },
 });
-

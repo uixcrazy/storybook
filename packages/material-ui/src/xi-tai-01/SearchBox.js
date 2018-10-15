@@ -4,9 +4,12 @@ import injectSheet from 'react-jss';
 import loadjs from 'loadjs';
 import debounce from 'lodash.debounce';
 // import Router from 'next/router';
-
+import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import PlaceIcon from '@material-ui/icons/Place';
+import HistoryIcon from '@material-ui/icons/History';
+// import WhatshotIcon from '@material-ui/icons/Whatshot';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import styles from './SearchBox.style';
 import { isEmpty } from '../../../../utils/utilities';
 
@@ -19,9 +22,12 @@ class SearchBox extends Component {
     this.autocomplete = null;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.loadAutoComplete = debounce(this.loadAutoComplete.bind(this), 1000);
+    this.resetSearchInput = this.resetSearchInput.bind(this);
     this.selectPrediction = this.selectPrediction.bind(this);
     this.getSearch = this.getSearch.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
     this.state = {
+      showSuggestions: false,
       predictions: [],
       predictionSelected: null,
     };
@@ -46,6 +52,19 @@ class SearchBox extends Component {
     event.preventDefault();
     // console.log('handleSubmit', this.searchVal.value); -> support other search types
     this.getSearch();
+  }
+
+  resetSearchInput() {
+    this.searchVal.value = '';
+    this.setState({
+      showSuggestions: false,
+    });
+  }
+
+  handleFocus() {
+    this.setState({
+      showSuggestions: true,
+    });
   }
 
   selectPrediction(predictionSelected) {
@@ -80,44 +99,32 @@ class SearchBox extends Component {
     }
   }
 
-  renderSuggestions() {
-    const { classes } = this.props;
-    const { predictions, predictionSelected } = this.state;
-    return (
-      <ul className={classes.predictions}>
-        {predictions.length > 0 && predictions.map((prd, index) => (
-          <li key={index}
-            className={`${classes.predictionsItem}
-            ${prd.place_id === predictionSelected.place_id ? classes.predictionsItemActive : ''}`}
-            onClick={() => {
-              this.selectPrediction(prd);
-            }}
-          >
-            <div className={classes.prdIcon}>
-              <PlaceIcon className={classes.placeIcon} />
-            </div>
-            <div className={classes.prdCt}>
-              <span className={classes.mainText}>
-                {prd.structured_formatting.main_text}
-              </span>
-              <span className={classes.secondaryText}>
-                {prd.structured_formatting.secondary_text}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   getSearch() {
     const { predictionSelected } = this.state;
+    console.log(predictionSelected);
     if (predictionSelected) {
       this.getPlaceDetails(predictionSelected.place_id).then((place) => {
         const lat = place.geometry.location.lat();
         const lng = place.geometry.location.lng();
-        console.log(lat, lng);
+        const url = `/q/${this.searchVal.value}?lat=${lat}&lon=${lng}`;
         // Router.push(`/q/${this.searchVal.value}?lat=${lat}&lon=${lng}`);
+
+        const newHistory = {
+          name: predictionSelected.structured_formatting.main_text,
+          url,
+        };
+        const historyJSON = localStorage.getItem('lv-search-keyword');
+        const history = JSON.parse(historyJSON);
+        const limitNo = 5;
+        if (history && history.length > 0) {
+          history.push(newHistory);
+          if (history.length > limitNo) {
+            history.splice(0, history.length - limitNo);
+          }
+          localStorage.setItem('lv-search-keyword', JSON.stringify(history));
+        } else {
+          localStorage.setItem('lv-search-keyword', JSON.stringify([newHistory]));
+        }
       });
     }
   }
@@ -141,25 +148,132 @@ class SearchBox extends Component {
     });
   }
 
-  render() { // Từ Khoá Hot || Lịch Sử Tìm Kiếm
+  renderPredictions() {
+    const { classes } = this.props;
+    const { predictions, predictionSelected } = this.state;
+    return (
+      <ul className={classes.predictions}>
+        {predictions.length > 0 && predictions.map((prd, index) => (
+          <li key={index}
+            className={`${classes.prdItem}
+            ${prd.place_id === predictionSelected.place_id ? classes.prdItemActive : ''}`}
+            onClick={() => {
+              this.selectPrediction(prd);
+            }}
+          >
+            <div className={classes.prdIcon}>
+              <PlaceIcon className={classes.prdIconIco} />
+            </div>
+            <div className={classes.prdCt}>
+              <span className={classes.mainText}>
+                {prd.structured_formatting.main_text}
+              </span>
+              <span className={classes.secondaryText}>
+                {prd.structured_formatting.secondary_text}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  renderHotKeywords() {
+    const { classes, hotKeywords } = this.props;
+    if (hotKeywords && hotKeywords.length > 0) {
+      return (
+        <div className={classes.suggestBox}>
+          <p className={classes.prdTitle}>Từ Khoá Hot</p>
+          <ul className={classes.tagList}>
+            {hotKeywords.map((item, index) => (
+              <li key={index}
+                className={classes.tagItem}
+                onClick={() => {
+                  console.log(item.url);
+                  // if (item.url) {
+                  //   Router.push(item.url);
+                  // }
+                }}
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    return null;
+  }
+
+  renderHistory() {
+    const { classes } = this.props;
+    const historyJSON = localStorage.getItem('lv-search-keyword');
+    const history = JSON.parse(historyJSON);
+    if (history && history.length > 0) {
+      return (
+        <div className={classes.suggestBox}>
+          <p className={classes.prdTitle}>Lịch Sử Tìm Kiếm</p>
+          <ul>
+            {history.map((item, index) => (
+              <li key={index}
+                className={classes.prdItem}
+                onClick={() => {
+                  console.log(item.url);
+                  // if (item.url) {
+                  //   Router.push(item.url);
+                  // }
+                }}
+              >
+                <div className={classes.prdIcon}>
+                  <HistoryIcon className={classes.prdIconIco} />
+                </div>
+                <div className={classes.prdCt}>
+                  {item.name}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    return null;
+  }
+
+  render() {
     const { classes, placeholder } = this.props;
+    const { showSuggestions } = this.state;
     return (
       <Fragment>
         <form className={classes.searchBox} onSubmit={this.handleSubmit}>
-          <SearchIcon className={classes.searchIcon} />
+          <SearchIcon className={classes.searchIcon}/>
           <input
             className={classes.searchInput}
             ref={(input) => {
               this.searchVal = input;
             }}
+            onFocus={this.handleFocus}
             onChange={this.loadAutoComplete}
             placeholder={placeholder}
             type="search"
           />
+          {showSuggestions
+            ? <IconButton
+              className={classes.btnBlurSearch}
+              onClick={() => {
+                this.resetSearchInput();
+              }}>
+              <ArrowBackIcon className={classes.arrowBackIcon}/>
+            </IconButton>
+            : null }
         </form>
-        <div className={classes.suggestions}>
-	        {this.renderSuggestions()}
-        </div>
+        {showSuggestions
+          ? <div className={classes.suggestions}>
+            {this.renderPredictions()}
+            {this.renderHotKeywords()}
+            {this.renderHistory()}
+          </div>
+          : null
+        }
       </Fragment>
     );
   }
@@ -167,11 +281,22 @@ class SearchBox extends Component {
 
 SearchBox.defaultProps = {
   placeholder: 'search...',
+  hotKeywords: [
+    {
+      name: 'quả táo kimura',
+      url: '/q/quả%20táo%20kimura?lat=10.7747098&lon=106.7043109',
+    },
+    {
+      name: 'thien nga den',
+      url: '/q/thien%20nga%20den?lat=10.7747098&lon=106.7043109',
+    },
+  ],
 };
 
 SearchBox.propTypes = {
   classes: PropTypes.object,
   placeholder: PropTypes.string,
+  hotKeywords: PropTypes.array,
 };
 
 export default injectSheet(styles)(SearchBox);
