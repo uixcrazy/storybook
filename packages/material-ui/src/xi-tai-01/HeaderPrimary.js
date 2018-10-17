@@ -18,31 +18,46 @@ class HeaderPrimary extends Component {
   toggleDrawer = openDrawer => () => {
     this.setState({
       openDrawer,
+      isSearchBoxFocus: false,
     });
   };
 
+  handleFocus = (isSearchBoxFocus) => {
+    this.setState({
+      isSearchBoxFocus,
+    });
+  }
+
   render() {
     const { classes, placeholder } = this.props;
+    const { isSearchBoxFocus } = this.state;
     return (
       <Fragment>
         <div className={classes.headerPrimary}>
-          <div className={classes.menu} onClick={this.toggleDrawer(true)}>
+          <div className={classes.menu}
+            onClick={this.toggleDrawer(true)}>
             <MenuIcon
               classes={{
                 root: classes.iconMenu,
               }}/>
             <div className={classes.logo}>logo</div>
           </div>
-          <SearchBox placeholder={placeholder} />
-          <a className={classes.btnCallWrap} href={`tel:${HOTLINE}`}>
-            <IconButton>
-              <PhoneIcon
-                classes={{
-                  root: classes.iconCall,
-                }}/>
-            </IconButton>
-            <span className={classes.labelCall}>Dii Giant</span>
-          </a>
+          <SearchBox
+            placeholder={placeholder}
+            handleFocus={this.handleFocus}/>
+
+          <div className={`${classes.animate} ${isSearchBoxFocus ? 'isFocus' : ''}`}>
+            <a className={classes.btnCallWrap}
+              href={`tel:${HOTLINE}`}>
+              <IconButton>
+                <PhoneIcon
+                  classes={{
+                    root: classes.iconCall,
+                  }}/>
+              </IconButton>
+              <span className={classes.labelCall}>Dii Giant</span>
+            </a>
+          </div>
         </div>
         <Drawer
           openDrawer={this.state.openDrawer}

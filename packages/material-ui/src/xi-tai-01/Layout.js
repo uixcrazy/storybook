@@ -15,6 +15,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     fontFamily: theme.typography.fontFamily,
+    position: 'relative',
   },
   header: {
     width: '100%',
@@ -37,7 +38,7 @@ const styles = theme => ({
     width: '100%',
     position: 'fixed',
     bottom: '0',
-    zIndex: '1000',
+    zIndex: 9,
     background: 'transparent',
     overflow: 'hidden',
     display: 'flex',

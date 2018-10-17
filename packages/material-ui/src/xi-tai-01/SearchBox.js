@@ -4,6 +4,7 @@ import injectSheet from 'react-jss';
 import loadjs from 'loadjs';
 import debounce from 'lodash.debounce';
 // import Router from 'next/router';
+import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import PlaceIcon from '@material-ui/icons/Place';
@@ -50,21 +51,25 @@ class SearchBox extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // console.log('handleSubmit', this.searchVal.value); -> support other search types
+    this.resetSearchInput();
+    // console.log('handleSubmit', this.searchRef.value); -> support other search types
     this.getSearch();
   }
 
   resetSearchInput() {
-    this.searchVal.value = '';
+    this.searchRef.blur();
+    this.searchRef.value = '';
     this.setState({
       showSuggestions: false,
     });
+    this.props.handleFocus(false);
   }
 
   handleFocus() {
     this.setState({
       showSuggestions: true,
     });
+    this.props.handleFocus(true);
   }
 
   selectPrediction(predictionSelected) {
@@ -77,7 +82,7 @@ class SearchBox extends Component {
   }
 
   loadAutoComplete() {
-    const kw = this.searchVal.value;
+    const kw = this.searchRef.value;
     if (!isEmpty(kw)) {
       this.service.getPlacePredictions(
         { input: kw, bounds: this.bound },
@@ -101,13 +106,12 @@ class SearchBox extends Component {
 
   getSearch() {
     const { predictionSelected } = this.state;
-    console.log(predictionSelected);
     if (predictionSelected) {
       this.getPlaceDetails(predictionSelected.place_id).then((place) => {
         const lat = place.geometry.location.lat();
         const lng = place.geometry.location.lng();
-        const url = `/q/${this.searchVal.value}?lat=${lat}&lon=${lng}`;
-        // Router.push(`/q/${this.searchVal.value}?lat=${lat}&lon=${lng}`);
+        const url = `/q/${this.searchRef.value}?lat=${lat}&lon=${lng}`;
+        // Router.push(`/q/${this.searchRef.value}?lat=${lat}&lon=${lng}`);
 
         const newHistory = {
           name: predictionSelected.structured_formatting.main_text,
@@ -213,7 +217,7 @@ class SearchBox extends Component {
       return (
         <div className={classes.suggestBox}>
           <p className={classes.prdTitle}>Lịch Sử Tìm Kiếm</p>
-          <ul>
+          <ul className={classes.history}>
             {history.map((item, index) => (
               <li key={index}
                 className={classes.prdItem}
@@ -245,17 +249,6 @@ class SearchBox extends Component {
     return (
       <Fragment>
         <form className={classes.searchBox} onSubmit={this.handleSubmit}>
-          <SearchIcon className={classes.searchIcon}/>
-          <input
-            className={classes.searchInput}
-            ref={(input) => {
-              this.searchVal = input;
-            }}
-            onFocus={this.handleFocus}
-            onChange={this.loadAutoComplete}
-            placeholder={placeholder}
-            type="search"
-          />
           {showSuggestions
             ? <IconButton
               className={classes.btnBlurSearch}
@@ -265,15 +258,31 @@ class SearchBox extends Component {
               <ArrowBackIcon className={classes.arrowBackIcon}/>
             </IconButton>
             : null }
+          <SearchIcon className={classes.searchIcon}/>
+          <input
+            className={classes.searchInput}
+            ref={(input) => {
+              this.searchRef = input;
+            }}
+            onFocus={this.handleFocus}
+            onBlur={this.resetSearchInput}
+            onChange={this.loadAutoComplete}
+            placeholder={placeholder}
+            autofocus={false}
+            type="search"
+          />
         </form>
-        {showSuggestions
-          ? <div className={classes.suggestions}>
+        <div className={classes.suggestions}>
+          <Collapse in={showSuggestions}
+            classes={{
+              container: classes.collapseContainer,
+            }}
+          >
             {this.renderPredictions()}
             {this.renderHotKeywords()}
             {this.renderHistory()}
-          </div>
-          : null
-        }
+          </Collapse>
+        </div>
       </Fragment>
     );
   }
@@ -297,6 +306,7 @@ SearchBox.propTypes = {
   classes: PropTypes.object,
   placeholder: PropTypes.string,
   hotKeywords: PropTypes.array,
+  handleFocus: PropTypes.func,
 };
 
 export default injectSheet(styles)(SearchBox);

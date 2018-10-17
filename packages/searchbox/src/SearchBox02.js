@@ -7,7 +7,7 @@ class Search extends Component {
   state = {
     error: false,
     query: '',
-    results: [],
+    items: [],
   }
 
   getInfo = () => {
@@ -72,7 +72,7 @@ class Search extends Component {
           <ListPhotos
             isLoaded={true}
             listPhotos={this.state.items}
-            handleClickTag={this.handleClickTag}
+            // handleClickTag={this.handleClickTag}
           />
         </div>
       </div>

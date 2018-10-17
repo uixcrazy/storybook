@@ -1,25 +1,38 @@
 
+const leftPositionBackBtn = -50;
+
 export default theme => ({
+  '@keyframes toLeft': {
+    '0%': {
+      left: 0,
+    },
+    '100%': {
+      left: leftPositionBackBtn,
+    },
+  },
   searchBox: {
     flex: 1,
     position: 'relative',
+    display: 'flex',
+    top: 1,
   },
   searchIcon: {
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 2,
     fontSize: '1.5rem',
     height: '2.75rem',
     lineHeight: '2.25rem',
-    color: '#aaa',
+    color: '#ccc',
     paddingLeft: 2,
-    marginLeft: 5,
+    paddingRight: 3,
+    marginLeft: 3,
   },
   btnBlurSearch: {
     position: 'absolute',
-    left: -50,
+    animation: 'toLeft 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+    left: leftPositionBackBtn,
     top: 0,
-    zIndex: 10,
-    width: 50,
+    width: -leftPositionBackBtn,
     height: '100%',
     backgroundColor: theme.palette.primary.main,
     padding: 0,
@@ -33,29 +46,42 @@ export default theme => ({
   },
   searchInput: {
     outline: 0,
-    width: '100%',
+    // width: '100%',
+    zIndex: 1,
+    flex: '1 1 auto',
     fontSize: '0.875rem',
     height: '2.5rem',
-    lineHeight: '2.5rem',
-    paddingLeft: '2rem',
-    paddingRight: '.5rem',
+    // lineHeight: '2.5rem',
     border: 0,
     borderRadius: '4px',
-    paddingTop: '3px',
+    padding: {
+      top: '3px',
+      right: '.5rem',
+      left: '1.5rem',
+    },
     opacity: 0.9,
     '&:focus': {
       opacity: 1,
-      // '& + $btnBlurSearch': {
-      //   display: 'block',
-      // },
+    },
+    '&::placeholder': {
+      color: '#999',
+      opacity: 0.5,
     },
   },
   suggestions: {
     position: 'absolute',
     width: '100%',
-    background: '#fff',
-    top: '3.5rem',
+    top: 0,
+    marginTop: '3.5rem',
+    maxHeight: 'calc(100vh - 3.5rem)',
     borderBottom: '1px solid #efefef',
+    overflowY: 'scroll',
+  },
+  collapseContainer: {
+    background: '#fff',
+  },
+  history: {
+    paddingLeft: 5,
   },
   predictions: {
     borderBottom: '2px solid #efefef',
@@ -101,7 +127,7 @@ export default theme => ({
     paddingRight: theme.spacing.unit / 2,
   },
   prdCt: {
-
+    color: '#555',
   },
   prdIconIco: {
     color: '#ccc',
@@ -126,7 +152,7 @@ export default theme => ({
     background: '#f3f4f7',
     color: '#333',
     fontSize: '0.813rem',
-    borderRadius: '3px',
+    borderRadius: '4px',
     padding: '8px 10px',
     marginRight: theme.spacing.unit,
   },

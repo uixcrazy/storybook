@@ -7,8 +7,6 @@ export default theme => ({
   },
   menu: {
     color: '#fff',
-    display: 'flex',
-    alignItems: 'center',
     position: 'relative',
   },
   logo: {
@@ -30,12 +28,26 @@ export default theme => ({
     top: 1,
     left: -15,
   },
+  animate: {
+    width: 56,
+    overflow: 'hidden',
+    transition: 'all 300ms linear',
+    paddingLeft: '.5rem',
+    position: 'relative',
+    left: 0,
+    '&.isFocus': {
+      width: 0,
+      left: 5,
+    },
+  },
   btnCallWrap: {
     display: 'inline-flex',
     flexDirection: 'column',
     alignItems: 'center',
     position: 'relative',
     top: -6,
+    left: -5,
+    width: 52,
   },
   iconCall: {
     fontSize: '1.5rem',
