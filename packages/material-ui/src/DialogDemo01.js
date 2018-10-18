@@ -102,7 +102,6 @@ class DialogDemo01 extends Component {
 
   render() {
     const { classes, open, toggleOpen } = this.props;
-    console.log(this.state.openSnackbar);
     return (
       <Fragment>
         <Dialog

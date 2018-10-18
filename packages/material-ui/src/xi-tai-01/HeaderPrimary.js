@@ -45,19 +45,21 @@ class HeaderPrimary extends Component {
           <SearchBox
             placeholder={placeholder}
             handleFocus={this.handleFocus}/>
-
-          <div className={`${classes.animate} ${isSearchBoxFocus ? 'isFocus' : ''}`}>
-            <a className={classes.btnCallWrap}
-              href={`tel:${HOTLINE}`}>
-              <IconButton>
-                <PhoneIcon
-                  classes={{
-                    root: classes.iconCall,
-                  }}/>
-              </IconButton>
+          <a className={`${classes.btnCallWrap} ${isSearchBoxFocus ? 'isFocus' : ''}`}
+            href={`tel:${HOTLINE}`}>
+            <IconButton
+              classes={{
+                root: classes.btnCall,
+                label: classes.btnCallLabel,
+              }}
+            >
+              <PhoneIcon
+                classes={{
+                  root: classes.iconCall,
+                }}/>
               <span className={classes.labelCall}>Dii Giant</span>
-            </a>
-          </div>
+            </IconButton>
+          </a>
         </div>
         <Drawer
           openDrawer={this.state.openDrawer}

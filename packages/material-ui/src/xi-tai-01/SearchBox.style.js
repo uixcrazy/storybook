@@ -1,15 +1,24 @@
 
-const leftPositionBackBtn = -50;
+const leftPositionBackBtn = -48;
 
 export default theme => ({
-  '@keyframes toLeft': {
-    '0%': {
-      left: 0,
-    },
-    '100%': {
-      left: leftPositionBackBtn,
-    },
-  },
+  // '@keyframes toLeft': {
+  //   '0%': {
+  //     left: 0,
+  //     display: 'block',
+  //   },
+  //   '100%': {
+  //     left: leftPositionBackBtn,
+  //   },
+  // },
+  // '@keyframes toRight': {
+  //   '0%': {
+  //     left: leftPositionBackBtn,
+  //   },
+  //   '100%': {
+  //     left: 0,
+  //   },
+  // },
   searchBox: {
     flex: 1,
     position: 'relative',
@@ -27,16 +36,31 @@ export default theme => ({
     paddingRight: 3,
     marginLeft: 3,
   },
-  btnBlurSearch: {
+  back: {
     position: 'absolute',
-    animation: 'toLeft 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+    // animation: 'toLeft 300ms cubic-bezier(0.4, 0, 0.2, 1)',
     left: leftPositionBackBtn,
     top: 0,
     width: -leftPositionBackBtn,
     height: '100%',
     backgroundColor: theme.palette.primary.main,
     padding: 0,
+    display: 'flex',
+    alignItems: 'center',
     '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+  backHiden: {
+    composes: '$back',
+    transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+    // animation: 'toRight 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+    left: 0,
+  },
+  btnBlurSearch: {
+    width: -leftPositionBackBtn,
+    '&:focus, &:active': {
       backgroundColor: theme.palette.primary.main,
     },
   },
@@ -46,12 +70,10 @@ export default theme => ({
   },
   searchInput: {
     outline: 0,
-    // width: '100%',
     zIndex: 1,
     flex: '1 1 auto',
     fontSize: '0.875rem',
-    height: '2.5rem',
-    // lineHeight: '2.5rem',
+    height: '2.5rem', // lineHeight
     border: 0,
     borderRadius: '4px',
     padding: {
@@ -59,9 +81,9 @@ export default theme => ({
       right: '.5rem',
       left: '1.5rem',
     },
-    opacity: 0.9,
+    backgroundColor: '#FAFCED',
     '&:focus': {
-      opacity: 1,
+      backgroundColor: '#fff',
     },
     '&::placeholder': {
       color: '#999',

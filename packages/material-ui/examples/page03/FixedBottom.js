@@ -20,8 +20,7 @@ class FixedBottom extends Component {
     return (
       <Fragment>
         <Fragment>
-          <button className={classes.btnPrimary}
-            onClick={this.toggleOpen(true)}>
+          <button className={classes.btnPrimary}>
             static
           </button>
           <button className={classes.btn}

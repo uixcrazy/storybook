@@ -23,7 +23,6 @@ const styles = theme => ({
     position: 'fixed',
     zIndex: 10,
     backgroundColor: theme.palette.primary.main,
-    // borderBottom: '1px solid rgba(48,51,58,.1)',
   },
   mainct: {
     flex: '1 0 0',
@@ -37,7 +36,7 @@ const styles = theme => ({
   floatingBottom: {
     width: '100%',
     position: 'fixed',
-    bottom: '0',
+    bottom: 0,
     zIndex: 9,
     background: 'transparent',
     overflow: 'hidden',

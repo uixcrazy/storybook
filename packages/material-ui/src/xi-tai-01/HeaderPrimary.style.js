@@ -28,35 +28,40 @@ export default theme => ({
     top: 1,
     left: -15,
   },
-  animate: {
+  btnCallWrap: {
     width: 56,
     overflow: 'hidden',
     transition: 'all 300ms linear',
-    paddingLeft: '.5rem',
+    paddingLeft: 4,
+    paddingRight: 4,
     position: 'relative',
     left: 0,
+    textDecoration: 'none',
     '&.isFocus': {
       width: 0,
       left: 5,
     },
   },
-  btnCallWrap: {
-    display: 'inline-flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    position: 'relative',
-    top: -6,
-    left: -5,
-    width: 52,
+  btnCall: {
+    width: 48,
+    padding: 0,
+    height: 48,
+    display: 'flex',
+    borderRadius: 0,
+    '&:hover': {
+      borderRadius: theme.spacing.unit,
+    },
   },
   iconCall: {
     fontSize: '1.5rem',
     color: theme.palette.secondary.main,
   },
+  btnCallLabel: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   labelCall: {
     color: theme.palette.secondary.main,
     fontSize: '0.75rem',
-    position: 'absolute',
-    top: 38,
   },
 });

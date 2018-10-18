@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../src/xi-tai-01/Layout';
 import Header from '../src/xi-tai-01/HeaderPrimary';
 import AxiosDemo from '../../API/src/AxiosDemo';
-import FixedBottom from './page01/FixedBottom';
+import FixedBottom from './page03/FixedBottom';
 
 const HelloWorld = ({ name }) => (
   <div>

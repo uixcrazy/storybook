@@ -14,7 +14,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import styles from './SearchBox.style';
 import { isEmpty } from '../../../../utils/utilities';
 
-
 const GMAP_API_KEY = 'AIzaSyDxOgJ-NH-JRJ54rDbP4ZxB52ATJGcBvpo';
 
 class SearchBox extends Component {
@@ -249,15 +248,13 @@ class SearchBox extends Component {
     return (
       <Fragment>
         <form className={classes.searchBox} onSubmit={this.handleSubmit}>
-          {showSuggestions
-            ? <IconButton
+          <div className={showSuggestions ? classes.back : classes.backHiden}>
+            <IconButton
               className={classes.btnBlurSearch}
-              onClick={() => {
-                this.resetSearchInput();
-              }}>
+              onClick={this.resetSearchInput}>
               <ArrowBackIcon className={classes.arrowBackIcon}/>
             </IconButton>
-            : null }
+          </div>
           <SearchIcon className={classes.searchIcon}/>
           <input
             className={classes.searchInput}
