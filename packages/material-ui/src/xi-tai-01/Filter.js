@@ -9,16 +9,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Checkbox from '@material-ui/core/Checkbox';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import Grow from '@material-ui/core/Grow'; // or Slide
+import FilterPanelMulti from './FilterPanelMulti';
+import FilterPanelSingle from './FilterPanelSingle';
 import styles from './Filter.style';
 
 function Transition(props) {
@@ -34,15 +27,18 @@ function Transition(props) {
 //   );
 // }
 
+const initialState = {
+  quaMulti: ['khom', 'dudu'], // ~ [<<all>>]
+  hoaMulti: null, // ~ [<<all>>]
+  quaSingle: 'all',
+  hoaSingle: 'all',
+};
+
 class Filter extends Component {
   state = {
     open: true,
-    price: 'all',
+    ...initialState,
   };
-
-  // this.initState = {
-  //   price: 'all',
-  // };
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -52,25 +48,22 @@ class Filter extends Component {
     this.setState({ open: false });
   };
 
-  handleChangeCheckbox = name => (event) => {
-    this.setState({ [name]: event.target.checked });
-  };
-
-  handleChangeRadioBtn = name => (event) => {
-    this.setState({ [name]: event.target.value });
-  };
+  updateDataFilter = (name, value) => {
+    this.setState({ [name]: value });
+  }
 
   reset = () => {
-    console.log('reset');
-
+    this.setState(state => ({ open: state.open, ...initialState }));
   }
 
   apply = () => {
     console.log('apply', this.state);
+    this.handleClose();
   }
 
   render() {
-    const { classes, typeList, priceList } = this.props;
+    const { classes } = this.props;
+    // console.log(this.state);
     return (
       <Fragment>
         <div className={classes.floatingWrap}>
@@ -89,6 +82,9 @@ class Filter extends Component {
           open={this.state.open}
           onClose={this.handleClose}
           TransitionComponent={Transition}
+          classes={{
+            paperFullScreen: classes.dialogFullScreen,
+          }}
         >
           <AppBar className={classes.appBar}>
             <Toolbar
@@ -100,101 +96,47 @@ class Filter extends Component {
               <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6" color="inherit" className={classes.title}>
+              <Typography variant="inherit" color="inherit" className={classes.title}>
                 Bộ Lọc
               </Typography>
             </Toolbar>
           </AppBar>
-          <div>
-            <ExpansionPanel
-              defaultExpanded={true}
-              classes={{
-                root: classes.expansionPanel,
-              }}
-            >
-              <ExpansionPanelSummary
-                classes={{
-                  root: classes.expansionPanelSummary,
-                  expandIcon: classes.expandMoreIcon,
-                  expanded: classes.expandedSummary,
-                  content: classes.contentSummary,
-                }}
-                expandIcon={<ExpandMoreIcon />}
-              >
-                <Typography className={classes.heading}>Loại</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-                <FormGroup row className={classes.formGroup}>
-                  {
-                    typeList && typeList.map(type => (
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            key={type.value}
-                            checked={this.state[type.value]}
-                            onChange={this.handleChangeCheckbox(type.value)}
-                            value={type.value}
-                            // color="primary"
-                            classes={{
-                              root: classes.checkboxRadio,
-                              // checked: classes.checked,
-                            }}
-                          />
-                        }
-                        classes={{
-                          root: classes.formControlLabel,
-                        }}
-                        style={{
-                          width: '50%',
-                        }}
-                        label={type.label}
-                      />
-                    ))
-                  }
-                </FormGroup>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+          <div className={classes.ctFilter}>
+            <FilterPanelMulti
+              defaultExpanded={false}
+              isAlwaysExpanded={true}
+              heading="Các loại quả Multi"
+              keyName="quaMulti"
+              selected={this.state.quaMulti}
+              updateDataFilter={this.updateDataFilter}
+              data={this.props.quaList}
+            />
+            <FilterPanelMulti
+              defaultExpanded={false}
+              heading="Các loại hoa Multi"
+              keyName="hoaMulti"
+              widthItem="100%"
+              selected={this.state.hoaMulti}
+              updateDataFilter={this.updateDataFilter}
+              data={this.props.hoaList}
+            />
+            <FilterPanelSingle
+              defaultExpanded={false}
+              // isAlwaysExpanded={true}
+              heading="Các loại quả"
+              keyName="quaSingle"
+              selected={this.state.quaSingle}
+              updateDataFilter={this.updateDataFilter}
+              data={this.props.quaList}/>
 
-            <ExpansionPanel
-              defaultExpanded={true}
-              classes={{
-                root: classes.expansionPanel,
-              }}
-            >
-              <ExpansionPanelSummary
-                classes={{
-                  root: classes.expansionPanelSummary,
-                  expandIcon: classes.expandMoreIcon,
-                  expanded: classes.expandedSummary,
-                  content: classes.contentSummary,
-                }}
-                expandIcon={<ExpandMoreIcon />}
-              >
-                <Typography className={classes.heading}>Radio Button</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-                <RadioGroup
-                  aria-label="price"
-                  name="price"
-                  className={classes.radioGroup}
-                  value={this.state.price}
-                  onChange={this.handleChangeRadioBtn('price')}
-                >
-                  {
-                    priceList && priceList.map(price => (
-                      <FormControlLabel
-                        value={price.value}
-                        control={<Radio className={classes.checkboxRadio}/>}
-                        label={price.label}
-                        classes={{
-                          root: classes.formControlLabel,
-                        }}
-                      />
-                    ))
-                  }
-                </RadioGroup>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+            <FilterPanelSingle
+              defaultExpanded={false}
+              heading="Các loại hoa"
+              keyName="hoaSingle"
+              selected={this.state.hoaSingle}
+              updateDataFilter={this.updateDataFilter}
+              data={this.props.hoaList}
+            />
           </div>
           <div className={classes.fixedBottom}>
             <button className={classes.btn} onClick={this.reset}>
@@ -211,44 +153,49 @@ class Filter extends Component {
 }
 
 Filter.defaultProps = {
-  typeList: [
+  quaList: [
     {
-      value: 'loai1',
-      label: 'Loại 1',
+      value: 'dudu',
+      label: 'đu đủ',
     },
     {
-      value: 'loai2',
-      label: 'Loại 2',
+      value: 'man',
+      label: 'Mận',
     },
     {
-      value: 'loai3',
-      label: 'Loại 3',
+      value: 'duahau',
+      label: 'Dưa hấu',
     },
     {
-      value: 'loai4',
-      label: 'Loại 4',
-    },
-  ],
-  priceList: [
-    {
-      value: 'all',
-      label: 'All',
+      value: 'khom',
+      label: 'Khóm',
     },
     {
-      value: 'female',
-      label: 'Female',
-    },
-    {
-      value: 'male',
-      label: 'Male',
-    },
-    {
-      value: 'other',
-      label: 'Other',
+      value: 'mangcut',
+      label: 'Măng cụt',
     },
   ],
-  status: [
-    // checkbox
+  hoaList: [
+    {
+      value: 'boconganh',
+      label: 'hoa bồ công anh',
+    },
+    {
+      value: 'camtucau',
+      label: 'cẩm tú cầu',
+    },
+    {
+      value: 'tramoi',
+      label: 'bông trâm ổi',
+    },
+    {
+      value: 'anhtuc',
+      label: 'hoa anh túc',
+    },
+    {
+      value: 'ixora',
+      label: 'Ixora - bông trang',
+    },
   ],
 };
 

@@ -8,6 +8,10 @@ const styles = theme => ({
     alignItems: 'center',
     paddingBottom: theme.spacing.unit,
   },
+  dialogFullScreen: {
+    position: 'relative',
+    overflow: 'hidden',
+  },
   fixedBottom: {
     width: '100%',
     position: 'fixed',
@@ -23,6 +27,11 @@ const styles = theme => ({
   appBar: {
     position: 'relative',
     boxShadow: 'none',
+  },
+  ctFilter: {
+    marginBottom: '3.5rem',
+    overflowY: 'auto',
+    flex: '1 0',
   },
   toolbar: {
     color: theme.palette.secondary.main,
@@ -49,49 +58,6 @@ const styles = theme => ({
       position: ['center', 0],
       size: 'contain',
     },
-  },
-  expansionPanel: {
-    borderBottom: '1px solid #eee',
-    boxShadow: 'none',
-    marginTop: 0,
-    marginBottom: 0,
-    '& $expandedSummary': {
-      minHeight: 'auto',
-    },
-    '& $contentSummary': {
-      margin: '12px 0',
-    },
-  },
-  expansionPanelSummary: {
-    minHeight: 'auto',
-  },
-  expandedSummary: {},
-  contentSummary: {
-    margin: '12px 0',
-  },
-  expandMoreIcon: {
-    color: '#ccc',
-  },
-  expansionPanelDetails: {
-    borderTop: '1px solid #eee',
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
-  },
-  formGroup: {
-    width: '100%',
-  },
-  formControlLabel: {
-    margin: 0,
-  },
-  checkboxRadio: {
-    color: '#ccc',
-    marginLeft: '-12px',
-    // '&$checked': {
-    //   color: green[500],
-    // },
-  },
-  // checked: {},
-  radioGroup: {
-    width: '100%',
   },
 });
 

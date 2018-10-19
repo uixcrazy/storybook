@@ -265,7 +265,7 @@ class SearchBox extends Component {
             onBlur={this.resetSearchInput}
             onChange={this.loadAutoComplete}
             placeholder={placeholder}
-            autofocus={false}
+            autoFocus={false}
             type="search"
           />
         </form>
