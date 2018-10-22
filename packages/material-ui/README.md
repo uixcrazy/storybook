@@ -28,3 +28,7 @@ body {
 }
 
 ```
+
+đọc thêm:
+
+```react-swipeable-views```

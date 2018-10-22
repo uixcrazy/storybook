@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../src/xi-tai-01/Layout';
 import Header from '../src/xi-tai-01/HeaderSecondary';
+import DetailTabs from '../src/xi-tai-01/DetailTabs';
 import AxiosDemo from '../../API/src/AxiosDemo';
 import FixedBottom from './page03/FixedBottom';
 
@@ -13,7 +14,7 @@ const Page03Eg = () => (
       },
       {
         key: 'mainct',
-        component: <AxiosDemo />,
+        component: <DetailTabs />,
       },
       {
         key: 'fixedBottom',

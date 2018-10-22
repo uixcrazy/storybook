@@ -23,10 +23,10 @@ export default theme => ({
   },
   arrowBackIcon: {
     marginLeft: 5,
-    color: '#fff',
+    color: theme.palette.primary.contrastText,
   },
   detailName: {
-    color: '#fff',
+    color: theme.palette.primary.contrastText,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -36,7 +36,7 @@ export default theme => ({
     fontSize: '1.5rem',
     height: '3rem',
     lineHeight: '3rem',
-    color: '#fff',
+    color: theme.palette.primary.contrastText,
     display: 'flex',
     alignItems: 'center',
     '&.hidden': {

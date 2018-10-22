@@ -66,7 +66,7 @@ export default theme => ({
   },
   arrowBackIcon: {
     marginLeft: 5,
-    color: '#fff',
+    color: theme.palette.primary.contrastText,
   },
   searchInput: {
     outline: 0,

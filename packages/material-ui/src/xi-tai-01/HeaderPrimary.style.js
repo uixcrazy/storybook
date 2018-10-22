@@ -6,7 +6,7 @@ export default theme => ({
     height: '100%',
   },
   menu: {
-    color: '#fff',
+    color: theme.palette.primary.contrastText,
     position: 'relative',
   },
   logo: {
