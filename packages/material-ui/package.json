@@ -13,6 +13,7 @@
   "peerDependencies": {
     "react": "^16.4.1",
     "prop-types": "^15.6.2",
+    "react-helmet": "^5.2.0",
     "react-jss": "^8.6.1"
   }
 }

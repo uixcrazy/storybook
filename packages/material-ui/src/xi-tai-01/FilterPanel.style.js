@@ -27,7 +27,7 @@ export default theme => ({
     minHeight: 'auto',
   },
   heading: {
-    flex: '1 0 auto',
+    flex: '1 0 0',
     paddingRight: theme.spacing.unit * 2,
   },
   selected: {

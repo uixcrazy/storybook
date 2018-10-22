@@ -94,10 +94,11 @@ export default theme => ({
     position: 'absolute',
     width: '100%',
     top: 0,
+    left: 0,
     marginTop: '3.5rem',
     maxHeight: 'calc(100vh - 3.5rem)',
     borderBottom: '1px solid #efefef',
-    overflowY: 'scroll',
+    overflowY: 'auto',
   },
   collapseContainer: {
     background: '#fff',

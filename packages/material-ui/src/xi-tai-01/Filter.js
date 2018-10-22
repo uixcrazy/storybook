@@ -36,7 +36,7 @@ const initialState = {
 
 class Filter extends Component {
   state = {
-    open: true,
+    open: false,
     ...initialState,
   };
 

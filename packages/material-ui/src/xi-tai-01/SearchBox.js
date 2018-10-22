@@ -154,9 +154,9 @@ class SearchBox extends Component {
   renderPredictions() {
     const { classes } = this.props;
     const { predictions, predictionSelected } = this.state;
-    return (
+    return predictions.length > 0 ? (
       <ul className={classes.predictions}>
-        {predictions.length > 0 && predictions.map((prd, index) => (
+        {predictions.map((prd, index) => (
           <li key={index}
             className={`${classes.prdItem}
             ${prd.place_id === predictionSelected.place_id ? classes.prdItemActive : ''}`}
@@ -178,7 +178,7 @@ class SearchBox extends Component {
           </li>
         ))}
       </ul>
-    );
+    ) : null;
   }
 
   renderHotKeywords() {
@@ -243,7 +243,7 @@ class SearchBox extends Component {
   }
 
   render() {
-    const { classes, placeholder } = this.props;
+    const { classes, placeholder, autoFocus } = this.props;
     const { showSuggestions } = this.state;
     return (
       <Fragment>
@@ -262,10 +262,10 @@ class SearchBox extends Component {
               this.searchRef = input;
             }}
             onFocus={this.handleFocus}
-            onBlur={this.resetSearchInput}
+            // onBlur={this.resetSearchInput}
             onChange={this.loadAutoComplete}
             placeholder={placeholder}
-            autoFocus={false}
+            autoFocus={autoFocus}
             type="search"
           />
         </form>
@@ -297,6 +297,7 @@ SearchBox.defaultProps = {
       url: '/q/thien%20nga%20den?lat=10.7747098&lon=106.7043109',
     },
   ],
+  autoFocus: false,
 };
 
 SearchBox.propTypes = {
@@ -304,6 +305,7 @@ SearchBox.propTypes = {
   placeholder: PropTypes.string,
   hotKeywords: PropTypes.array,
   handleFocus: PropTypes.func,
+  autoFocus: PropTypes.bool,
 };
 
 export default injectSheet(styles)(SearchBox);

@@ -43,6 +43,7 @@
     "jss": "^9.8.7",
     "loader-utils": "^1.1.0",
     "lodash.merge": "^4.6.1",
+    "lodash.throttle": "^4.1.1",
     "mini-css-extract-plugin": "^0.4.0",
     "object-assign": "4.1.1",
     "optimize-css-assets-webpack-plugin": "^4.0.1",
@@ -131,10 +132,10 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-links": "4.0.0-alpha.22",
-    "@storybook/addon-options": "4.0.0-alpha.22",
-    "@storybook/addons": "4.0.0-alpha.22",
-    "@storybook/react": "4.0.0-alpha.22",
+    "@storybook/addon-links": "4.0.0-alpha.25",
+    "@storybook/addon-options": "4.0.0-alpha.25",
+    "@storybook/addons": "4.0.0-alpha.25",
+    "@storybook/react": "4.0.0-alpha.25",
     "marked": "^0.4.0"
   }
 }

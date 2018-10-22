@@ -1,47 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Layout from '../src/xi-tai-01/Layout';
-import Header from '../src/xi-tai-01/HeaderPrimary';
+import Header from '../src/xi-tai-01/HeaderSecondary';
 import AxiosDemo from '../../API/src/AxiosDemo';
 import FixedBottom from './page03/FixedBottom';
 
-const HelloWorld = ({ name }) => (
-  <div>
-    {`Hi ${name}`}
-    <Header placeholder="Táo của Kimura"/>
-
-  </div>
+const Page03Eg = () => (
+  <Layout>
+    {[
+      {
+        key: 'header',
+        component: <Header />,
+      },
+      {
+        key: 'mainct',
+        component: <AxiosDemo />,
+      },
+      {
+        key: 'fixedBottom',
+        component: <FixedBottom />,
+      },
+    ]}
+  </Layout>
 );
-
-export default class Page01Eg extends Component {
-  state = {
-    open: false,
-  };
-
-  toggleOpen = open => () => {
-    this.setState({
-      open,
-    });
-  };
-
-  render() {
-    return (
-      <Layout>
-        {[
-          {
-            key: 'header',
-            component: <Header />,
-          },
-          {
-            key: 'mainct',
-            component: <AxiosDemo />,
-          },
-          {
-            key: 'fixedBottom',
-            component: <FixedBottom />,
-          },
-        ]}
-
-      </Layout>
-    );
-  }
-}
+export default Page03Eg;

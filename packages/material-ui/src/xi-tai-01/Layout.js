@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import withTheme from './withTheme';
 /**
  * Header
- * main color
+ * Main Content
  * Fixed Bottom
  * Floating Bottom
  */
