@@ -26,6 +26,7 @@ class DialogDemo01 extends Component {
       emailValid: true,
       formValid: false,
       openSnackbar: false,
+      messageSnackbar: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,6 +49,7 @@ class DialogDemo01 extends Component {
       if (resJson.json && resJson.json.fullname) {
         this.setState({
           openSnackbar: true,
+          messageSnackbar: 'gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!!',
         });
       }
     });
@@ -204,26 +206,37 @@ class DialogDemo01 extends Component {
         {
           this.state.openSnackbar
             ? <Snackbar
-              anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
               open={this.state.openSnackbar}
               autoHideDuration={6000}
               onClose={this.handleCloseSnackbar}
-              // ContentProps={{
-              //   'aria-describedby': 'message-id',
-              // }}
-              // message={<span
-              //   id="message-id"
-              //   className={classes.messageSnackbar}
-              // >gửi thành công!!!</span>}
             >
               <SnackbarContent
-                className={classes.messageSnackbar}
+                classes={{
+                  root: classes.messageSnackbar,
+                  message: classes.messageSnackbarCt,
+                  action: classes.btnCloseSnackbar,
+                }}
                 aria-describedby="client-snackbar"
                 message={
                   <span id="client-snackbar">
-                    gửi thành công!!!
+                    {this.state.messageSnackbar}
                   </span>
-                } />
+                }
+                action={[
+                  <IconButton
+                    key="close"
+                    aria-label="Close"
+                    color="inherit"
+                    onClick={this.handleCloseSnackbar}
+                  >
+                    <IconClose />
+                  </IconButton>,
+                ]}
+              />
             </Snackbar>
             : null
         }

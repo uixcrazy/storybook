@@ -134,10 +134,15 @@ export default theme => ({
     },
   },
   messageSnackbar: {
-    maxWidth: '30rem',
+    position: 'relative',
+    paddingRight: '3rem',
     color: theme.palette.primary.main,
     backgroundColor: theme.palette.secondary.main,
+  },
+  btnCloseSnackbar: {
     position: 'absolute',
-    bottom: 10,
+    display: 'block',
+    margin: 0,
+    right: 0,
   },
 });
