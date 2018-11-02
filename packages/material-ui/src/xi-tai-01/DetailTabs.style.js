@@ -1,12 +1,15 @@
 export default theme => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-  },
+  // root: {
+  //   flexGrow: 1,
+  //   width: '100%',
+  //   position: 'relative',
+  //   backgroundColor: theme.palette.background.paper,
+  // },
   rootAppBar: {
     boxShadow: 'none',
+  },
+  positionFixedAppBar: {
+    top: 'auto', // instead of 3.5rem
   },
   tabsRoot: {
     // backgroundColor: theme.palette.secondary.main,
@@ -41,5 +44,13 @@ export default theme => ({
   tabFullWidth: {},
   typography: {
     padding: theme.spacing.unit * 3,
+  },
+  tabContainer: {
+    marginTop: '3rem',
+    background: '#fff',
+    height: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    overflowY: 'auto',
   },
 });

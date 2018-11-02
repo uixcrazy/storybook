@@ -28,6 +28,10 @@ const styles = theme => ({
     flex: '1 0 0',
     marginTop: '3.5rem',
     overflowX: 'hidden',
+
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'column',
   },
   mainctFixedBottom: {
     composes: '$mainct',

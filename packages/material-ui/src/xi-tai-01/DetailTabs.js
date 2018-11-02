@@ -8,129 +8,104 @@ import styles from './DetailTabs.style';
 
 // test
 import AxiosDemo from '../../../API/src/AxiosDemo';
+import GioiThieuSach from './test-ct/test01';
+import ThongTinChiTiet from './test-ct/test02';
 
-function TabContainer(props) {
-  return (
-    <div>
-      {props.children}
-    </div>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+// const withTabContainer = WrappedComponent => props => (
+//   <div className={props.className}>
+//     <WrappedComponent {...props}/>
+//   </div>
+// );
 
 class ScrollableTabsButtonAuto extends React.Component {
   state = {
-    value: 0,
+    tabActive: 0,
+    tabContent: null,
   };
 
   handleChange = (event, value) => {
-    this.setState({ value });
+    this.tabCt.scrollTop = 0;
+    this.setState({ tabActive: value });
   };
 
   render() {
-    const { classes } = this.props;
-    const { value } = this.state;
+    const { classes, tabs } = this.props;
+    const { tabActive } = this.state;
+    const TabContainer = tabs[tabActive].tabContainer;
 
-    return (
-      <div className={classes.root}>
-        <AppBar position="static" color="default"
-          className={classes.rootAppBar}
+    return tabs ? (
+      <React.Fragment>
+        {/* <div className={classes.root}> */}
+        <AppBar
+          position="fixed"
+          color="default"
+          classes={{
+            root: classes.rootAppBar,
+            positionFixed: classes.positionFixedAppBar,
+          }}
         >
           <Tabs
-            value={value}
+            value={tabActive}
             onChange={this.handleChange}
-            // indicatorColor="primary" default is: "secondary"
-            textColor="secondary"
             fullWidth
             scrollable
-            scrollButtons="auto"
+            scrollButtons="off" // auto
             classes={{
               root: classes.tabsRoot,
               indicator: classes.tabsIndicator,
             }}
           >
-            <Tab
-              // disableRipple
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected,
-                fullWidth: classes.tabFullWidth,
-              }}
-              label="Tab 1"
-            />
-            <Tab
-              // disableRipple
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected,
-                fullWidth: classes.tabFullWidth,
-              }}
-              label="Tab 2"
-            />
-            <Tab
-              // disableRipple
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected,
-                fullWidth: classes.tabFullWidth,
-              }}
-              label="Tab Three"
-            />
-            <Tab
-              // disableRipple
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected,
-                fullWidth: classes.tabFullWidth,
-              }}
-              label="Tab Four"
-            />
-            <Tab
-              // disableRipple
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected,
-                fullWidth: classes.tabFullWidth,
-              }}
-              label="Tab Five"
-            />
-            <Tab
-              // disableRipple
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected,
-                fullWidth: classes.tabFullWidth,
-              }}
-              label="Tab Six"
-            />
-            <Tab
-              // disableRipple
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected,
-                fullWidth: classes.tabFullWidth,
-              }}
-              label="Tab Seven"
-            />
+            {tabs.map((tab, index) => (
+              <Tab
+                key={index}
+                classes={{
+                  root: classes.tabRoot,
+                  selected: classes.tabSelected,
+                  fullWidth: classes.tabFullWidth,
+                  labelContainer: classes.labelContainer,
+                }}
+                label={tab.label}
+              />
+            ))}
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer>Item One</TabContainer>}
-        {value === 1 && <TabContainer><AxiosDemo /></TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
-        {value === 3 && <TabContainer>Item Four</TabContainer>}
-        {value === 4 && <TabContainer>Item Five</TabContainer>}
-        {value === 5 && <TabContainer>Item Six</TabContainer>}
-        {value === 6 && <TabContainer>Item Seven</TabContainer>}
-      </div>
-    );
+        <div
+          className={classes.tabContainer}
+          ref={(DOM) => {
+            this.tabCt = DOM;
+          }}
+        >
+          <TabContainer />
+        </div>
+      </React.Fragment>
+    ) : null;
   }
 }
 
+ScrollableTabsButtonAuto.defaultProps = {
+  tabs: [
+    {
+      label: 'GIỚI THIỆU SÁCH',
+      tabContainer: GioiThieuSach,
+    },
+    {
+      label: 'SÁCH CÙNG TÁC GIẢ',
+      tabContainer: AxiosDemo,
+    },
+    {
+      label: 'THÔNG TIN CHI TIẾT',
+      tabContainer: ThongTinChiTiet,
+    },
+    {
+      label: 'Nhà Xuất Bản',
+      tabContainer: ThongTinChiTiet,
+    },
+  ],
+};
+
 ScrollableTabsButtonAuto.propTypes = {
   classes: PropTypes.object.isRequired,
+  tabs: PropTypes.array,
 };
-// DetailTabs
+
 export default withStyles(styles)(ScrollableTabsButtonAuto);
