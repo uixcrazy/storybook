@@ -13,6 +13,9 @@ export default theme => ({
   },
   tabsRoot: {
     // backgroundColor: theme.palette.secondary.main,
+    boxShadow: `0px 1px 5px 0px rgba(0, 0, 0, 0.1),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.1),
+    0px 3px 1px -2px rgba(0, 0, 0, 0.12)`,
     '& ::-webkit-scrollbar': {
       display: 'none', //* remove scrollbar space */
     },
@@ -42,6 +45,11 @@ export default theme => ({
   },
   tabSelected: {},
   tabFullWidth: {},
+  labelContainer: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    fontWeight: 500,
+  },
   typography: {
     padding: theme.spacing.unit * 3,
   },

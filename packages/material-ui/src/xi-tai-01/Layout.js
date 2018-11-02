@@ -10,24 +10,38 @@ import withTheme from './withTheme';
  */
 
 const styles = theme => ({
+  '@global': {
+    // 'body': {
+    //   position: 'relative',
+    //   maxWidth: '768px',
+    //   overflowX: 'hidden',
+    // },
+  },
   app: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
+    maxWidth: '768px',
   },
   header: {
     width: '100%',
+    maxWidth: 'inherit',
     height: '3.5rem',
     position: 'fixed',
-    zIndex: 10,
+    zIndex: 100,
+    // overflowX: 'hidden', -> it's hidden search-suggestions
+    // overflowY: 'auto',
     backgroundColor: theme.palette.primary.main,
   },
   mainct: {
     flex: '1 0 0',
+    // maxWidth: 'inherit',
     marginTop: '3.5rem',
     overflowX: 'hidden',
+    position: 'relative',
+    zIndex: 10,
 
     display: 'flex',
     width: '100%',
@@ -39,9 +53,10 @@ const styles = theme => ({
   },
   floatingBottom: {
     width: '100%',
+    maxWidth: 'inherit',
     position: 'fixed',
     bottom: 0,
-    zIndex: 9,
+    zIndex: 99,
     background: 'transparent',
     overflow: 'hidden',
     display: 'flex',
