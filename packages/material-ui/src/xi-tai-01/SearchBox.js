@@ -81,7 +81,7 @@ class SearchBox extends Component {
   }
 
   loadAutoComplete() {
-    const kw = this.searchRef.value;
+    const kw = this.searchRef && this.searchRef.value;
     if (!isEmpty(kw)) {
       this.service.getPlacePredictions(
         { input: kw, bounds: this.bound },
@@ -105,30 +105,32 @@ class SearchBox extends Component {
 
   getSearch() {
     const { predictionSelected } = this.state;
-    if (predictionSelected) {
-      this.getPlaceDetails(predictionSelected.place_id).then((place) => {
-        const lat = place.geometry.location.lat();
-        const lng = place.geometry.location.lng();
-        const url = `/q/${this.searchRef.value}?lat=${lat}&lon=${lng}`;
-        // Router.push(`/q/${this.searchRef.value}?lat=${lat}&lon=${lng}`);
+    if (!isEmpty(this.searchRef.value)) {
+      if (predictionSelected) {
+        this.getPlaceDetails(predictionSelected.place_id).then((place) => {
+          const lat = place.geometry.location.lat();
+          const lng = place.geometry.location.lng();
+          const url = `/q/${this.searchRef.value}?lat=${lat}&lon=${lng}`;
+          // Router.push(`/q/${this.searchRef.value}?lat=${lat}&lon=${lng}`);
 
-        const newHistory = {
-          name: predictionSelected.structured_formatting.main_text,
-          url,
-        };
-        const historyJSON = localStorage.getItem('lv-search-keyword');
-        const history = JSON.parse(historyJSON);
-        const limitNo = 5;
-        if (history && history.length > 0) {
-          history.push(newHistory);
-          if (history.length > limitNo) {
-            history.splice(0, history.length - limitNo);
+          const newHistory = {
+            name: predictionSelected.structured_formatting.main_text,
+            url,
+          };
+          const historyJSON = localStorage.getItem('lv-search-keyword');
+          const history = JSON.parse(historyJSON);
+          const limitNo = 5;
+          if (history && history.length > 0) {
+            history.push(newHistory);
+            if (history.length > limitNo) {
+              history.splice(0, history.length - limitNo);
+            }
+            localStorage.setItem('lv-search-keyword', JSON.stringify(history));
+          } else {
+            localStorage.setItem('lv-search-keyword', JSON.stringify([newHistory]));
           }
-          localStorage.setItem('lv-search-keyword', JSON.stringify(history));
-        } else {
-          localStorage.setItem('lv-search-keyword', JSON.stringify([newHistory]));
-        }
-      });
+        });
+      }
     }
   }
 

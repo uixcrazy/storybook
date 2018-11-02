@@ -63,10 +63,10 @@ const Layout = ({ classes, children }) => {
         : null
       }
       { mainct.length > 0
-        ? <section
+        ? <main
           className={fixedBottom.length > 0 ? classes.mainctFixedBottom : classes.mainct}>
           {mainct[0].component}
-        </section>
+        </main>
         : null
       }
       { fixedBottom.length > 0

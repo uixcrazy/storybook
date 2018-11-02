@@ -4,7 +4,12 @@ export default theme => ({
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    padding: `0 ${theme.spacing.unit}px`,
+    padding: { // `0 ${theme.spacing.unit}px`,
+      top: theme.spacing.unit / 2,
+      right: theme.spacing.unit,
+      bottom: 0,
+      left: theme.spacing.unit,
+    },
   },
   leftCt: {
     flex: '1 0 0',
