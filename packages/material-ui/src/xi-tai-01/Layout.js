@@ -37,7 +37,7 @@ const styles = theme => ({
   },
   mainct: {
     flex: '1 0 0',
-    // maxWidth: 'inherit',
+    maxWidth: 'inherit',
     marginTop: '3.5rem',
     overflowX: 'hidden',
     position: 'relative',
