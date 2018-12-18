@@ -1,0 +1,15 @@
+{
+  "name": "@uixcrazy/animate",
+  "version": "0.1.0",
+  "description": "react-animate",
+  "author": "uixcrazy",
+  "repository": "https://github.com/uixcrazy/storybook",
+  "dependencies": {
+    "react-animate-on-change": "^2.1.1"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "prop-types": "^15.6.2",
+    "react-jss": "^8.6.1"
+  }
+}
