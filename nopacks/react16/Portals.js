@@ -29,7 +29,7 @@ class Modal extends React.Component {
 class Parent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {clicks: 0};
+    this.state = { clicks: 0 };
     this.handleClick = this.handleClick.bind(this);
   }
 

@@ -145,4 +145,10 @@ export default theme => ({
     margin: 0,
     right: 0,
   },
+  notes: {
+    marginLeft: 10,
+    marginBottom: 10,
+    color: '#999',
+    fontSize: 12,
+  },
 });

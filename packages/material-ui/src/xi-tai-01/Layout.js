@@ -23,7 +23,7 @@ const styles = theme => ({
     flexDirection: 'column',
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    maxWidth: '768px',
+    // maxWidth: '768px',
   },
   header: {
     width: '100%',
