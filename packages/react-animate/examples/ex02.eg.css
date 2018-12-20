@@ -1,0 +1,55 @@
+/*
+  >>> transition: property duration timing-function delay|initial|inherit;
+*/
+
+.anime-appear {
+  opacity: 0;
+  margin-right: -370px;
+}
+/* anime enter */
+.anime-enter {
+  opacity: 0.01;
+  margin-right: -370px;
+}
+.anime-enter.anime-enter-active {
+  opacity: 1;
+  margin-right: 0;
+  transition: opacity 500ms linear, margin-right 800ms ease-out;
+}
+
+/* anime exit */
+.anime-exit {
+  opacity: 1;
+  margin-right: 0;
+}
+.anime-exit.anime-exit-active {
+  opacity: 0.01;
+  margin-right: -370px;
+  transition: opacity 800ms linear, margin-right 800ms ease-out;
+}
+.anime-exit-done {
+  opacity: 0;
+  margin-right: -370px;
+}
+
+
+/* .animeCollapse-appear {
+  opacity: 0;
+} */
+.animeCollapse-enter {
+  opacity: 0;
+}
+.animeCollapse-enter.animeCollapse-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+/* .animeCollapse-exit {
+  opacity: 1;
+}
+.animeCollapse-exit.animeCollapse-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+} */
+/* .animeCollapse-exit-done {
+  opacity: 0;
+}*/

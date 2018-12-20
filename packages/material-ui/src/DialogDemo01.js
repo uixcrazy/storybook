@@ -49,7 +49,7 @@ class DialogDemo01 extends Component {
       if (resJson.json && resJson.json.fullname) {
         this.setState({
           openSnackbar: true,
-          messageSnackbar: 'gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!!',
+          messageSnackbar: 'gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!! gửi thành công!!!', // eslint-disable-line
         });
       }
     });

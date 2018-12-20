@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Hammerjs from 'hammerjs';
-import { withStyles } from '../../../utils/withStyles';
 import debounce from 'lodash.debounce';
+import { withStyles } from '../../../utils/withStyles';
 import defaultStyles from './SliderSimple.style';
 
 export class SliderSimple extends Component {
