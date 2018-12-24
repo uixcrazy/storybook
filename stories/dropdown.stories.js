@@ -2,8 +2,16 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 // import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
+import WithNotes from '../.storybook/addons/notes/WithNotes';
 
-import BasicDropdown from '../packages/dropdown/examples/BasicDropdown.eg';
+import BasicDropdownReadme
+  from '../nopacks/basic-dropdown/readme/README.md';
+
+import BasicDropdownEg from '../nopacks/basic-dropdown/examples/BasicDropdown.eg';
 
 storiesOf('Dropdown', module)
-  .add('Basic', () => <BasicDropdown />);
+  .add('Basic', () => (
+    <WithNotes notes={BasicDropdownReadme}>
+      <BasicDropdownEg />
+    </WithNotes>
+  ));

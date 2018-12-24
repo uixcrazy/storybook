@@ -17,9 +17,9 @@ class ErrorEvent extends React.Component {
 
   render() {
     if (this.state.error) {
-      return <h1>Caught an error.</h1>
+      return <h1>Caught an error.</h1>;
     }
-    return <button onClick={this.handleClick}>Click Me</button>
+    return <button onClick={this.handleClick}>Click Me</button>;
   }
 }
 

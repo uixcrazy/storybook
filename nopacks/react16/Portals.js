@@ -38,7 +38,7 @@ class Parent extends React.Component {
     // updating Parent's state, even though button
     // is not direct descendant in the DOM.
     this.setState(prevState => ({
-      clicks: prevState.clicks + 1
+      clicks: prevState.clicks + 1,
     }));
   }
 

@@ -1,8 +1,8 @@
-# Dropdown
+# Basic Dropdown
 
 ## Basicaly
 
-![Basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/packages/dropdown/docs/images/dropdown01.png)
+![Basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/nopacks/basic-dropdown/readme/images/dropdown01.png)
 
 We have a list data like this:
 
@@ -22,7 +22,7 @@ We need action:
 
 ## The second UI
 
-![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/packages/dropdown/docs/images/dropdown02.png)
+![basic](https://raw.githubusercontent.com/uixcrazy/hhd-storybook/master/nopacks/basic-dropdown/readme/images/dropdown02.png)
 
 ## Issue inside Iframe
   { not update yet }
