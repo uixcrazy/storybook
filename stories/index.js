@@ -1,6 +1,7 @@
 import React from 'react';
 // import '../assets/styles/normalize.css';
 
+import './react-table.stories';
 import './react-animate.stories';
 import './slider.stories';
 import './dropdown.stories';
