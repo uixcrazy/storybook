@@ -31,16 +31,13 @@ margin: 10px;
   padding: 0;
 } */
 
-
 /* start -- hotfix */
-/* .ReactTable .rt-thead {
-  overflow-x: scroll;
+.ReactTable .rt-thead,
+.ReactTable .rt-tbody {
+  overflow-y: scroll;
   overflow-x: hidden;
-} */
+}
 /* end -- hotfix */
-
-
-
 
 .ReactTable *::-webkit-scrollbar {
   width: 3px;
